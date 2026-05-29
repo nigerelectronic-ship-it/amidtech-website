@@ -1,0 +1,12 @@
+{
+  "name": "AmidTech LLC",
+  "short_name": "AmidTech",
+  "description": "Pan-African Fintech — AfriSend & AfriPay",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#C9A84C",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "categories": ["finance", "business"]
+}
