@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)file:///C:/Users/DELL%20G16/Downloads/liens.html -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AmidTech · Liens</title>
+<meta name="description" content="AmidTech — Sites web, applications et plateformes numériques. Du Massif de l&#39;Aïr vers le monde.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="AmidTech · Sites Web &amp; Apps">
+<meta property="og:description" content="Du Massif de l&#39;Aïr vers le monde 🌍 — Sites web · Applications · Plateformes numériques">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://amidtechgroup.com">
+
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./AmidTech · Liens_files/css2" rel="stylesheet">
+
+<style>
+  :root {
+    --blue-deep:  #1B2C9E;
+    --blue:       #2563EB;
+    --blue-bright:#3B9BFF;
+    --gold:       #F5A623;
+    --ink:        #1A2456;
+    --ink-soft:   #5B6593;
+    --bg:         #EEF3FF;
+    --bg-2:       #F7FAFF;
+    --card:       #FFFFFF;
+    --line:       #E2E9FB;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #DCE8FF 0%, rgba(220,232,255,0) 60%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 32px 18px 48px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ---- Mountain / Aïr motif behind the logo ---- */
+  .crest {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 6px;
+  }
+  .crest svg.range {
+    position: absolute;
+    bottom: -8px;
+    width: 230px;
+    height: 70px;
+    opacity: .5;
+  }
+
+  /* ---- Logo A ---- */
+  .logo {
+    position: relative;
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+    background: radial-gradient(120% 120% at 30% 20%, var(--blue-bright) 0%, var(--blue) 42%, var(--blue-deep) 100%);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 18px 40px -14px rgba(37,99,235,.65), inset 0 2px 6px rgba(255,255,255,.35);
+    z-index: 2;
+  }
+  .logo::after {
+    content: "";
+    position: absolute;
+    top: 14px; left: 22px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.9);
+    filter: blur(.3px);
+  }
+  .logo span {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 70px;
+    line-height: 1;
+    color: #fff;
+    transform: translateY(2px);
+    letter-spacing: -2px;
+  }
+
+  /* ---- Identity ---- */
+  .name {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: -.4px;
+    margin-top: 20px;
+    color: var(--ink);
+  }
+  .tag {
+    font-size: 15px;
+    color: var(--blue-deep);
+    font-weight: 600;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .services {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin-top: 8px;
+    text-align: center;
+    letter-spacing: .2px;
+  }
+  .locale {
+    margin-top: 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--blue);
+    background: #E7F0FF;
+    border: 1px solid var(--line);
+    padding: 5px 12px;
+    border-radius: 999px;
+    letter-spacing: .3px;
+  }
+
+  /* ---- Links ---- */
+  .links {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  .link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 15px 18px;
+    color: var(--ink);
+    box-shadow: 0 4px 14px -8px rgba(27,44,158,.25);
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .link:hover, .link:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px -12px rgba(27,44,158,.4);
+    border-color: var(--blue-bright);
+    outline: none;
+  }
+  .link:focus-visible { outline: 3px solid var(--blue-bright); outline-offset: 2px; }
+
+  .ic {
+    flex: 0 0 42px;
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+  }
+  .ic svg { width: 22px; height: 22px; }
+
+  .ic-web  { background: linear-gradient(135deg, #2563EB, #1B2C9E); }
+  .ic-wa   { background: linear-gradient(135deg, #25D366, #128C7E); }
+  .ic-mail { background: linear-gradient(135deg, #F5A623, #E8890B); }
+  .ic-quote{ background: linear-gradient(135deg, #3B9BFF, #2563EB); }
+
+  .txt { display: flex; flex-direction: column; line-height: 1.25; }
+  .txt b { font-family:'Sora',sans-serif; font-weight: 600; font-size: 15px; }
+  .txt small { color: var(--ink-soft); font-size: 12.5px; margin-top: 2px; }
+
+  .arrow { margin-left: auto; color: var(--ink-soft); }
+  .arrow svg { width: 18px; height: 18px; }
+
+  /* primary call to action */
+  .link.primary {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%);
+    border-color: transparent;
+  }
+  .link.primary .txt b,
+  .link.primary .txt small { color: #fff; }
+  .link.primary .txt small { color: #D7E4FF; }
+  .link.primary .arrow { color: #D7E4FF; }
+  .link.primary .ic { background: rgba(255,255,255,.18); }
+
+  /* ---- Footer ---- */
+  footer {
+    margin-top: 34px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  footer .dot { color: var(--blue-bright); }
+  footer a { color: var(--blue); text-decoration: none; font-weight: 600; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .link { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <main class="wrap">
+
+    <div class="crest">
+      <svg class="range" viewBox="0 0 230 70" fill="none" aria-hidden="true">
+        <path d="M0 70 L46 22 L78 50 L115 8 L150 46 L184 18 L230 70 Z" fill="#9DB6FF"></path>
+        <path d="M0 70 L60 36 L96 58 L132 28 L168 56 L210 34 L230 70 Z" fill="#C5D7FF"></path>
+      </svg>
+      <div class="logo"><span>A</span></div>
+    </div>
+
+    <h1 class="name">AmidTech</h1>
+    <p class="tag">Du Massif de l'Aïr vers le monde <span>🌍</span></p>
+    <p class="services">Sites web · Applications · Plateformes numériques</p>
+    <span class="locale">📍 Niamey, Niger</span>
+
+    <nav class="links" aria-label="Liens AmidTech">
+
+      <!-- Devis WhatsApp (primary) -->
+      <a class="link primary" href="https://wa.me/22799318235?text=Bonjour%20AmidTech%2C%20je%20souhaite%20un%20devis%20pour%20un%20projet%20num%C3%A9rique%20(site%20web%20%2F%20application)." target="_blank" rel="noopener">
+        <span class="ic ic-quote">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.5 2.5M16.5 16.5L19 19M19 5l-2.5 2.5M7.5 16.5L5 19"></path>
+            <circle cx="12" cy="12" r="3.2"></circle>
+          </svg>
+        </span>
+        <span class="txt"><b>Demander un devis gratuit</b><small>Réponse rapide sur WhatsApp</small></span>
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      </a>
+
+      <!-- Site web -->
+      <a class="link" href="https://amidtechgroup.com/" target="_blank" rel="noopener">
+        <span class="ic ic-web">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"></path>
+          </svg>
+        </span>
+        <span class="txt"><b>Site web</b><small>amidtechgroup.com</small></span>
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      </a>
+
+      <!-- WhatsApp direct -->
+      <a class="link" href="https://wa.me/22799318235" target="_blank" rel="noopener">
+        <span class="ic ic-wa">
+          <svg viewBox="0 0 24 24" fill="#fff">
+            <path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8 8 0 1 1 12 20zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8.9-.3.2-.5 0a6.6 6.6 0 0 1-1.9-1.2 7.3 7.3 0 0 1-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.5c.1-.1.2-.3.2-.4a.5.5 0 0 0 0-.5L8 6.9c-.1-.4-.3-.3-.5-.3h-.4a.9.9 0 0 0-.6.3 2.6 2.6 0 0 0-.8 1.9 4.5 4.5 0 0 0 .9 2.4 10.3 10.3 0 0 0 4 3.5c.6.2 1 .4 1.3.5a3.2 3.2 0 0 0 1.5.1 2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .2-1.1c-.1-.1-.3-.2-.5-.3z"></path>
+          </svg>
+        </span>
+        <span class="txt"><b>WhatsApp</b><small>+227 99 31 82 35</small></span>
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      </a>
+
+      <!-- Email -->
+      <a class="link" href="mailto:contact@amidtechgroup.com">
+        <span class="ic ic-mail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path>
+          </svg>
+        </span>
+        <span class="txt"><b>E-mail</b><small>contact@amidtechgroup.com</small></span>
+        <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      </a>
+
+    </nav>
+
+    <footer>
+      <span class="dot">●</span> AmidTech — Solutions numériques<br>
+      © <span id="y">2026</span> · <a href="https://amidtechgroup.com/" target="_blank" rel="noopener">amidtechgroup.com</a>
+    </footer>
+  </main>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+
+
+</body></html>
