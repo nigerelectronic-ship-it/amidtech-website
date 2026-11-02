@@ -3,194 +3,541 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AmidTech LLC — Software, Web & IT Hardware Agency</title>
-<meta name="description" content="AmidTech LLC (New Mexico, USA) designs custom business software, web and mobile applications, websites, and supplies IT hardware for companies in the USA and West Africa.">
-<meta name="author" content="AmidTech LLC">
+<title>AmidTech LLC — Business software, web & IT for companies in the USA and Africa</title>
+<meta name="description" content="AmidTech LLC (New Mexico, USA) designs custom management software, web and mobile applications and websites, and supplies IT hardware for construction, mining, logistics, energy and service companies.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#4F46E5">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://amidtechgroup.com/">
 <meta property="og:site_name" content="AmidTech LLC">
-<meta property="og:title" content="AmidTech LLC — Software, Web & IT Hardware Agency">
-<meta property="og:description" content="Custom management software, web & mobile apps, websites, maintenance, IT consulting and hardware supply.">
+<meta property="og:title" content="AmidTech LLC — Software built for the way your business runs">
+<meta property="og:description" content="Custom management software, web & mobile apps, websites, maintenance, IT consulting and hardware supply. Fixed-price quotes in USD.">
 <link rel="canonical" href="https://amidtechgroup.com/">
 <link rel="manifest" href="/manifest.json">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234F46E5'/%3E%3Cstop offset='1' stop-color='%2306B6D4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='30' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234F46E5'/%3E%3Cstop offset='1' stop-color='%2306B6D4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M18 46 L32 16 L46 46 M24 36 H40' stroke='white' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"AmidTech LLC","url":"https://amidtechgroup.com","email":"contact@amidtechgroup.com","telephone":"+227 92 35 65 96","taxID":"98-1831945","address":[{"@type":"PostalAddress","streetAddress":"1209 Mountain Road PL NE, Suite N","addressLocality":"Albuquerque","addressRegion":"NM","postalCode":"87110","addressCountry":"US"},{"@type":"PostalAddress","streetAddress":"1170 Boulevard Mali Bero, Bâtiment C23","addressLocality":"Niamey","addressCountry":"NE"}],"founder":{"@type":"Person","name":"Mahmoud Sagdoun"}}
 </script>
 <style>
-:root{--ind:#4F46E5;--cy:#06B6D4;--ink:#1E1B4B;--txt:#3F3D66;--mut:#6B7194;--bg:#F8FAFF;--card:#FFFFFF;--line:#E3E8F7;--grad:linear-gradient(135deg,#4F46E5 0%,#06B6D4 100%)}
+:root{
+  --ink:#1E1B4B;--txt:#45436B;--mut:#7176A0;
+  --ind:#4F46E5;--ind2:#4338CA;--cy:#06B6D4;--sun:#F5B83D;
+  --paper:#F7F8FC;--white:#FFFFFF;--mist:#E6E9F5;--lav:#EEF0FF;
+  --grad:linear-gradient(120deg,#4F46E5 0%,#06B6D4 100%);
+  --r-lg:22px;--r-md:14px;--r-sm:8px;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Poppins,system-ui,sans-serif;color:var(--txt);background:var(--bg);line-height:1.65;font-size:16px}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:Poppins,system-ui,sans-serif;color:var(--txt);background:var(--paper);font-size:16.5px;line-height:1.7;font-weight:400}
+img,svg{display:block}
 a{color:var(--ind);text-decoration:none}
-.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+:focus-visible{outline:3px solid var(--cy);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1180px,100% - 44px);margin-inline:auto}
 body.fr .en,body:not(.fr) .fr{display:none!important}
-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--ink);font-size:19px}
-.logo i{width:36px;height:36px;border-radius:10px;background:var(--grad);display:grid;place-items:center;color:#fff;font-style:normal;font-weight:700}
-.links{display:flex;gap:24px;align-items:center;font-size:14.5px;font-weight:500}
-.links a{color:var(--txt)}.links a:hover{color:var(--ind)}
-.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
-.lang button{border:0;background:#fff;padding:6px 12px;font:600 13px Poppins,sans-serif;color:var(--mut);cursor:pointer}
-.lang button.on{background:var(--grad);color:#fff}
-.btn{display:inline-block;padding:13px 26px;border-radius:12px;font-weight:600;font-size:15px;transition:.2s}
-.btn.p{background:var(--grad);color:#fff;box-shadow:0 8px 24px rgba(79,70,229,.28)}
-.btn.p:hover{transform:translateY(-2px)}
-.btn.s{background:#fff;color:var(--ind);border:1.5px solid #C7D2FE}
-.hero{background:radial-gradient(1100px 500px at 85% -10%,rgba(6,182,212,.16),transparent 60%),radial-gradient(900px 500px at -10% 10%,rgba(79,70,229,.14),transparent 60%);padding:90px 0 80px}
-.tag{display:inline-block;padding:6px 14px;border-radius:999px;background:#EEF2FF;color:var(--ind);font-size:13px;font-weight:600;margin-bottom:20px}
-h1{font-size:clamp(32px,5vw,52px);line-height:1.15;color:var(--ink);font-weight:700;max-width:820px}
-h1 b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.lead{font-size:18px;max-width:700px;margin:22px 0 32px;color:var(--txt)}
-.cta{display:flex;gap:14px;flex-wrap:wrap}
-.facts{display:flex;gap:28px;flex-wrap:wrap;margin-top:44px;font-size:14px;color:var(--mut)}
-.facts span::before{content:"✓ ";color:var(--cy);font-weight:700}
-section{padding:80px 0}
-.h2{font-size:clamp(26px,3.4vw,36px);color:var(--ink);font-weight:700;margin-bottom:12px}
-.sub{color:var(--mut);max-width:680px;margin-bottom:40px}
-.grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:0 4px 18px rgba(30,27,75,.04)}
-.card .ic{width:46px;height:46px;border-radius:12px;background:var(--grad);display:grid;place-items:center;font-size:22px;margin-bottom:16px}
-.card h3{color:var(--ink);font-size:18px;margin-bottom:8px}
-.price{margin-top:14px;font-weight:700;color:var(--ind);font-size:17px}
-.price small{display:block;font-weight:500;font-size:13px;color:var(--mut)}
-.alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.steps{counter-reset:s}
-.steps .card h3::before{counter-increment:s;content:counter(s);display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#EEF2FF;color:var(--ind);font-size:14px;margin-right:10px}
-.pay{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-.pay span{border:1px solid var(--line);border-radius:8px;padding:5px 12px;font-size:13px;font-weight:600;color:var(--ink);background:#fff}
-.note{font-size:13.5px;color:var(--mut);margin-top:26px}
-.ref .st{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;margin-bottom:10px}
-.ok{background:#DCFCE7;color:#166534}.wip{background:#E0F2FE;color:#075985}
-table{width:100%;border-collapse:collapse;font-size:14.5px}
-td{padding:10px 0;border-bottom:1px solid var(--line);vertical-align:top}
-td:first-child{color:var(--mut);width:40%;padding-right:12px}
-td:last-child{color:var(--ink);font-weight:500}
-footer{background:var(--ink);color:#C7D2FE;padding:50px 0 30px;font-size:14px}
-footer a{color:#E0E7FF}
-.fgrid{display:grid;gap:28px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-bottom:30px}
-footer h4{color:#fff;margin-bottom:10px;font-size:15px}
-footer li{list-style:none;margin:5px 0}
-.copy{border-top:1px solid rgba(199,210,254,.2);padding-top:20px;font-size:13px;color:#A5B4FC}
-@media(max-width:820px){.links a{display:none}.hero{padding:60px 0}section{padding:60px 0}}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:#fff;padding:8px 14px;z-index:99}
+
+/* header */
+header{position:sticky;top:0;z-index:40;background:rgba(247,248,252,.86);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
+header.sc{border-color:var(--mist)}
+.nav{display:flex;align-items:center;gap:28px;height:74px}
+.brand{display:flex;align-items:center;gap:11px;color:var(--ink);font-weight:600;font-size:18px;letter-spacing:-.01em}
+.brand svg{width:38px;height:38px}
+.brand small{display:block;font-size:11.5px;font-weight:400;color:var(--mut);letter-spacing:0;margin-top:-3px}
+.menu{display:flex;gap:26px;margin-left:auto;font-size:14.5px;font-weight:500}
+.menu a{color:var(--txt)}.menu a:hover{color:var(--ind)}
+.lang{display:flex;background:var(--white);border:1px solid var(--mist);border-radius:999px;padding:3px}
+.lang button{border:0;background:none;padding:5px 11px;border-radius:999px;font:600 12.5px Poppins,sans-serif;color:var(--mut);cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;border-radius:12px;font-weight:600;font-size:15px;border:0;cursor:pointer;font-family:inherit;transition:background .2s,transform .2s}
+.btn-p{background:var(--ind);color:#fff}.btn-p:hover{background:var(--ind2)}
+.btn-g{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px #C9CEEA}.btn-g:hover{box-shadow:inset 0 0 0 1.5px var(--ind);color:var(--ind)}
+.nav .btn{padding:10px 18px;font-size:14px}
+
+/* hero */
+.hero{position:relative;padding:72px 0 96px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-30% -10% auto 40%;height:780px;background:radial-gradient(closest-side,rgba(6,182,212,.18),transparent),radial-gradient(closest-side at 30% 60%,rgba(79,70,229,.16),transparent);z-index:-1}
+.hgrid{display:grid;grid-template-columns:1fr 1.08fr;gap:56px;align-items:center}
+h1{font-size:clamp(36px,4.6vw,60px);line-height:1.06;letter-spacing:-.035em;color:var(--ink);font-weight:700}
+.hero p.lead{font-size:18.5px;margin:24px 0 34px;max-width:33em;color:var(--txt)}
+.hero .acts{display:flex;gap:12px;flex-wrap:wrap}
+.proof{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:34px;margin-top:42px;padding-top:26px;border-top:1px solid var(--mist);flex-wrap:wrap}
+.proof div{font-size:13.5px;color:var(--mut);line-height:1.45}
+.proof strong{display:block;color:var(--ink);font-size:15px;font-weight:600}
+
+/* app mockup */
+.app{background:var(--white);border-radius:var(--r-lg);box-shadow:0 1px 0 var(--mist),0 30px 70px -20px rgba(30,27,75,.28),0 0 0 1px rgba(30,27,75,.05);overflow:hidden;font-size:13px}
+.app-bar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--mist);background:#FAFBFF}
+.app-bar i{width:10px;height:10px;border-radius:50%;background:#DADFF0}
+.app-bar span{margin-left:12px;flex:1;background:var(--paper);border-radius:6px;padding:4px 12px;color:var(--mut);font-size:12px}
+.app-body{display:grid;grid-template-columns:150px 1fr;min-height:380px}
+.side{background:var(--ink);color:#C7CBF2;padding:18px 12px;display:flex;flex-direction:column;gap:4px}
+.side b{color:#fff;font-weight:600;font-size:13px;padding:0 8px 14px}
+.side button{all:unset;cursor:pointer;padding:8px 10px;border-radius:8px;font-size:12.5px;display:flex;gap:8px;align-items:center}
+.side button:focus-visible{outline:2px solid var(--cy)}
+.side button[aria-selected=true]{background:rgba(255,255,255,.12);color:#fff}
+.side button::before{content:"";width:7px;height:7px;border-radius:2px;background:currentColor;opacity:.55}
+.main{padding:20px 22px}
+.main h4{color:var(--ink);font-size:15px;font-weight:600;display:flex;justify-content:space-between;align-items:baseline}
+.main h4 small{font-size:11.5px;color:var(--mut);font-weight:400}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 16px}
+.kpis div{background:var(--paper);border-radius:10px;padding:10px 12px}
+.kpis em{font-style:normal;font-size:11px;color:var(--mut);display:block}
+.kpis strong{color:var(--ink);font-size:17px;font-weight:600}
+.rows div{display:grid;grid-template-columns:1.5fr 1fr minmax(64px,auto);gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--mist)}
+.rows div:last-child{border:0}
+.rows span:first-child{color:var(--ink);font-weight:500}
+.bar{height:6px;background:var(--mist);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--grad);border-radius:4px;width:var(--w);transform-origin:left;animation:grow 1.1s cubic-bezier(.2,.7,.2,1) both}
+@keyframes grow{from{transform:scaleX(0)}}
+.chip{font-size:11px;font-weight:600;border-radius:999px;padding:2px 9px;text-align:center}
+.c-ok{background:#DDF7EA;color:#11734B}.c-run{background:#DDF4FA;color:#0B6B80}.c-wait{background:#FDF0D3;color:#8A5A07}
+.pane[hidden]{display:none}
+
+/* sectors */
+.sectors{border-block:1px solid var(--mist);background:var(--white)}
+.sectors .wrap{display:flex;align-items:center;gap:36px;padding:22px 0;flex-wrap:wrap}
+.sectors p{font-size:14px;color:var(--mut);margin-right:6px}
+.sectors ul{display:flex;gap:30px;list-style:none;flex-wrap:wrap;color:var(--ink);font-weight:500;font-size:15px}
+
+/* generic section */
+.sec{padding:110px 0}
+.sec-h{max-width:720px;margin-bottom:56px}
+h2{font-size:clamp(28px,3.4vw,42px);line-height:1.12;letter-spacing:-.03em;color:var(--ink);font-weight:700}
+.sec-h p{margin-top:16px;font-size:17.5px;color:var(--txt)}
+
+/* about */
+.about{display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:start}
+.about .big{font-size:clamp(22px,2.3vw,29px);line-height:1.45;color:var(--ink);font-weight:500;letter-spacing:-.015em}
+.about .big + p{margin-top:24px;max-width:36em}
+.about p + p{margin-top:16px}
+.founder{background:var(--ink);color:#D4D7F5;border-radius:var(--r-lg);padding:34px;position:relative;overflow:hidden}
+.founder::after{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:var(--grad);opacity:.5;filter:blur(30px)}
+.founder blockquote{font-size:18px;line-height:1.6;color:#fff;font-weight:400;position:relative}
+.founder .who{display:flex;gap:14px;align-items:center;margin-top:26px;position:relative}
+.founder .av{width:50px;height:50px;border-radius:50%;background:var(--grad);display:grid;place-items:center;color:#fff;font-weight:600}
+.founder .who strong{color:#fff;display:block;font-weight:600}
+.founder .who span{font-size:13.5px}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--mist);border-radius:var(--r-md);overflow:hidden;margin-top:22px}
+.facts div{background:var(--white);padding:18px 20px}
+.facts strong{display:block;font-size:24px;color:var(--ink);font-weight:600;letter-spacing:-.02em}
+.facts span{font-size:13.5px;color:var(--mut)}
+
+/* services list */
+.svc{background:var(--white);border-radius:var(--r-lg);box-shadow:0 0 0 1px var(--mist)}
+.svc-row{display:grid;grid-template-columns:64px 1.1fr 1.4fr 170px;gap:28px;padding:30px 34px;border-bottom:1px solid var(--mist);align-items:start}
+.svc-row:last-child{border:0}
+.svc-ic{width:52px;height:52px;border-radius:14px;background:var(--lav);display:grid;place-items:center}
+.svc-ic svg{width:26px;height:26px;stroke:var(--ind);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.svc-row h3{color:var(--ink);font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.35}
+.svc-row h3 + p{font-size:14.5px;margin-top:6px;color:var(--mut)}
+.svc-row ul{list-style:none;font-size:14.5px;display:grid;gap:6px}
+.svc-row li{padding-left:20px;position:relative}
+.svc-row li::before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;border-radius:3px;background:var(--grad)}
+.svc-row .pr{text-align:right}
+.svc-row .pr strong{display:block;color:var(--ink);font-size:21px;font-weight:600;letter-spacing:-.02em}
+.svc-row .pr span{font-size:13px;color:var(--mut)}
+.svc-note{font-size:14px;color:var(--mut);margin-top:18px}
+
+/* process */
+.dark{background:var(--ink);color:#C9CDF0}
+.dark h2{color:#fff}.dark .sec-h p{color:#C9CDF0}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;list-style:none;counter-reset:st;position:relative}
+.steps::before{content:"";position:absolute;left:0;right:0;top:23px;height:2px;background:linear-gradient(90deg,#4F46E5,#06B6D4)}
+.steps li{position:relative;padding-right:24px;counter-increment:st}
+.steps li::before{content:counter(st);display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--ink);border:2px solid var(--cy);color:#fff;font-weight:600;font-size:17px;position:relative;margin-bottom:22px}
+.steps h3{color:#fff;font-size:17px;font-weight:600;margin-bottom:8px}
+.steps p{font-size:14.5px;line-height:1.6}
+.steps em{display:inline-block;margin-top:12px;font-style:normal;font-size:12.5px;color:var(--cy);font-weight:500}
+
+/* commitments */
+.commit{display:grid;grid-template-columns:repeat(3,1fr);gap:46px 56px}
+.commit h3{color:var(--ink);font-size:18px;font-weight:600;margin-bottom:8px;display:flex;gap:12px;align-items:center}
+.commit h3 svg{width:24px;height:24px;stroke:var(--cy);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.commit p{font-size:15px}
+
+/* cases */
+.cases{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.case{background:var(--white);border-radius:var(--r-lg);padding:36px;box-shadow:0 0 0 1px var(--mist)}
+.case .st{display:inline-block;font-size:12.5px;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:18px}
+.case h3{color:var(--ink);font-size:22px;font-weight:600;letter-spacing:-.015em;line-height:1.3}
+.case > p{margin:12px 0 20px;font-size:15.5px}
+.mods{display:flex;flex-wrap:wrap;gap:8px}
+.mods span{background:var(--paper);border-radius:8px;padding:6px 12px;font-size:13px;color:var(--ink);font-weight:500}
+.case dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin-top:24px;padding-top:20px;border-top:1px solid var(--mist);font-size:14px}
+.case dt{color:var(--mut)}.case dd{color:var(--ink);font-weight:500}
+
+/* pay + company */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.panel{background:var(--white);border-radius:var(--r-lg);padding:36px;box-shadow:0 0 0 1px var(--mist)}
+.panel h3{color:var(--ink);font-size:20px;font-weight:600;margin-bottom:14px}
+.pay{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.pay span{border:1px solid var(--mist);border-radius:8px;padding:6px 13px;font-size:13.5px;font-weight:600;color:var(--ink)}
+.panel .small{font-size:14px;color:var(--mut)}
+.kv{width:100%;border-collapse:collapse;font-size:14.5px}
+.kv th{text-align:left;font-weight:400;color:var(--mut);padding:10px 16px 10px 0;width:38%;vertical-align:top;border-bottom:1px solid var(--mist)}
+.kv td{color:var(--ink);font-weight:500;padding:10px 0;border-bottom:1px solid var(--mist)}
+.kv tr:last-child th,.kv tr:last-child td{border:0}
+
+/* faq */
+.faq{max-width:860px}
+.faq details{border-bottom:1px solid var(--mist);padding:6px 0}
+.faq summary{list-style:none;cursor:pointer;padding:18px 40px 18px 0;color:var(--ink);font-weight:600;font-size:17px;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:6px;top:50%;width:12px;height:12px;border-right:2px solid var(--ind);border-bottom:2px solid var(--ind);transform:translateY(-70%) rotate(45deg);transition:transform .25s}
+.faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.faq details p{padding:0 0 20px;font-size:15.5px;max-width:44em}
+
+/* contact */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:start}
+.contact .direct{margin-top:30px;display:grid;gap:16px}
+.contact .direct a,.contact .direct div{display:flex;gap:14px;align-items:center;color:var(--ink);font-weight:500}
+.contact .direct svg{width:42px;height:42px;padding:10px;border-radius:12px;background:var(--lav);stroke:var(--ind);fill:none;stroke-width:1.8;flex:none}
+.contact .direct small{display:block;color:var(--mut);font-weight:400;font-size:13px}
+form{background:var(--white);border-radius:var(--r-lg);padding:36px;box-shadow:0 0 0 1px var(--mist),0 24px 50px -30px rgba(30,27,75,.25);display:grid;gap:16px;grid-template-columns:1fr 1fr}
+form .full{grid-column:1/-1}
+label{font-size:13.5px;font-weight:500;color:var(--ink);display:grid;gap:6px}
+input,select,textarea{font:inherit;font-size:15px;color:var(--ink);background:var(--paper);border:1.5px solid var(--mist);border-radius:10px;padding:11px 13px;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ind);background:#fff}
+textarea{min-height:120px;resize:vertical}
+.form-note{font-size:13px;color:var(--mut)}
+#sent{display:none;color:#11734B;font-weight:500;font-size:14px}
+
+footer{background:var(--ink);color:#B9BEEA;padding:70px 0 34px;font-size:14px}
+footer a{color:#E3E6FF}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(201,205,240,.16)}
+footer h4{color:#fff;font-size:14.5px;font-weight:600;margin-bottom:12px}
+footer ul{list-style:none;display:grid;gap:7px}
+footer .brand{color:#fff;margin-bottom:14px}
+.legal{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:24px;font-size:13px;color:#9EA4D8}
+
+@media (max-width:1000px){
+  .hgrid,.about,.contact{grid-template-columns:1fr;gap:48px}
+  .svc-row{grid-template-columns:52px 1fr;gap:16px 20px}
+  .svc-row ul,.svc-row .pr{grid-column:2}
+  .svc-row .pr{text-align:left}
+  .steps{grid-template-columns:1fr;gap:30px}
+  .steps::before{left:23px;right:auto;top:0;bottom:0;width:2px;height:auto}
+  .steps li{padding:0 0 0 72px}.steps li::before{position:absolute;left:0;top:0}
+  .commit,.cases,.split{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .menu{display:none}
+}
+@media (max-width:620px){
+  body{font-size:16px}
+  .proof{grid-template-columns:1fr;gap:16px}
+  .sec{padding:76px 0}
+  .hero{padding:44px 0 70px}
+  .nav .btn{display:none}
+  .app-body{grid-template-columns:1fr}
+  .side{flex-direction:row;overflow-x:auto;padding:10px}
+  .side b{display:none}
+  .kpis strong{font-size:15px}
+  .rows div{grid-template-columns:1.2fr .8fr minmax(58px,auto);gap:8px}.chip{padding:2px 7px}
+  .svc-row{padding:26px 22px;grid-template-columns:1fr}
+  .svc-row ul,.svc-row .pr{grid-column:1}
+  form{grid-template-columns:1fr;padding:24px}
+  .fgrid{grid-template-columns:1fr}
+  .panel,.case{padding:26px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<header><div class="wrap nav">
-  <a class="logo" href="#top"><i>A</i>AmidTech LLC</a>
-  <nav class="links">
-    <a href="#services"><span class="en">Services</span><span class="fr">Services</span></a>
-    <a href="#how"><span class="en">How we work</span><span class="fr">Méthode</span></a>
-    <a href="#company"><span class="en">Company</span><span class="fr">Société</span></a>
-    <a href="#contact">Contact</a>
-    <div class="lang"><button id="b-en" class="on" onclick="setLang('en')">EN</button><button id="b-fr" onclick="setLang('fr')">FR</button></div>
+<a class="skip" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4F46E5"/><stop offset="1" stop-color="#06B6D4"/></linearGradient></defs></svg>
+
+<header id="hdr"><div class="wrap nav">
+  <a class="brand" href="#top" aria-label="AmidTech LLC">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="url(#lg)"/><path d="M18 46 L32 16 L46 46 M24 36 H40" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>AmidTech<small>LLC · New Mexico, USA</small></span>
+  </a>
+  <nav class="menu" aria-label="Main">
+    <a href="#about"><span class="en">About</span><span class="fr">Qui sommes-nous</span></a>
+    <a href="#services">Services</a>
+    <a href="#process"><span class="en">Process</span><span class="fr">Méthode</span></a>
+    <a href="#work"><span class="en">Projects</span><span class="fr">Réalisations</span></a>
+    <a href="#faq">FAQ</a>
   </nav>
+  <div class="lang" role="group" aria-label="Language"><button id="b-en" aria-pressed="true" onclick="setLang('en')">EN</button><button id="b-fr" aria-pressed="false" onclick="setLang('fr')">FR</button></div>
+  <a class="btn btn-p" href="#contact"><span class="en">Get a quote</span><span class="fr">Demander un devis</span></a>
 </div></header>
 
-<main id="top">
-<div class="hero"><div class="wrap">
-  <span class="tag"><span class="en">Software · Web · IT Hardware — USA & West Africa</span><span class="fr">Logiciels · Web · Matériel informatique — USA & Afrique de l'Ouest</span></span>
-  <h1><span class="en">We build the <b>software</b> your business runs on.</span><span class="fr">Nous créons les <b>logiciels</b> qui font tourner votre entreprise.</span></h1>
-  <p class="lead"><span class="en">AmidTech LLC is a U.S. technology agency that designs custom management software, web and mobile applications and websites, provides maintenance and IT consulting, and supplies computer hardware to companies in construction, mining, logistics and services.</span><span class="fr">AmidTech LLC est une agence technologique américaine qui conçoit des logiciels de gestion sur mesure, des applications web et mobiles et des sites internet, assure la maintenance et le conseil informatique, et fournit du matériel informatique aux entreprises du BTP, des mines, de la logistique et des services.</span></p>
-  <div class="cta">
-    <a class="btn p" href="#contact"><span class="en">Request a quote</span><span class="fr">Demander un devis</span></a>
-    <a class="btn s" href="#services"><span class="en">See services & pricing</span><span class="fr">Voir services et tarifs</span></a>
+<main id="main">
+<section class="hero" id="top"><div class="wrap hgrid">
+  <div>
+    <h1><span class="en">Software built for the way your business actually runs.</span><span class="fr">Des logiciels conçus pour la réalité de votre entreprise.</span></h1>
+    <p class="lead"><span class="en">AmidTech designs management systems, web and mobile apps and websites for companies in construction, mining, logistics, energy and services — and supplies the hardware they run on. One team, a fixed price, and software your staff will actually use.</span><span class="fr">AmidTech conçoit des systèmes de gestion, des applications web et mobiles et des sites internet pour les entreprises du BTP, des mines, de la logistique, de l'énergie et des services — et fournit le matériel pour les faire tourner. Une seule équipe, un prix fixe, et des outils que vos équipes utiliseront vraiment.</span></p>
+    <div class="acts">
+      <a class="btn btn-p" href="#contact"><span class="en">Describe your project</span><span class="fr">Décrire votre projet</span></a>
+      <a class="btn btn-g" href="#services"><span class="en">Services and prices</span><span class="fr">Services et tarifs</span></a>
+    </div>
+    <div class="proof">
+      <div><strong><span class="en">U.S. company</span><span class="fr">Société américaine</span></strong><span class="en">LLC registered in New Mexico</span><span class="fr">LLC enregistrée au Nouveau-Mexique</span></div>
+      <div><strong><span class="en">Fixed price</span><span class="fr">Prix fixe</span></strong><span class="en">Written quote in USD</span><span class="fr">Devis écrit en USD</span></div>
+      <div><strong><span class="en">You own the code</span><span class="fr">Le code est à vous</span></strong><span class="en">Full transfer on payment</span><span class="fr">Cession complète au paiement</span></div>
+    </div>
   </div>
-  <div class="facts">
-    <span class="en">U.S. LLC — New Mexico</span><span class="fr">LLC américaine — Nouveau-Mexique</span>
-    <span class="en">Fixed-price quotes in USD</span><span class="fr">Devis à prix fixe en USD</span>
-    <span class="en">Bank transfer & card payments</span><span class="fr">Virement et paiement par carte</span>
-    <span class="en">EN / FR support</span><span class="fr">Support EN / FR</span>
+
+  <div class="app" aria-label="Example of a management system built by AmidTech">
+    <div class="app-bar"><i></i><i></i><i></i><span>app.yourcompany.com</span></div>
+    <div class="app-body">
+      <div class="side" role="tablist" aria-label="Demo modules">
+        <b>Your ERP</b>
+        <button role="tab" aria-selected="true" aria-controls="p1" id="t1"><span class="en">Projects</span><span class="fr">Chantiers</span></button>
+        <button role="tab" aria-selected="false" aria-controls="p2" id="t2"><span class="en">Inventory</span><span class="fr">Stocks</span></button>
+        <button role="tab" aria-selected="false" aria-controls="p3" id="t3"><span class="en">Invoices</span><span class="fr">Factures</span></button>
+      </div>
+      <div class="main">
+        <div class="pane" id="p1" role="tabpanel" aria-labelledby="t1">
+          <h4><span class="en">Active projects</span><span class="fr">Chantiers en cours</span><small><span class="en">Updated today</span><span class="fr">Mis à jour aujourd'hui</span></small></h4>
+          <div class="kpis"><div><em><span class="en">Projects</span><span class="fr">Chantiers</span></em><strong>12</strong></div><div><em><span class="en">On schedule</span><span class="fr">Dans les délais</span></em><strong>83%</strong></div><div><em><span class="en">Staff on site</span><span class="fr">Personnel</span></em><strong>214</strong></div></div>
+          <div class="rows">
+            <div><span><span class="en">Road section, km 0–18</span><span class="fr">Route, section km 0–18</span></span><span class="bar"><i style="--w:72%"></i></span><span class="chip c-run">72%</span></div>
+            <div><span><span class="en">School, 6 classrooms</span><span class="fr">École, 6 classes</span></span><span class="bar"><i style="--w:100%"></i></span><span class="chip c-ok"><span class="en">Done</span><span class="fr">Livré</span></span></div>
+            <div><span><span class="en">Water borehole, 3 sites</span><span class="fr">Forages, 3 sites</span></span><span class="bar"><i style="--w:45%"></i></span><span class="chip c-run">45%</span></div>
+            <div><span><span class="en">Warehouse extension</span><span class="fr">Extension entrepôt</span></span><span class="bar"><i style="--w:12%"></i></span><span class="chip c-wait"><span class="en">Starting</span><span class="fr">Démarrage</span></span></div>
+          </div>
+        </div>
+        <div class="pane" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+          <h4><span class="en">Inventory</span><span class="fr">Stocks</span><small><span class="en">Main depot</span><span class="fr">Dépôt principal</span></small></h4>
+          <div class="kpis"><div><em><span class="en">Items</span><span class="fr">Articles</span></em><strong>1,348</strong></div><div><em><span class="en">Low stock</span><span class="fr">Stock bas</span></em><strong>7</strong></div><div><em><span class="en">Value</span><span class="fr">Valeur</span></em><strong>$286k</strong></div></div>
+          <div class="rows">
+            <div><span>Diesel</span><span class="bar"><i style="--w:64%"></i></span><span class="chip c-ok">64%</span></div>
+            <div><span><span class="en">Cement 50 kg</span><span class="fr">Ciment 50 kg</span></span><span class="bar"><i style="--w:18%"></i></span><span class="chip c-wait"><span class="en">Reorder</span><span class="fr">Commander</span></span></div>
+            <div><span><span class="en">Spare tyres</span><span class="fr">Pneus</span></span><span class="bar"><i style="--w:52%"></i></span><span class="chip c-ok">52%</span></div>
+            <div><span><span class="en">Drill bits</span><span class="fr">Taillants</span></span><span class="bar"><i style="--w:81%"></i></span><span class="chip c-ok">81%</span></div>
+          </div>
+        </div>
+        <div class="pane" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
+          <h4><span class="en">Invoices</span><span class="fr">Factures</span><small><span class="en">This month</span><span class="fr">Ce mois-ci</span></small></h4>
+          <div class="kpis"><div><em><span class="en">Issued</span><span class="fr">Émises</span></em><strong>$148k</strong></div><div><em><span class="en">Collected</span><span class="fr">Encaissé</span></em><strong>$112k</strong></div><div><em><span class="en">Overdue</span><span class="fr">En retard</span></em><strong>3</strong></div></div>
+          <div class="rows">
+            <div><span>INV-2026-118</span><span class="bar"><i style="--w:100%"></i></span><span class="chip c-ok"><span class="en">Paid</span><span class="fr">Payée</span></span></div>
+            <div><span>INV-2026-119</span><span class="bar"><i style="--w:40%"></i></span><span class="chip c-run"><span class="en">Partial</span><span class="fr">Partiel</span></span></div>
+            <div><span>INV-2026-120</span><span class="bar"><i style="--w:100%"></i></span><span class="chip c-ok"><span class="en">Paid</span><span class="fr">Payée</span></span></div>
+            <div><span>INV-2026-121</span><span class="bar"><i style="--w:0%"></i></span><span class="chip c-wait"><span class="en">Due</span><span class="fr">À payer</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div></section>
+
+<div class="sectors"><div class="wrap">
+  <p><span class="en">Built for</span><span class="fr">Pour les secteurs</span></p>
+  <ul>
+    <li><span class="en">Construction</span><span class="fr">BTP</span></li>
+    <li><span class="en">Mining</span><span class="fr">Mines</span></li>
+    <li><span class="en">Logistics & transit</span><span class="fr">Transport et transit</span></li>
+    <li><span class="en">Energy & fuel</span><span class="fr">Énergie et hydrocarbures</span></li>
+    <li><span class="en">NGOs</span><span class="fr">ONG</span></li>
+    <li><span class="en">SMEs & services</span><span class="fr">PME et services</span></li>
+  </ul>
 </div></div>
 
-<section id="services"><div class="wrap">
-  <h2 class="h2"><span class="en">Services & indicative pricing</span><span class="fr">Services et tarifs indicatifs</span></h2>
-  <p class="sub"><span class="en">Every project receives a written quote with a fixed scope, deliverables, timeline and price before any payment. Prices below are starting points in U.S. dollars.</span><span class="fr">Chaque projet fait l'objet d'un devis écrit précisant le périmètre, les livrables, le délai et le prix, avant tout paiement. Les prix ci-dessous sont des prix de départ en dollars américains.</span></p>
-  <div class="grid">
-    <div class="card"><div class="ic">🧩</div><h3><span class="en">Custom management software</span><span class="fr">Logiciel de gestion sur mesure</span></h3><p><span class="en">ERP-style systems: inventory, purchasing, HR & payroll, fleet, production tracking, invoicing, dashboards, multi-user roles.</span><span class="fr">Systèmes type ERP : stocks, achats, RH et paie, flotte, suivi de production, facturation, tableaux de bord, rôles multi-utilisateurs.</span></p><div class="price"><span class="en">From $12,000</span><span class="fr">À partir de 12 000 $</span><small><span class="en">per project, fixed quote</span><span class="fr">par projet, devis fixe</span></small></div></div>
-    <div class="card"><div class="ic">📱</div><h3><span class="en">Web & mobile applications</span><span class="fr">Applications web et mobiles</span></h3><p><span class="en">Customer portals, field-data apps, booking and ordering apps for Android, iOS and the web.</span><span class="fr">Portails clients, applications de collecte terrain, réservation et commande pour Android, iOS et le web.</span></p><div class="price"><span class="en">From $5,000</span><span class="fr">À partir de 5 000 $</span><small><span class="en">per application</span><span class="fr">par application</span></small></div></div>
-    <div class="card"><div class="ic">🌐</div><h3><span class="en">Websites</span><span class="fr">Sites internet</span></h3><p><span class="en">Corporate and institutional websites, bilingual, mobile-ready, with hosting setup, domain and business e-mail.</span><span class="fr">Sites vitrines et institutionnels, bilingues, adaptés au mobile, avec hébergement, nom de domaine et e-mail professionnel.</span></p><div class="price"><span class="en">From $1,500</span><span class="fr">À partir de 1 500 $</span><small><span class="en">per website</span><span class="fr">par site</span></small></div></div>
-    <div class="card"><div class="ic">🛠️</div><h3><span class="en">Maintenance & hosting</span><span class="fr">Maintenance et hébergement</span></h3><p><span class="en">Updates, backups, monitoring, user support and minor changes for software and websites we deliver.</span><span class="fr">Mises à jour, sauvegardes, surveillance, assistance utilisateurs et petites évolutions des logiciels et sites livrés.</span></p><div class="price"><span class="en">From $150 / month</span><span class="fr">À partir de 150 $ / mois</span><small><span class="en">monthly subscription, cancel anytime</span><span class="fr">abonnement mensuel, résiliable à tout moment</span></small></div></div>
-    <div class="card"><div class="ic">💡</div><h3><span class="en">IT consulting</span><span class="fr">Conseil informatique</span></h3><p><span class="en">Digital transformation audits, specifications, IT architecture, tender technical sections, staff training.</span><span class="fr">Audits de transformation numérique, cahiers des charges, architecture informatique, volets techniques d'appels d'offres, formation.</span></p><div class="price"><span class="en">From $400 / day</span><span class="fr">À partir de 400 $ / jour</span><small><span class="en">on-site or remote</span><span class="fr">sur site ou à distance</span></small></div></div>
-    <div class="card"><div class="ic">🖥️</div><h3><span class="en">IT hardware supply</span><span class="fr">Fourniture de matériel informatique</span></h3><p><span class="en">Computers, workstations, servers, GPUs, networking equipment and accessories from authorized distributors, with warranty.</span><span class="fr">Ordinateurs, stations de travail, serveurs, cartes graphiques, équipements réseau et accessoires de distributeurs agréés, avec garantie.</span></p><div class="price"><span class="en">Quote on request</span><span class="fr">Sur devis</span><small><span class="en">itemized per order</span><span class="fr">détaillé par commande</span></small></div></div>
+<section class="sec" id="about"><div class="wrap about">
+  <div>
+    <div class="sec-h" style="margin-bottom:28px"><h2><span class="en">Who we are</span><span class="fr">Qui sommes-nous</span></h2></div>
+    <p class="big"><span class="en">AmidTech was founded by an entrepreneur who runs companies in mining, construction, energy and logistics. We build the software we needed ourselves — and could not find.</span><span class="fr">AmidTech a été fondée par un entrepreneur qui dirige des sociétés dans les mines, le BTP, l'énergie et la logistique. Nous créons les logiciels dont nous avions nous-mêmes besoin — et que nous ne trouvions pas.</span></p>
+    <p><span class="en">Off-the-shelf software is designed for offices with stable connections and standard workflows. Our clients run remote sites, mixed teams, cash and mobile payments, and regulatory reports in several formats. We design around those realities: tools that work on a phone in the field, keep working when the connection drops, and produce the documents your partners and administrations ask for.</span><span class="fr">Les logiciels standards sont pensés pour des bureaux bien connectés et des processus uniformes. Nos clients gèrent des sites éloignés, des équipes mixtes, des paiements en espèces et mobile money, et des rapports réglementaires sous plusieurs formats. Nous concevons pour cette réalité : des outils qui fonctionnent sur un téléphone sur le terrain, continuent de fonctionner quand la connexion coupe, et produisent les documents que vos partenaires et administrations demandent.</span></p>
+    <p><span class="en">AmidTech LLC is registered in New Mexico, USA, with an operations office in Niamey, Niger. Contracts and invoices are issued by the U.S. company, in U.S. dollars.</span><span class="fr">AmidTech LLC est enregistrée au Nouveau-Mexique (USA) et dispose d'un bureau opérationnel à Niamey (Niger). Les contrats et factures sont émis par la société américaine, en dollars américains.</span></p>
+  </div>
+  <div>
+    <div class="founder">
+      <blockquote><span class="en">“Our clients don't need more software. They need software that fits how their teams already work — and someone who answers the phone after delivery.”</span><span class="fr">« Nos clients n'ont pas besoin de plus de logiciels. Ils ont besoin d'outils adaptés à la façon dont leurs équipes travaillent déjà — et de quelqu'un qui répond au téléphone après la livraison. »</span></blockquote>
+      <div class="who"><div class="av">MS</div><div><strong>Mahmoud Sagdoun</strong><span class="en">Founder & Managing Member</span><span class="fr">Fondateur et gérant</span></div></div>
+    </div>
+    <div class="facts">
+      <div><strong>2</strong><span class="en">offices — USA and Niger</span><span class="fr">bureaux — USA et Niger</span></div>
+      <div><strong>EN · FR</strong><span class="en">delivery and support</span><span class="fr">livraison et support</span></div>
+      <div><strong>90 <span class="en">days</span><span class="fr">jours</span></strong><span class="en">warranty on delivered software</span><span class="fr">de garantie sur les logiciels livrés</span></div>
+      <div><strong>2 <span class="en">days</span><span class="fr">jours</span></strong><span class="en">to receive a written quote</span><span class="fr">pour recevoir un devis écrit</span></div>
+    </div>
   </div>
 </div></section>
 
-<section id="how" class="alt"><div class="wrap">
-  <h2 class="h2"><span class="en">How we work & how you pay</span><span class="fr">Notre méthode et vos paiements</span></h2>
-  <p class="sub"><span class="en">Clear, documented steps from first call to delivery.</span><span class="fr">Des étapes claires et documentées, du premier échange à la livraison.</span></p>
-  <div class="grid steps">
-    <div class="card"><h3><span class="en">Scope & quote</span><span class="fr">Cadrage et devis</span></h3><p><span class="en">We define your needs and send a written quote: scope, deliverables, timeline, price.</span><span class="fr">Nous définissons vos besoins et envoyons un devis écrit : périmètre, livrables, délai, prix.</span></p></div>
-    <div class="card"><h3><span class="en">Contract & deposit</span><span class="fr">Contrat et acompte</span></h3><p><span class="en">Signed service agreement and deposit invoice (typically 10%–50% depending on project).</span><span class="fr">Contrat de prestation signé et facture d'acompte (généralement 10 % à 50 % selon le projet).</span></p></div>
-    <div class="card"><h3><span class="en">Build & review</span><span class="fr">Réalisation et validation</span></h3><p><span class="en">Regular demos; you validate each milestone before we move on.</span><span class="fr">Démonstrations régulières ; vous validez chaque étape avant la suivante.</span></p></div>
-    <div class="card"><h3><span class="en">Delivery & balance</span><span class="fr">Livraison et solde</span></h3><p><span class="en">Delivery, training and handover; balance invoiced on delivery, then optional maintenance.</span><span class="fr">Livraison, formation et remise ; solde facturé à la livraison, puis maintenance en option.</span></p></div>
+<section class="sec" id="services" style="padding-top:0"><div class="wrap">
+  <div class="sec-h"><h2><span class="en">Services and starting prices</span><span class="fr">Services et prix de départ</span></h2><p><span class="en">Every engagement starts with a written quote setting the scope, deliverables, timeline and price. Prices are in U.S. dollars.</span><span class="fr">Chaque mission commence par un devis écrit fixant le périmètre, les livrables, le délai et le prix. Les prix sont en dollars américains.</span></p></div>
+  <div class="svc">
+    <div class="svc-row">
+      <div class="svc-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+      <div><h3><span class="en">Custom management software</span><span class="fr">Logiciel de gestion sur mesure</span></h3><p><span class="en">An ERP shaped around your operations.</span><span class="fr">Un ERP construit autour de vos opérations.</span></p></div>
+      <ul><li><span class="en">Projects, sites, production tracking</span><span class="fr">Chantiers, sites, suivi de production</span></li><li><span class="en">Purchasing, inventory, fleet and equipment</span><span class="fr">Achats, stocks, flotte et engins</span></li><li><span class="en">HR, payroll, invoicing, dashboards</span><span class="fr">RH, paie, facturation, tableaux de bord</span></li><li><span class="en">User roles, audit trail, training</span><span class="fr">Rôles utilisateurs, traçabilité, formation</span></li></ul>
+      <div class="pr"><strong><span class="en">from $12,000</span><span class="fr">dès 12 000 $</span></strong><span class="en">per project</span><span class="fr">par projet</span></div>
+    </div>
+    <div class="svc-row">
+      <div class="svc-ic"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
+      <div><h3><span class="en">Web and mobile applications</span><span class="fr">Applications web et mobiles</span></h3><p><span class="en">For your customers or your field teams.</span><span class="fr">Pour vos clients ou vos équipes terrain.</span></p></div>
+      <ul><li><span class="en">Android, iOS and web</span><span class="fr">Android, iOS et web</span></li><li><span class="en">Offline data capture and sync</span><span class="fr">Saisie hors connexion et synchronisation</span></li><li><span class="en">Customer portals, ordering, booking</span><span class="fr">Portails clients, commandes, réservations</span></li><li><span class="en">Mobile money and card payments</span><span class="fr">Paiement mobile money et carte</span></li></ul>
+      <div class="pr"><strong><span class="en">from $5,000</span><span class="fr">dès 5 000 $</span></strong><span class="en">per application</span><span class="fr">par application</span></div>
+    </div>
+    <div class="svc-row">
+      <div class="svc-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18"/></svg></div>
+      <div><h3><span class="en">Websites</span><span class="fr">Sites internet</span></h3><p><span class="en">A site that earns the trust of partners and lenders.</span><span class="fr">Un site qui inspire confiance aux partenaires et financeurs.</span></p></div>
+      <ul><li><span class="en">Corporate and institutional sites</span><span class="fr">Sites d'entreprise et institutionnels</span></li><li><span class="en">Bilingual, fast, mobile-ready</span><span class="fr">Bilingues, rapides, adaptés au mobile</span></li><li><span class="en">Domain, hosting and business e-mail</span><span class="fr">Domaine, hébergement, e-mail professionnel</span></li><li><span class="en">Legal pages and search visibility</span><span class="fr">Pages légales et référencement</span></li></ul>
+      <div class="pr"><strong><span class="en">from $1,500</span><span class="fr">dès 1 500 $</span></strong><span class="en">per website</span><span class="fr">par site</span></div>
+    </div>
+    <div class="svc-row">
+      <div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg></div>
+      <div><h3><span class="en">Maintenance and hosting</span><span class="fr">Maintenance et hébergement</span></h3><p><span class="en">We stay on after delivery.</span><span class="fr">Nous restons après la livraison.</span></p></div>
+      <ul><li><span class="en">Updates, backups, monitoring</span><span class="fr">Mises à jour, sauvegardes, surveillance</span></li><li><span class="en">User support by phone and WhatsApp</span><span class="fr">Assistance par téléphone et WhatsApp</span></li><li><span class="en">Small improvements each month</span><span class="fr">Petites évolutions chaque mois</span></li></ul>
+      <div class="pr"><strong><span class="en">from $150</span><span class="fr">dès 150 $</span></strong><span class="en">per month, cancel anytime</span><span class="fr">par mois, sans engagement</span></div>
+    </div>
+    <div class="svc-row">
+      <div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.9V16h5v-.2c0-.8.4-1.5 1-1.9A6 6 0 0 0 12 3z"/></svg></div>
+      <div><h3><span class="en">IT consulting</span><span class="fr">Conseil informatique</span></h3><p><span class="en">Plan before you spend.</span><span class="fr">Planifier avant d'investir.</span></p></div>
+      <ul><li><span class="en">Digital audits and specifications</span><span class="fr">Audits numériques et cahiers des charges</span></li><li><span class="en">Technical sections of tenders</span><span class="fr">Volets techniques d'appels d'offres</span></li><li><span class="en">IT architecture and staff training</span><span class="fr">Architecture informatique et formation</span></li></ul>
+      <div class="pr"><strong><span class="en">from $400</span><span class="fr">dès 400 $</span></strong><span class="en">per day, on site or remote</span><span class="fr">par jour, sur site ou à distance</span></div>
+    </div>
+    <div class="svc-row">
+      <div class="svc-ic"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <div><h3><span class="en">IT hardware supply</span><span class="fr">Fourniture de matériel informatique</span></h3><p><span class="en">Sourced, configured and delivered.</span><span class="fr">Sourcé, configuré et livré.</span></p></div>
+      <ul><li><span class="en">Computers, workstations, servers</span><span class="fr">Ordinateurs, stations de travail, serveurs</span></li><li><span class="en">GPUs and networking equipment</span><span class="fr">Cartes graphiques et équipements réseau</span></li><li><span class="en">Authorized distributors, manufacturer warranty</span><span class="fr">Distributeurs agréés, garantie constructeur</span></li></ul>
+      <div class="pr"><strong><span class="en">on quote</span><span class="fr">sur devis</span></strong><span class="en">itemized per order</span><span class="fr">détaillé par commande</span></div>
+    </div>
   </div>
-  <div class="card" style="margin-top:22px">
-    <h3><span class="en">Accepted payment methods</span><span class="fr">Moyens de paiement acceptés</span></h3>
-    <p><span class="en">All invoices are issued and payable in U.S. dollars (USD) to AmidTech LLC.</span><span class="fr">Toutes les factures sont émises et payables en dollars américains (USD) à l'ordre d'AmidTech LLC.</span></p>
-    <div class="pay"><span>ACH</span><span><span class="en">Domestic & international wire</span><span class="fr">Virement national et international</span></span><span>Visa</span><span>Mastercard</span><span>American Express</span></div>
-    <p class="note"><span class="en">Card payments are processed securely by our payment provider; AmidTech never stores card numbers. See our</span><span class="fr">Les paiements par carte sont traités de façon sécurisée par notre prestataire ; AmidTech ne stocke aucun numéro de carte. Voir nos</span> <a href="/terms"><span class="en">Terms</span><span class="fr">Conditions</span></a>, <a href="/refund"><span class="en">Refund & Cancellation Policy</span><span class="fr">Politique de remboursement et d'annulation</span></a> <span class="en">and</span><span class="fr">et</span> <a href="/privacy"><span class="en">Privacy Policy</span><span class="fr">Politique de confidentialité</span></a>.</p>
+  <p class="svc-note"><span class="en">Starting prices are indicative. The binding price is the one in your signed quote.</span><span class="fr">Les prix de départ sont indicatifs. Le prix ferme est celui de votre devis signé.</span></p>
+</div></section>
+
+<section class="sec dark" id="process"><div class="wrap">
+  <div class="sec-h"><h2><span class="en">From first call to go-live</span><span class="fr">Du premier échange à la mise en service</span></h2><p><span class="en">You validate each stage before we move to the next, and you only pay the balance once the software is delivered.</span><span class="fr">Vous validez chaque étape avant la suivante, et vous ne payez le solde qu'une fois le logiciel livré.</span></p></div>
+  <ol class="steps">
+    <li><h3><span class="en">Discovery</span><span class="fr">Cadrage</span></h3><p><span class="en">We meet your teams and map how work really flows.</span><span class="fr">Nous rencontrons vos équipes et cartographions vos flux réels.</span></p><em><span class="en">1–2 weeks</span><span class="fr">1 à 2 semaines</span></em></li>
+    <li><h3><span class="en">Quote & contract</span><span class="fr">Devis et contrat</span></h3><p><span class="en">Written scope, timeline and fixed price. Deposit on signature.</span><span class="fr">Périmètre, délai et prix fixe par écrit. Acompte à la signature.</span></p><em><span class="en">2 days</span><span class="fr">2 jours</span></em></li>
+    <li><h3><span class="en">Design & build</span><span class="fr">Conception et développement</span></h3><p><span class="en">Screens first, then working modules, with a demo every two weeks.</span><span class="fr">Les écrans d'abord, puis les modules, avec une démo toutes les deux semaines.</span></p><em><span class="en">4–12 weeks</span><span class="fr">4 à 12 semaines</span></em></li>
+    <li><h3><span class="en">Delivery & training</span><span class="fr">Livraison et formation</span></h3><p><span class="en">Data migration, user training and handover of code and access.</span><span class="fr">Reprise des données, formation des utilisateurs, remise du code et des accès.</span></p><em><span class="en">1–2 weeks</span><span class="fr">1 à 2 semaines</span></em></li>
+    <li><h3><span class="en">Support</span><span class="fr">Accompagnement</span></h3><p><span class="en">90-day warranty, then optional monthly maintenance.</span><span class="fr">Garantie de 90 jours, puis maintenance mensuelle en option.</span></p><em><span class="en">Ongoing</span><span class="fr">Continu</span></em></li>
+  </ol>
+</div></section>
+
+<section class="sec" id="commit"><div class="wrap">
+  <div class="sec-h"><h2><span class="en">What we commit to in every contract</span><span class="fr">Nos engagements dans chaque contrat</span></h2></div>
+  <div class="commit">
+    <div><h3><svg viewBox="0 0 24 24"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="en">A fixed price</span><span class="fr">Un prix fixe</span></h3><p><span class="en">The price in your quote is the price you pay. Changes are quoted separately, and only with your approval.</span><span class="fr">Le prix du devis est celui que vous payez. Toute modification fait l'objet d'un devis séparé, avec votre accord.</span></p></div>
+    <div><h3><svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0"/></svg><span class="en">Your code, your data</span><span class="fr">Votre code, vos données</span></h3><p><span class="en">On full payment you receive the source code, the admin access and your data. No lock-in.</span><span class="fr">Au paiement complet, vous recevez le code source, les accès administrateur et vos données. Aucune dépendance.</span></p></div>
+    <div><h3><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span class="en">A 90-day warranty</span><span class="fr">Une garantie de 90 jours</span></h3><p><span class="en">Any defect against the agreed specification is fixed free of charge for 90 days after acceptance.</span><span class="fr">Tout défaut par rapport au cahier des charges est corrigé gratuitement pendant 90 jours après réception.</span></p></div>
+    <div><h3><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/><circle cx="12" cy="12" r="10"/></svg><span class="en">Payment on delivery</span><span class="fr">Le solde à la livraison</span></h3><p><span class="en">A deposit starts the work; the balance is due only when the software is delivered.</span><span class="fr">Un acompte lance les travaux ; le solde n'est dû qu'à la livraison du logiciel.</span></p></div>
+    <div><h3><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="en">English and French</span><span class="fr">Anglais et français</span></h3><p><span class="en">Interfaces, documentation and support in both languages.</span><span class="fr">Interfaces, documentation et assistance dans les deux langues.</span></p></div>
+    <div><h3><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v10H3z"/><path d="M9 21v-6h6v6"/></svg><span class="en">People on the ground</span><span class="fr">Une présence sur le terrain</span></h3><p><span class="en">An operations office in Niamey for workshops, training and on-site support.</span><span class="fr">Un bureau à Niamey pour les ateliers, la formation et l'assistance sur site.</span></p></div>
   </div>
 </div></section>
 
-<section id="work"><div class="wrap">
-  <h2 class="h2"><span class="en">Recent projects</span><span class="fr">Projets récents</span></h2>
-  <p class="sub"><span class="en">Client names withheld for confidentiality.</span><span class="fr">Noms des clients non publiés par confidentialité.</span></p>
-  <div class="grid">
-    <div class="card ref"><span class="st ok"><span class="en">Delivered — 2026</span><span class="fr">Livré — 2026</span></span><h3><span class="en">Management system for a construction company</span><span class="fr">Système de gestion pour une entreprise de BTP</span></h3><p><span class="en">Projects, sites, purchasing, inventory, equipment, staff and invoicing in one web platform with role-based access.</span><span class="fr">Projets, chantiers, achats, stocks, engins, personnel et facturation dans une plateforme web avec accès par rôle.</span></p></div>
-    <div class="card ref"><span class="st wip"><span class="en">In progress — 2026</span><span class="fr">En cours — 2026</span></span><h3><span class="en">Operations software for a mining company</span><span class="fr">Logiciel d'exploitation pour une société minière</span></h3><p><span class="en">Production tracking, site logistics, stock, HR and regulatory reporting for a gold mining operation.</span><span class="fr">Suivi de production, logistique de site, stocks, RH et rapports réglementaires pour une exploitation aurifère.</span></p></div>
+<section class="sec" id="work" style="padding-top:0"><div class="wrap">
+  <div class="sec-h"><h2><span class="en">Recent projects</span><span class="fr">Réalisations récentes</span></h2><p><span class="en">Client names are withheld; references are available on request.</span><span class="fr">Les noms des clients ne sont pas publiés ; références disponibles sur demande.</span></p></div>
+  <div class="cases">
+    <article class="case">
+      <span class="st c-ok"><span class="en">Delivered in 2026</span><span class="fr">Livré en 2026</span></span>
+      <h3><span class="en">Management system for a construction company</span><span class="fr">Système de gestion d'une entreprise de BTP</span></h3>
+      <p><span class="en">One web platform replacing spreadsheets across head office and sites: every project, purchase, machine and employee tracked in one place, with role-based access for directors, site managers and accounting.</span><span class="fr">Une plateforme web qui remplace les tableurs entre le siège et les chantiers : chaque projet, achat, engin et employé suivi au même endroit, avec des accès par rôle pour la direction, les chefs de chantier et la comptabilité.</span></p>
+      <div class="mods"><span><span class="en">Projects</span><span class="fr">Chantiers</span></span><span><span class="en">Purchasing</span><span class="fr">Achats</span></span><span><span class="en">Inventory</span><span class="fr">Stocks</span></span><span><span class="en">Equipment</span><span class="fr">Engins</span></span><span><span class="en">HR</span><span class="fr">RH</span></span><span><span class="en">Invoicing</span><span class="fr">Facturation</span></span></div>
+      <dl><dt><span class="en">Sector</span><span class="fr">Secteur</span></dt><dd><span class="en">Construction & public works</span><span class="fr">BTP</span></dd><dt><span class="en">Users</span><span class="fr">Utilisateurs</span></dt><dd><span class="en">Head office and site teams</span><span class="fr">Siège et équipes de chantier</span></dd></dl>
+    </article>
+    <article class="case">
+      <span class="st c-run"><span class="en">In progress, 2026</span><span class="fr">En cours, 2026</span></span>
+      <h3><span class="en">Operations software for a gold mining company</span><span class="fr">Logiciel d'exploitation d'une société minière aurifère</span></h3>
+      <p><span class="en">Production tracking from pit to plant, site logistics and fuel, stock, staff, and the periodic reports required by the mining administration — designed for a remote site with intermittent connectivity.</span><span class="fr">Suivi de production de la fosse à l'usine, logistique et carburant, stocks, personnel, et rapports périodiques exigés par l'administration minière — conçu pour un site isolé à connexion intermittente.</span></p>
+      <div class="mods"><span>Production</span><span><span class="en">Fuel</span><span class="fr">Carburant</span></span><span><span class="en">Inventory</span><span class="fr">Stocks</span></span><span><span class="en">Staff</span><span class="fr">Personnel</span></span><span><span class="en">Regulatory reports</span><span class="fr">Rapports réglementaires</span></span><span><span class="en">Offline mode</span><span class="fr">Mode hors ligne</span></span></div>
+      <dl><dt><span class="en">Sector</span><span class="fr">Secteur</span></dt><dd><span class="en">Mining</span><span class="fr">Mines</span></dd><dt><span class="en">Users</span><span class="fr">Utilisateurs</span></dt><dd><span class="en">Management, site and plant teams</span><span class="fr">Direction, site et usine</span></dd></dl>
+    </article>
   </div>
 </div></section>
 
-<section id="company" class="alt"><div class="wrap">
-  <h2 class="h2"><span class="en">Company information</span><span class="fr">Informations sur la société</span></h2>
-  <div class="grid">
-    <div class="card"><table>
-      <tr><td><span class="en">Legal name</span><span class="fr">Dénomination</span></td><td>AmidTech LLC</td></tr>
-      <tr><td><span class="en">Entity type</span><span class="fr">Forme</span></td><td><span class="en">Limited Liability Company, New Mexico, USA</span><span class="fr">Limited Liability Company, Nouveau-Mexique, USA</span></td></tr>
-      <tr><td>EIN</td><td>98-1831945</td></tr>
-      <tr><td><span class="en">Managing member</span><span class="fr">Gérant (associé unique)</span></td><td>Mahmoud Sagdoun</td></tr>
-      <tr><td><span class="en">Activity</span><span class="fr">Activité</span></td><td><span class="en">Software development, web services, IT consulting, IT hardware supply</span><span class="fr">Développement logiciel, services web, conseil informatique, fourniture de matériel informatique</span></td></tr>
-    </table></div>
-    <div class="card"><table>
-      <tr><td><span class="en">Registered office (USA)</span><span class="fr">Siège légal (USA)</span></td><td>1209 Mountain Road PL NE, Suite N<br>Albuquerque, NM 87110, USA</td></tr>
-      <tr><td><span class="en">Operations office</span><span class="fr">Bureau opérationnel</span></td><td>1170 Boulevard Mali Bero, Bâtiment C23<br>Niamey, Niger</td></tr>
-      <tr><td>E-mail</td><td><a href="mailto:contact@amidtechgroup.com">contact@amidtechgroup.com</a></td></tr>
-      <tr><td><span class="en">Phone / WhatsApp</span><span class="fr">Téléphone / WhatsApp</span></td><td><a href="tel:+22792356596">+227 92 35 65 96</a></td></tr>
-      <tr><td><span class="en">Business hours</span><span class="fr">Horaires</span></td><td><span class="en">Mon–Fri, 8:00–18:00 (GMT+1)</span><span class="fr">Lun–Ven, 8 h–18 h (GMT+1)</span></td></tr>
-    </table></div>
+<section class="sec" id="company" style="padding-top:0"><div class="wrap split">
+  <div class="panel">
+    <h3><span class="en">Payment</span><span class="fr">Paiement</span></h3>
+    <p><span class="en">All invoices are issued by AmidTech LLC and payable in U.S. dollars. A deposit is invoiced on signature (usually 10% to 50%) and the balance on delivery. Maintenance is billed monthly.</span><span class="fr">Toutes les factures sont émises par AmidTech LLC et payables en dollars américains. Un acompte est facturé à la signature (généralement 10 % à 50 %) et le solde à la livraison. La maintenance est facturée mensuellement.</span></p>
+    <div class="pay"><span>ACH</span><span><span class="en">Wire transfer</span><span class="fr">Virement bancaire</span></span><span>Visa</span><span>Mastercard</span><span>American Express</span></div>
+    <p class="small"><span class="en">Card payments are processed by our payment provider; AmidTech never stores card numbers. Read our</span><span class="fr">Les paiements par carte sont traités par notre prestataire ; AmidTech ne conserve aucun numéro de carte. Consultez nos</span> <a href="/terms"><span class="en">Terms of Service</span><span class="fr">conditions générales</span></a>, <a href="/refund"><span class="en">Refund & Cancellation Policy</span><span class="fr">politique de remboursement</span></a> <span class="en">and</span><span class="fr">et</span> <a href="/privacy"><span class="en">Privacy Policy</span><span class="fr">politique de confidentialité</span></a>.</p>
+  </div>
+  <div class="panel">
+    <h3><span class="en">Company details</span><span class="fr">Identité de la société</span></h3>
+    <table class="kv">
+      <tr><th><span class="en">Legal name</span><span class="fr">Dénomination</span></th><td>AmidTech LLC</td></tr>
+      <tr><th><span class="en">Entity</span><span class="fr">Forme</span></th><td><span class="en">Limited Liability Company, New Mexico, USA</span><span class="fr">Limited Liability Company, Nouveau-Mexique, USA</span></td></tr>
+      <tr><th>EIN</th><td>98-1831945</td></tr>
+      <tr><th><span class="en">Registered office</span><span class="fr">Siège légal</span></th><td>1209 Mountain Road PL NE, Suite N, Albuquerque, NM 87110, USA</td></tr>
+      <tr><th><span class="en">Operations office</span><span class="fr">Bureau opérationnel</span></th><td>1170 Boulevard Mali Bero, Bâtiment C23, Niamey, Niger</td></tr>
+      <tr><th><span class="en">Managing member</span><span class="fr">Gérant</span></th><td>Mahmoud Sagdoun</td></tr>
+    </table>
   </div>
 </div></section>
 
-<section id="contact"><div class="wrap" style="text-align:center">
-  <h2 class="h2"><span class="en">Start your project</span><span class="fr">Lancez votre projet</span></h2>
-  <p class="sub" style="margin:0 auto 30px"><span class="en">Describe your need; we reply with a written quote within 2 business days.</span><span class="fr">Décrivez votre besoin ; nous répondons avec un devis écrit sous 2 jours ouvrés.</span></p>
-  <div class="cta" style="justify-content:center">
-    <a class="btn p" href="mailto:contact@amidtechgroup.com?subject=Quote%20request%20-%20AmidTech">✉ contact@amidtechgroup.com</a>
-    <a class="btn s" href="https://wa.me/22792356596">WhatsApp +227 92 35 65 96</a>
+<section class="sec" id="faq" style="padding-top:0"><div class="wrap">
+  <div class="sec-h"><h2><span class="en">Frequently asked questions</span><span class="fr">Questions fréquentes</span></h2></div>
+  <div class="faq">
+    <details><summary><span class="en">How long does a management software project take?</span><span class="fr">Combien de temps dure un projet de logiciel de gestion ?</span></summary><p><span class="en">Most projects take 6 to 14 weeks from signature to go-live, depending on the number of modules and the data to migrate. The timeline is fixed in your quote.</span><span class="fr">La plupart des projets prennent 6 à 14 semaines entre la signature et la mise en service, selon le nombre de modules et les données à reprendre. Le délai est fixé dans votre devis.</span></p></details>
+    <details><summary><span class="en">Do you work with companies outside the USA?</span><span class="fr">Travaillez-vous avec des entreprises hors des États-Unis ?</span></summary><p><span class="en">Yes. Most of our clients operate in West Africa. Contracts are signed with AmidTech LLC and paid by international wire or card, in U.S. dollars.</span><span class="fr">Oui. La plupart de nos clients opèrent en Afrique de l'Ouest. Les contrats sont signés avec AmidTech LLC et réglés par virement international ou carte, en dollars américains.</span></p></details>
+    <details><summary><span class="en">Will the software work with a poor internet connection?</span><span class="fr">Le logiciel fonctionne-t-il avec une connexion internet faible ?</span></summary><p><span class="en">Yes, when needed. Field modules can record data offline and synchronize automatically once the connection returns.</span><span class="fr">Oui, si nécessaire. Les modules terrain enregistrent les données hors connexion et se synchronisent automatiquement au retour du réseau.</span></p></details>
+    <details><summary><span class="en">Who owns the software after delivery?</span><span class="fr">À qui appartient le logiciel après la livraison ?</span></summary><p><span class="en">You do. Once the project is paid in full, the source code and data are yours, and we hand over every access.</span><span class="fr">À vous. Une fois le projet entièrement payé, le code source et les données vous appartiennent, et nous vous remettons tous les accès.</span></p></details>
+    <details><summary><span class="en">What if I want to cancel?</span><span class="fr">Que se passe-t-il si je veux annuler ?</span></summary><p><span class="en">If you cancel within 7 days of paying the deposit and before work starts, the deposit is refunded in full. Other cases are set out in our <a href="/refund">Refund & Cancellation Policy</a>.</span><span class="fr">Si vous annulez dans les 7 jours suivant l'acompte et avant le début des travaux, l'acompte est intégralement remboursé. Les autres cas sont décrits dans notre <a href="/refund">politique de remboursement et d'annulation</a>.</span></p></details>
   </div>
+</div></section>
+
+<section class="sec" id="contact" style="padding-top:0"><div class="wrap contact">
+  <div>
+    <div class="sec-h" style="margin-bottom:0"><h2><span class="en">Tell us about your project</span><span class="fr">Parlez-nous de votre projet</span></h2><p><span class="en">Send us a short description. You will receive a written quote within two business days.</span><span class="fr">Envoyez-nous une courte description. Vous recevrez un devis écrit sous deux jours ouvrés.</span></p></div>
+    <div class="direct">
+      <a href="mailto:contact@amidtechgroup.com"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span><small>E-mail</small>contact@amidtechgroup.com</span></a>
+      <a href="https://wa.me/22792356596"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span><small><span class="en">Phone and WhatsApp</span><span class="fr">Téléphone et WhatsApp</span></small>+227 92 35 65 96</span></a>
+      <div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><small><span class="en">Business hours</span><span class="fr">Horaires</span></small><span class="en">Mon–Fri, 8 am–6 pm (GMT+1)</span><span class="fr">Lun–ven, 8 h–18 h (GMT+1)</span></span></div>
+    </div>
+  </div>
+  <form id="qf" novalidate>
+    <label><span class="en">Your name</span><span class="fr">Votre nom</span><input name="name" required autocomplete="name"></label>
+    <label><span class="en">Company</span><span class="fr">Entreprise</span><input name="company" autocomplete="organization"></label>
+    <label><span class="en">E-mail</span><span class="fr">E-mail</span><input name="email" type="email" required autocomplete="email"></label>
+    <label><span class="en">Phone / WhatsApp</span><span class="fr">Téléphone / WhatsApp</span><input name="phone" type="tel" autocomplete="tel"></label>
+    <label class="full"><span class="en">What do you need?</span><span class="fr">De quoi avez-vous besoin ?</span>
+      <select name="need">
+        <option value="Management software">Management software / Logiciel de gestion</option>
+        <option value="Web or mobile application">Web or mobile app / Application web ou mobile</option>
+        <option value="Website">Website / Site internet</option>
+        <option value="Maintenance">Maintenance</option>
+        <option value="IT consulting">IT consulting / Conseil</option>
+        <option value="IT hardware">IT hardware / Matériel informatique</option>
+      </select></label>
+    <label class="full"><span class="en">Describe your project</span><span class="fr">Décrivez votre projet</span><textarea name="msg" required></textarea></label>
+    <div class="full" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+      <button class="btn btn-p" type="submit"><span class="en">Send my request</span><span class="fr">Envoyer ma demande</span></button>
+      <span class="form-note"><span class="en">Opens your e-mail app with your request ready to send.</span><span class="fr">Ouvre votre messagerie avec la demande prête à envoyer.</span></span>
+      <span id="sent" role="status"><span class="en">Your e-mail app is open — send the message to complete your request.</span><span class="fr">Votre messagerie est ouverte — envoyez le message pour finaliser la demande.</span></span>
+    </div>
+  </form>
 </div></section>
 </main>
 
 <footer><div class="wrap">
   <div class="fgrid">
-    <div><h4>AmidTech LLC</h4><p><span class="en">Software, web & IT hardware agency.</span><span class="fr">Agence logiciels, web et matériel informatique.</span><br>EIN 98-1831945</p></div>
-    <div><h4><span class="en">Addresses</span><span class="fr">Adresses</span></h4><p>1209 Mountain Road PL NE, Suite N, Albuquerque, NM 87110, USA<br>1170 Boulevard Mali Bero, Bâtiment C23, Niamey, Niger</p></div>
-    <div><h4><span class="en">Legal</span><span class="fr">Mentions légales</span></h4><ul><li><a href="/terms"><span class="en">Terms of Service</span><span class="fr">Conditions générales</span></a></li><li><a href="/privacy"><span class="en">Privacy Policy</span><span class="fr">Confidentialité</span></a></li><li><a href="/refund"><span class="en">Refund & Cancellation</span><span class="fr">Remboursement et annulation</span></a></li></ul></div>
-    <div><h4>Contact</h4><p><a href="mailto:contact@amidtechgroup.com">contact@amidtechgroup.com</a><br><a href="tel:+22792356596">+227 92 35 65 96</a></p></div>
+    <div>
+      <div class="brand"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:34px;height:34px"><rect width="64" height="64" rx="16" fill="url(#lg)"/><path d="M18 46 L32 16 L46 46 M24 36 H40" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>AmidTech LLC</div>
+      <p><span class="en">Business software, web and IT hardware for companies in the USA and Africa.</span><span class="fr">Logiciels de gestion, web et matériel informatique pour les entreprises aux USA et en Afrique.</span></p>
+    </div>
+    <div><h4>Services</h4><ul><li><a href="#services"><span class="en">Management software</span><span class="fr">Logiciel de gestion</span></a></li><li><a href="#services"><span class="en">Apps and websites</span><span class="fr">Applications et sites</span></a></li><li><a href="#services"><span class="en">Maintenance</span><span class="fr">Maintenance</span></a></li><li><a href="#services"><span class="en">IT hardware</span><span class="fr">Matériel informatique</span></a></li></ul></div>
+    <div><h4><span class="en">Company</span><span class="fr">Société</span></h4><ul><li><a href="#about"><span class="en">About</span><span class="fr">Qui sommes-nous</span></a></li><li><a href="#work"><span class="en">Projects</span><span class="fr">Réalisations</span></a></li><li><a href="/terms"><span class="en">Terms of Service</span><span class="fr">Conditions générales</span></a></li><li><a href="/privacy"><span class="en">Privacy Policy</span><span class="fr">Confidentialité</span></a></li><li><a href="/refund"><span class="en">Refund & Cancellation</span><span class="fr">Remboursement</span></a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="mailto:contact@amidtechgroup.com">contact@amidtechgroup.com</a></li><li><a href="tel:+22792356596">+227 92 35 65 96</a></li><li>Albuquerque, NM, USA</li><li>Niamey, Niger</li></ul></div>
   </div>
-  <div class="copy">© 2026 AmidTech LLC. <span class="en">All rights reserved. Prices in USD.</span><span class="fr">Tous droits réservés. Prix en USD.</span></div>
+  <div class="legal"><span>© 2026 AmidTech LLC — EIN 98-1831945</span><span>1209 Mountain Road PL NE, Suite N, Albuquerque, NM 87110, USA</span></div>
 </div></footer>
+
 <script>
-function setLang(l){try{localStorage.setItem('lang',l)}catch(e){}document.body.classList.toggle('fr',l==='fr');document.documentElement.lang=l;document.getElementById('b-en').classList.toggle('on',l==='en');document.getElementById('b-fr').classList.toggle('on',l==='fr')}
-(function(){var q=new URLSearchParams(location.search).get('lang'),s=null;try{s=localStorage.getItem('lang')}catch(e){}var l=q||s||((navigator.language||'').slice(0,2)==='fr'?'fr':'en');setLang(l==='fr'?'fr':'en')})();
+function setLang(l){try{localStorage.setItem('lang',l)}catch(e){}
+  document.body.classList.toggle('fr',l==='fr');document.documentElement.lang=l;
+  document.getElementById('b-en').setAttribute('aria-pressed',l==='en');document.getElementById('b-fr').setAttribute('aria-pressed',l==='fr');}
+(function(){var q=new URLSearchParams(location.search).get('lang'),s=null;try{s=localStorage.getItem('lang')}catch(e){}
+  var l=q||s||((navigator.language||'').slice(0,2)==='fr'?'fr':'en');setLang(l==='fr'?'fr':'en');})();
+var hdr=document.getElementById('hdr');addEventListener('scroll',function(){hdr.classList.toggle('sc',scrollY>8)},{passive:true});
+var tabs=document.querySelectorAll('[role=tab]');
+tabs.forEach(function(t){t.addEventListener('click',function(){
+  tabs.forEach(function(x){x.setAttribute('aria-selected','false');document.getElementById(x.getAttribute('aria-controls')).hidden=true});
+  t.setAttribute('aria-selected','true');document.getElementById(t.getAttribute('aria-controls')).hidden=false;});});
+document.getElementById('qf').addEventListener('submit',function(e){e.preventDefault();var f=e.target;
+  if(!f.name.value||!f.email.value||!f.msg.value){f.reportValidity();return;}
+  var b='Name: '+f.name.value+'\nCompany: '+f.company.value+'\nE-mail: '+f.email.value+'\nPhone: '+f.phone.value+'\nNeed: '+f.need.value+'\n\n'+f.msg.value;
+  location.href='mailto:contact@amidtechgroup.com?subject='+encodeURIComponent('Quote request — '+f.need.value+(f.company.value?' — '+f.company.value:''))+'&body='+encodeURIComponent(b);
+  document.getElementById('sent').style.display='inline';});
 </script>
 </body>
 </html>
