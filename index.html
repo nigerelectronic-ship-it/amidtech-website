@@ -71,6 +71,9 @@ h1{font-size:clamp(36px,4.6vw,60px);line-height:1.06;letter-spacing:-.035em;colo
 .app{background:var(--white);border-radius:var(--r-lg);box-shadow:0 1px 0 var(--mist),0 30px 70px -20px rgba(30,27,75,.28),0 0 0 1px rgba(30,27,75,.05);overflow:hidden;font-size:13px}
 .app-bar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--mist);background:#FAFBFF}
 .app-bar i{width:10px;height:10px;border-radius:50%;background:#DADFF0}
+.app-bar em.demo span{margin:0;background:none;padding:0;flex:none;color:inherit;border-radius:0}
+@media (max-width:620px){.app-bar>span{display:none}.app-bar em.demo{margin-left:auto}}
+.app-bar em.demo{font-style:normal;font-size:11px;font-weight:600;color:#0E7490;background:#ECFEFF;border-radius:999px;padding:3px 10px;white-space:nowrap}
 .app-bar span{margin-left:12px;flex:1;background:var(--paper);border-radius:6px;padding:4px 12px;color:var(--mut);font-size:12px}
 .app-body{display:grid;grid-template-columns:150px 1fr;min-height:380px}
 .side{background:var(--ink);color:#C7CBF2;padding:18px 12px;display:flex;flex-direction:column;gap:4px}
@@ -288,7 +291,7 @@ section[id],main [id]{scroll-margin-top:84px}
   </div>
 
   <div class="app" aria-label="Example of a management system built by AmidTech">
-    <div class="app-bar"><i></i><i></i><i></i><span>app.yourcompany.com</span></div>
+    <div class="app-bar"><i></i><i></i><i></i><span>app.yourcompany.com</span><em class="demo"><span class="en">Sample screen · demo data</span><span class="fr">Exemple d'écran · données fictives</span></em></div>
     <div class="app-body">
       <div class="side" role="tablist" aria-label="Demo modules">
         <b>Your ERP</b>
