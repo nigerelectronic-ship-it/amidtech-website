@@ -1,6 +1,10 @@
-# AmidTech LLC — Website v3.0 (Nov 2026)
+# AmidTech LLC — amidtechgroup.com
 
-Software development, web platforms and IT equipment — amidtechgroup.com
+Static website of AmidTech LLC (New Mexico, USA) — software development, web services, IT consulting and IT hardware supply.
 
-Pages: `/` (EN/FR), `/terms`, `/privacy`, `/refund`, `/Liens`.
-Deployed on Vercel from this repository (cleanUrls enabled in vercel.json).
+- `index.html` — home page (EN/FR)
+- `terms.html`, `privacy.html`, `refund.html` — legal pages (served at /terms, /privacy, /refund)
+- `vercel.json` — clean URLs, /compliance → /terms redirect, security headers
+- `Liens.html` — links page
+
+Deployed automatically by Vercel on every push to `main`.
