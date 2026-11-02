@@ -250,6 +250,33 @@ section[id],main [id]{scroll-margin-top:84px}
 @media (max-width:1000px){.mtog{display:block}.lang{margin-left:0}
   .menu.open{display:flex;flex-direction:column;gap:0;position:absolute;top:74px;left:0;right:0;background:#fff;border-bottom:1px solid #DDE1F3;box-shadow:0 18px 30px -18px rgba(30,27,75,.35);padding:8px 24px 16px;margin:0}
   .menu.open a{padding:14px 0;border-bottom:1px solid #EEF0F8;font-size:16px}.menu.open a:last-child{border:0}}
+
+/* ---- animated hero interface ---- */
+.stage{position:relative;perspective:1400px}
+.stage .app{transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.2,1);animation:floaty 7s ease-in-out infinite;will-change:transform}
+@keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -8px}}
+.pane{animation:paneIn .55s cubic-bezier(.2,.7,.2,1) both}
+@keyframes paneIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.rows div{animation:rowIn .5s cubic-bezier(.2,.7,.2,1) both}
+.rows div:nth-child(2){animation-delay:.07s}.rows div:nth-child(3){animation-delay:.14s}.rows div:nth-child(4){animation-delay:.21s}
+@keyframes rowIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+.side button{position:relative;overflow:hidden}
+.side button .tmr{position:absolute;left:10px;right:10px;bottom:3px;height:2px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden;opacity:0}
+.side button[aria-selected=true] .tmr{opacity:1}
+.side button .tmr i{display:block;height:100%;width:0;background:linear-gradient(90deg,#4F46E5,#06B6D4)}
+.stage.run .side button[aria-selected=true] .tmr i{animation:tmr var(--dur,4.8s) linear forwards}
+@keyframes tmr{to{width:100%}}
+.toasts{position:absolute;inset:0;pointer-events:none}
+.toast{position:absolute;display:flex;gap:10px;align-items:center;background:#fff;border-radius:14px;padding:10px 14px 10px 10px;box-shadow:0 18px 40px -14px rgba(30,27,75,.35),0 0 0 1px rgba(30,27,75,.06);font-size:12px;min-width:230px;opacity:0;transform:translateY(12px) scale(.96);transition:opacity .45s,transform .45s cubic-bezier(.2,.7,.2,1)}
+.toast.on{opacity:1;transform:none}
+.toast strong{display:block;color:var(--ink);font-size:12.5px;font-weight:600}
+.toast small{color:var(--mut);font-size:11px}
+.toast .ti{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:14px;font-style:normal;color:#fff;flex:none}
+.ti.ok{background:linear-gradient(135deg,#10B981,#06B6D4)}.ti.warn{background:linear-gradient(135deg,#F59E0B,#F97316)}.ti.info{background:linear-gradient(135deg,#4F46E5,#06B6D4)}
+.t1{right:-30px;top:-56px}.t2{left:-34px;bottom:58px}.t3{right:-18px;bottom:-24px}
+.kpis strong{font-variant-numeric:tabular-nums}
+@media (max-width:1000px){.t1{right:8px;top:-58px}.t2{left:8px;bottom:40px}.t3{right:8px;bottom:-28px}}
+@media (max-width:620px){.toast{min-width:0;max-width:78%}.t2{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -290,14 +317,15 @@ section[id],main [id]{scroll-margin-top:84px}
     </div>
   </div>
 
-  <div class="app" aria-label="Example of a management system built by AmidTech">
+  <div class="stage" id="stage">
+  <div class="app" id="app" aria-label="Example of a management system built by AmidTech">
     <div class="app-bar"><i></i><i></i><i></i><span>app.yourcompany.com</span><em class="demo"><span class="en">Sample screen · demo data</span><span class="fr">Exemple d'écran · données fictives</span></em></div>
     <div class="app-body">
       <div class="side" role="tablist" aria-label="Demo modules">
         <b>Your ERP</b>
-        <button role="tab" aria-selected="true" aria-controls="p1" id="t1"><span class="en">Projects</span><span class="fr">Chantiers</span></button>
-        <button role="tab" aria-selected="false" aria-controls="p2" id="t2"><span class="en">Inventory</span><span class="fr">Stocks</span></button>
-        <button role="tab" aria-selected="false" aria-controls="p3" id="t3"><span class="en">Invoices</span><span class="fr">Factures</span></button>
+        <button role="tab" aria-selected="true" aria-controls="p1" id="t1"><span class="tmr"><i></i></span><span class="en">Projects</span><span class="fr">Chantiers</span></button>
+        <button role="tab" aria-selected="false" aria-controls="p2" id="t2"><span class="tmr"><i></i></span><span class="en">Inventory</span><span class="fr">Stocks</span></button>
+        <button role="tab" aria-selected="false" aria-controls="p3" id="t3"><span class="tmr"><i></i></span><span class="en">Invoices</span><span class="fr">Factures</span></button>
       </div>
       <div class="main">
         <div class="pane" id="p1" role="tabpanel" aria-labelledby="t1">
@@ -332,6 +360,12 @@ section[id],main [id]{scroll-margin-top:84px}
         </div>
       </div>
     </div>
+  </div>
+  <div class="toasts" aria-hidden="true">
+    <div class="toast t1"><b class="ti ok">✓</b><div><strong><span class="en">Invoice INV-2026-121 paid</span><span class="fr">Facture INV-2026-121 payée</span></strong><small>+ $8,400 · <span class="en">bank transfer</span><span class="fr">virement</span></small></div></div>
+    <div class="toast t2"><b class="ti warn">!</b><div><strong><span class="en">Low stock: cement 50 kg</span><span class="fr">Stock bas : ciment 50 kg</span></strong><small><span class="en">Purchase order created automatically</span><span class="fr">Bon de commande créé automatiquement</span></small></div></div>
+    <div class="toast t3"><b class="ti info">↗</b><div><strong><span class="en">Monthly report sent</span><span class="fr">Rapport mensuel envoyé</span></strong><small><span class="en">PDF · 14 pages · to management</span><span class="fr">PDF · 14 pages · à la direction</span></small></div></div>
+  </div>
   </div>
 </div></section>
 
@@ -537,10 +571,6 @@ function setLang(l){try{localStorage.setItem('lang',l)}catch(e){}
 (function(){var q=new URLSearchParams(location.search).get('lang'),s=null;try{s=localStorage.getItem('lang')}catch(e){}
   var l=q||s||((navigator.language||'').slice(0,2)==='fr'?'fr':'en');setLang(l==='fr'?'fr':'en');})();
 var hdr=document.getElementById('hdr');addEventListener('scroll',function(){hdr.classList.toggle('sc',scrollY>8)},{passive:true});
-var tabs=document.querySelectorAll('[role=tab]');
-tabs.forEach(function(t){t.addEventListener('click',function(){
-  tabs.forEach(function(x){x.setAttribute('aria-selected','false');document.getElementById(x.getAttribute('aria-controls')).hidden=true});
-  t.setAttribute('aria-selected','true');document.getElementById(t.getAttribute('aria-controls')).hidden=false;});});
 document.getElementById('qf').addEventListener('submit',function(e){e.preventDefault();var f=e.target;
   if(!f.name.value||!f.email.value||!f.msg.value){f.reportValidity();return;}
   var b='Name: '+f.name.value+'\nCompany: '+f.company.value+'\nE-mail: '+f.email.value+'\nPhone: '+f.phone.value+'\nNeed: '+f.need.value+'\n\n'+f.msg.value;
@@ -551,6 +581,39 @@ document.getElementById('qf').addEventListener('submit',function(e){e.preventDef
 (function(){var b=document.getElementById('mtog'),m=document.getElementById('mnav');if(!b||!m)return;
 b.addEventListener('click',function(){var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o);b.textContent=o?'✕':'☰';});
 m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');b.setAttribute('aria-expanded','false');b.textContent='☰';});});})();
+</script>
+<script>
+(function(){
+var stage=document.getElementById('stage'),app=document.getElementById('app');if(!stage||!app)return;
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var tabs=[].slice.call(stage.querySelectorAll('[role=tab]')),DUR=4800,idx=0,timer=null,paused=false,resumeT=null;
+function count(el){var t=el.getAttribute('data-v');if(t===null){t=el.textContent;el.setAttribute('data-v',t);}
+  var m=t.match(/^([^0-9]*)([0-9][0-9,.]*)(.*)$/);if(!m||reduce){el.textContent=t;return;}
+  var n=parseFloat(m[2].replace(/,/g,'')),dec=(m[2].split('.')[1]||'').length,comma=m[2].indexOf(',')>-1,t0=null;
+  function f(v){var s=v.toFixed(dec);if(comma)s=s.replace(/\B(?=(\d{3})+(?!\d))/g,',');return m[1]+s+m[3];}
+  function step(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/900),e=1-Math.pow(1-p,3);el.textContent=f(n*e);if(p<1)requestAnimationFrame(step);}
+  requestAnimationFrame(step);}
+function show(i,user){idx=i;tabs.forEach(function(x,k){x.setAttribute('aria-selected',k===i?'true':'false');var p=document.getElementById(x.getAttribute('aria-controls'));p.hidden=k!==i;
+  if(k===i){p.style.animation='none';p.offsetWidth;p.style.animation='';p.querySelectorAll('.bar i,.rows div').forEach(function(b){b.style.animation='none';b.offsetWidth;b.style.animation='';});p.querySelectorAll('.kpis strong').forEach(count);}});
+  var tm=tabs[i].querySelector('.tmr i');if(tm){tm.style.animation='none';tm.offsetWidth;tm.style.animation='';}
+  if(user){pause();clearTimeout(resumeT);resumeT=setTimeout(play,12000);}}
+function next(){show((idx+1)%tabs.length);}
+function play(){if(reduce)return;paused=false;stage.classList.add('run');clearInterval(timer);timer=setInterval(next,DUR);var tm=tabs[idx].querySelector('.tmr i');if(tm){tm.style.animation='none';tm.offsetWidth;tm.style.animation='';}}
+function pause(){paused=true;stage.classList.remove('run');clearInterval(timer);}
+tabs.forEach(function(t,k){t.addEventListener('click',function(){show(k,true);});});
+stage.style.setProperty('--dur',DUR+'ms');
+app.addEventListener('mouseenter',function(){if(!reduce)pause();});app.addEventListener('mouseleave',function(){clearTimeout(resumeT);play();});
+// tilt on pointer (desktop)
+if(!reduce&&matchMedia('(pointer:fine)').matches){stage.addEventListener('mousemove',function(e){var r=stage.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+  app.style.transform='rotateY('+(x*6)+'deg) rotateX('+(-y*5)+'deg)';});stage.addEventListener('mouseleave',function(){app.style.transform='';});}
+// notifications
+var ts=[].slice.call(stage.querySelectorAll('.toast')),ti=0;
+function toast(){if(reduce){ts.forEach(function(t){t.classList.add('on')});return;}ts.forEach(function(t){t.classList.remove('on')});var t=ts[ti%ts.length];ti++;setTimeout(function(){t.classList.add('on')},250);}
+// start when visible
+var started=false;function start(){if(started)return;started=true;show(0);play();toast();if(!reduce)setInterval(toast,3600);}
+if('IntersectionObserver' in window){new IntersectionObserver(function(en,o){en.forEach(function(e){if(e.isIntersecting){start();o.disconnect();}})},{threshold:.25}).observe(stage);}else start();
+document.addEventListener('visibilitychange',function(){if(document.hidden)pause();else if(started&&!paused)play();});
+})();
 </script>
 </body>
 </html>
