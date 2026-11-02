@@ -1,0 +1,35 @@
+name: News bot
+on:
+  schedule:
+    - cron: "17 */3 * * *"   # every 3 hours
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/news.yml"
+      - "scripts/update_news.py"
+      - "data/announcements.json"
+permissions:
+  contents: write
+concurrency:
+  group: news-bot
+  cancel-in-progress: true
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Update news.json
+        run: python scripts/update_news.py
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- news.json; then echo "No change"; exit 0; fi
+          git config user.name "AmidTech News Bot"
+          git config user.email "news-bot@amidtechgroup.com"
+          git add news.json
+          git commit -m "News bot: update headlines"
+          git pull --rebase origin main
+          git push

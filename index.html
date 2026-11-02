@@ -338,6 +338,52 @@ section[id],main [id]{scroll-margin-top:84px}
 .fxl{position:absolute;inset:0;z-index:0;pointer-events:none}
 .fxl canvas,canvas.fxc{position:absolute;inset:0;width:100%;height:100%}
 .bgfx .fxc{opacity:.9}
+
+/* ---- news bar ---- */
+.newsbar{display:flex;align-items:center;background:linear-gradient(90deg,#1E1B4B,#312E81);color:#E0E3FF;font-size:13px;height:38px;overflow:hidden;position:relative;z-index:41}
+.nb-lbl{flex:none;display:flex;align-items:center;gap:8px;padding:0 16px 0 max(16px,calc((100vw - 1180px)/2));font-weight:600;color:#fff;height:100%;background:linear-gradient(90deg,#4F46E5,#06B6D4);clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%);padding-right:26px}
+.nb-lbl i{width:7px;height:7px;border-radius:50%;background:#fff;animation:pulse 1.6s infinite}
+.nb-view{flex:1;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 96%,transparent)}
+.nb-track{display:flex;gap:40px;list-style:none;width:max-content;animation:tick var(--nbdur,80s) linear infinite;padding-left:20px}
+.newsbar:hover .nb-track{animation-play-state:paused}
+.nb-track li{white-space:nowrap;display:flex;align-items:center;gap:8px}
+.nb-track a{color:#fff;text-decoration:none}.nb-track a:hover{text-decoration:underline}
+.nb-track em{font-style:normal;font-size:11px;color:#A5B4FC}
+.nb-track .tag{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;background:rgba(6,182,212,.22);color:#67E8F9;border-radius:4px;padding:2px 6px}
+.nb-track .tag.own{background:rgba(255,255,255,.18);color:#fff}
+@media (max-width:620px){.nb-lbl span{display:none}.nb-lbl{padding-right:20px}}
+/* ---- chat widget ---- */
+.cw{position:fixed;right:20px;bottom:20px;z-index:60;font-size:14px}
+.cw-btn{width:58px;height:58px;border-radius:50%;border:0;cursor:pointer;background:linear-gradient(135deg,#4F46E5,#06B6D4);box-shadow:0 14px 30px -8px rgba(79,70,229,.6);display:grid;place-items:center;position:relative;transition:transform .2s}
+.cw-btn:hover{transform:scale(1.06)}.cw-btn svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:2;stroke-linejoin:round}
+.cw-btn::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #06B6D4;animation:ring 2.4s infinite}
+@keyframes ring{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.6);opacity:0}}
+.cw-dot{position:absolute;top:4px;right:4px;width:12px;height:12px;border-radius:50%;background:#10B981;border:2px solid #fff}
+.cw-panel{position:absolute;right:0;bottom:74px;width:370px;max-width:calc(100vw - 32px);height:540px;max-height:calc(100vh - 120px);background:#fff;border-radius:20px;box-shadow:0 30px 70px -20px rgba(30,27,75,.45),0 0 0 1px rgba(30,27,75,.06);display:flex;flex-direction:column;overflow:hidden;animation:cwIn .3s cubic-bezier(.2,.7,.2,1)}
+.cw-panel[hidden]{display:none}
+@keyframes cwIn{from{opacity:0;transform:translateY(14px) scale(.97)}}
+.cw-head{display:flex;gap:12px;align-items:center;padding:16px 18px;background:linear-gradient(120deg,#4F46E5,#06B6D4);color:#fff}
+.cw-head strong{display:block;font-size:15px}.cw-head small{display:flex;align-items:center;gap:6px;font-size:12px;opacity:.9}
+.cw-head small i{width:7px;height:7px;border-radius:50%;background:#A7F3D0}
+.cw-av{width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.2);display:grid;place-items:center;font-weight:700}
+.cw-x{margin-left:auto;background:none;border:0;color:#fff;font-size:16px;cursor:pointer}
+.cw-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#F7F8FC}
+.cw-m{max-width:85%;padding:10px 13px;border-radius:14px;line-height:1.5;white-space:pre-wrap;animation:cwIn .25s}
+.cw-m.b{background:#fff;color:#1E1B4B;border:1px solid #E6E8F5;border-bottom-left-radius:4px}
+.cw-m.u{align-self:flex-end;background:linear-gradient(135deg,#4F46E5,#4338CA);color:#fff;border-bottom-right-radius:4px}
+.cw-m a{color:inherit;font-weight:600}
+.cw-typing{display:flex;gap:4px;padding:12px 14px}.cw-typing i{width:7px;height:7px;border-radius:50%;background:#A5B4FC;animation:bounce 1s infinite}.cw-typing i:nth-child(2){animation-delay:.15s}.cw-typing i:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,80%,100%{transform:translateY(0);opacity:.5}40%{transform:translateY(-5px);opacity:1}}
+.cw-chips{display:flex;flex-wrap:wrap;gap:6px;padding:8px 14px 0;background:#F7F8FC}
+.cw-chips button{border:1px solid #C7D2FE;background:#fff;color:#4F46E5;border-radius:999px;padding:5px 11px;font:500 12px Poppins,sans-serif;cursor:pointer}
+.cw-chips button:hover{background:#EEF2FF}
+.cw-form{display:flex;gap:8px;padding:12px 14px;background:#F7F8FC;border-top:1px solid #EEF0F8}
+.cw-form input{flex:1;border:1px solid #DDE1F3;border-radius:12px;padding:10px 12px;font:14px Poppins,sans-serif;outline:none}
+.cw-form input:focus{border-color:#4F46E5}
+.cw-form button{width:42px;border:0;border-radius:12px;background:linear-gradient(135deg,#4F46E5,#06B6D4);cursor:pointer;display:grid;place-items:center}
+.cw-form button svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2}
+.cw-note{font-size:11px;color:#8A8FB5;text-align:center;padding:0 10px 10px;background:#F7F8FC}
+@media (max-width:620px){.cw{right:14px;bottom:14px}.cw-panel{height:min(540px,calc(100vh - 110px))}}
 @media (prefers-reduced-motion:reduce){.fxl,canvas.fxc{display:none}}
 @media (prefers-reduced-motion:reduce){.blob,.gridfx{animation:none!important}.net{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
@@ -347,6 +393,7 @@ section[id],main [id]{scroll-margin-top:84px}
 <a class="skip" href="#main">Skip to content</a>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4F46E5"/><stop offset="1" stop-color="#06B6D4"/></linearGradient></defs></svg>
 
+<div class="newsbar" id="newsbar" role="region" aria-label="News"><div class="nb-lbl"><i></i><span class="en">News</span><span class="fr">Actualités</span></div><div class="nb-view"><ul class="nb-track" id="nbtrack"></ul></div></div>
 <header id="hdr"><div class="wrap nav">
   <a class="brand" href="#top" aria-label="AmidTech LLC">
     <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="url(#lg)"/><path d="M18 46 L32 16 L46 46 M24 36 H40" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -792,6 +839,68 @@ document.querySelectorAll('canvas[data-fx]').forEach(function(cv){
   new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting&&!document.hidden){if(!run){run=true;loop();}}else{run=false;cancelAnimationFrame(raf);}})},{rootMargin:'100px'}).observe(cv);
   document.addEventListener('visibilitychange',function(){if(document.hidden){run=false;cancelAnimationFrame(raf);}});
 });
+})();
+</script>
+
+<div class="cw" id="cw">
+  <button class="cw-btn" id="cwbtn" type="button" aria-label="Chat" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><b class="cw-dot"></b></button>
+  <div class="cw-panel" id="cwpanel" role="dialog" aria-label="AmidTech assistant" hidden>
+    <div class="cw-head"><div class="cw-av">A</div><div><strong><span class="en">AmidTech assistant</span><span class="fr">Assistant AmidTech</span></strong><small><i></i><span class="en">Online · replies instantly</span><span class="fr">En ligne · répond immédiatement</span></small></div><button type="button" class="cw-x" id="cwx" aria-label="Close">✕</button></div>
+    <div class="cw-msgs" id="cwmsgs" aria-live="polite"></div>
+    <div class="cw-chips" id="cwchips"></div>
+    <form class="cw-form" id="cwform" autocomplete="off"><input id="cwin" maxlength="600" aria-label="Message"><button type="submit" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button></form>
+    <div class="cw-note"><span class="en">Automated assistant — may make mistakes</span><span class="fr">Assistant automatique — peut se tromper</span> · <a href="https://wa.me/22792356596" target="_blank" rel="noopener">WhatsApp</a></div>
+  </div>
+</div>
+<script>
+(function(){
+var fr=function(){return document.body.classList.contains('fr')};
+/* ---------- NEWS BAR ---------- */
+var track=document.getElementById('nbtrack'),NEWS=[];
+function ago(d){var m=Math.max(1,Math.round((Date.now()-new Date(d))/60000)),f=fr();
+  if(m<60)return f?'il y a '+m+' min':m+' min ago';var h=Math.round(m/60);if(h<24)return f?'il y a '+h+' h':h+' h ago';var j=Math.round(h/24);return f?'il y a '+j+' j':j+' d ago';}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function render(){if(!track)return;var L=fr()?'fr':'en',it=NEWS.filter(function(x){return x.lang==='all'||x.lang===L});
+  if(it.filter(function(x){return x.lang!=='all'}).length<4)it=NEWS.slice();if(!it.length)return;
+  var h=it.map(function(x){var own=x.cat==='amidtech',t=(!fr()&&x.title_en)?x.title_en:x.title;
+    return '<li><span class="tag'+(own?' own':'')+'">'+(own?'AmidTech':esc(x.source||'News'))+'</span><a href="'+esc(x.url)+'"'+(own?'':' target="_blank" rel="noopener nofollow"')+'>'+esc(t)+'</a>'+(own?'':'<em>'+ago(x.date)+'</em>')+'</li>';}).join('');
+  track.innerHTML=h+h;track.style.setProperty('--nbdur',Math.max(40,it.length*9)+'s');}
+function load(){fetch('/news.json?'+Date.now()).then(function(r){return r.json()}).then(function(d){NEWS=d.items||[];render();}).catch(function(){});}
+load();setInterval(load,10*60*1000);
+var _sl=window.setLang;if(_sl){window.setLang=function(l){_sl(l);render();if(window._cwLang)window._cwLang();};}
+/* ---------- CHAT ---------- */
+var btn=document.getElementById('cwbtn'),panel=document.getElementById('cwpanel'),box=document.getElementById('cwmsgs'),form=document.getElementById('cwform'),inp=document.getElementById('cwin'),chips=document.getElementById('cwchips');
+if(!btn)return;var H=[],started=false,AI=true;
+var T={hi:['Hello! I am the AmidTech assistant. I can tell you about our services, prices, timelines and how to get a quote. How can I help?','Bonjour ! Je suis l\'assistant AmidTech. Je peux vous renseigner sur nos services, nos prix, nos délais et la façon d\'obtenir un devis. Comment puis-je vous aider ?'],
+ ph:['Type your message…','Écrivez votre message…'],
+ chips:[['Services & prices','Services et prix'],['Timelines','Délais'],['Payment','Paiement'],['Get a quote','Demander un devis'],['Talk to a person','Parler à quelqu\'un']],
+ err:['Sorry, I could not answer just now. You can reach the team at contact@amidtechgroup.com or on WhatsApp +227 92 35 65 96.','Désolé, je n\'ai pas pu répondre. Vous pouvez joindre l\'équipe à contact@amidtechgroup.com ou sur WhatsApp au +227 92 35 65 96.']};
+var FAQ=[
+ [/prix|tarif|co[uû]t|price|cost|combien|how much|budget/i,['Indicative starting prices (USD): management software from $12,000, web & mobile apps from $5,000, websites from $1,500, maintenance from $150/month, consulting from $400/day, IT equipment on quote. Every project gets a written fixed-price quote.','Prix indicatifs (en dollars US) : logiciel de gestion dès 12 000 $, applications web et mobiles dès 5 000 $, sites web dès 1 500 $, maintenance dès 150 $/mois, conseil dès 400 $/jour, matériel sur devis. Chaque projet reçoit un devis écrit à prix ferme.']],
+ [/d[ée]lai|combien de temps|dur[ée]e|how long|timeline|quand|when/i,['Typical timeline: discovery 1–2 weeks, quote in 2 business days, build 4–12 weeks with a demo every two weeks, delivery and training 1–2 weeks. A website takes about 2–4 weeks.','Délais habituels : cadrage 1 à 2 semaines, devis sous 2 jours ouvrés, développement 4 à 12 semaines avec une démo toutes les deux semaines, livraison et formation 1 à 2 semaines. Un site web prend environ 2 à 4 semaines.']],
+ [/pai|pay|visa|carte|card|virement|transfer|acompte|deposit|mobile money/i,['Invoices are issued in US dollars by AmidTech LLC: a deposit on signature and the balance on delivery. You can pay by international bank transfer or by card (Visa, Mastercard) through a secure payment link.','Les factures sont émises en dollars US par AmidTech LLC : un acompte à la signature et le solde à la livraison. Paiement par virement international ou par carte (Visa, Mastercard) via un lien de paiement sécurisé.']],
+ [/devis|quote|commande|order|projet|project/i,['Happy to help! Tell me your company, what you need and your rough timeline — or use the quote form at the bottom of the page (#contact). You will receive a written quote within 2 business days.','Avec plaisir ! Indiquez-moi votre entreprise, votre besoin et votre délai approximatif — ou utilisez le formulaire de devis en bas de la page (#contact). Vous recevrez un devis écrit sous 2 jours ouvrés.']],
+ [/humain|personne|person|human|whatsapp|t[ée]l[ée]phone|phone|appeler|call|contact|email|mail/i,['You can reach the team directly: WhatsApp / phone +227 92 35 65 96, e-mail contact@amidtechgroup.com, Monday–Friday 8:00–18:00 (GMT+1).','Vous pouvez joindre l\'équipe directement : WhatsApp / téléphone +227 92 35 65 96, e-mail contact@amidtechgroup.com, du lundi au vendredi de 8 h à 18 h (GMT+1).']],
+ [/garantie|warranty|support|maintenance|bug/i,['Delivered software has a 90-day warranty, then optional monthly maintenance (from $150/month) covering updates, backups and user support.','Les logiciels livrés ont une garantie de 90 jours, puis une maintenance mensuelle en option (dès 150 $/mois) : mises à jour, sauvegardes et support utilisateurs.']],
+ [/rembours|refund|annul|cancel/i,['Before work starts the deposit is refunded; after work starts you pay only for work done. Full details: amidtechgroup.com/refund','Avant le démarrage, l\'acompte est remboursé ; après, vous ne payez que le travail réalisé. Détails : amidtechgroup.com/refund']],
+ [/qui|who|soci[ée]t[ée]|company|am[ée]ric|usa|niger|adresse|address/i,['AmidTech LLC is a U.S. company registered in New Mexico, with an operations office in Niamey, Niger. Contracts and invoices are issued by the U.S. company, in U.S. dollars.','AmidTech LLC est une société américaine enregistrée au Nouveau-Mexique, avec un bureau opérationnel à Niamey (Niger). Contrats et factures sont émis par la société américaine, en dollars US.']],
+ [/service|logiciel|software|erp|site|web|app|mobile|mat[ée]riel|hardware|ordinateur|computer/i,['We build custom management software (operations, stock, fleet, payroll, accounting), web and mobile apps, websites, and supply IT equipment — for construction, mining, logistics, energy, NGOs and SMEs.','Nous réalisons des logiciels de gestion sur mesure (exploitation, stocks, flotte, paie, comptabilité), des applications web et mobiles, des sites internet, et fournissons du matériel informatique — pour le BTP, les mines, la logistique, l\'énergie, les ONG et les PME.']]];
+function L(a){return a[fr()?1:0]}
+function add(t,who){var d=document.createElement('div');d.className='cw-m '+who;d.textContent=t;box.appendChild(d);box.scrollTop=box.scrollHeight;return d;}
+function typing(){var d=document.createElement('div');d.className='cw-m b cw-typing';d.innerHTML='<i></i><i></i><i></i>';box.appendChild(d);box.scrollTop=box.scrollHeight;return d;}
+function local(q){for(var i=0;i<FAQ.length;i++)if(FAQ[i][0].test(q))return L(FAQ[i][1]);return fr()?'Je peux vous renseigner sur nos services, prix, délais, paiements et devis. Pour une question précise, l\'équipe répond sur WhatsApp au +227 92 35 65 96 ou à contact@amidtechgroup.com.':'I can help with our services, prices, timelines, payment and quotes. For anything specific, the team answers on WhatsApp +227 92 35 65 96 or at contact@amidtechgroup.com.';}
+function drawChips(){chips.innerHTML='';T.chips.forEach(function(c){var b=document.createElement('button');b.type='button';b.textContent=L(c);b.onclick=function(){send(L(c));};chips.appendChild(b);});inp.placeholder=L(T.ph);}
+window._cwLang=function(){if(started)drawChips();};
+function send(q){q=(q||'').trim();if(!q)return;add(q,'u');H.push({role:'user',content:q});inp.value='';var ty=typing();
+  function done(t){ty.remove();add(t,'b');H.push({role:'assistant',content:t});}
+  if(!AI){setTimeout(function(){done(local(q));},500);return;}
+  fetch('/api/chat',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({messages:H.slice(-10),lang:fr()?'fr':'en'})})
+   .then(function(r){return r.json().then(function(j){return{ok:r.ok,j:j}})})
+   .then(function(x){if(x.ok&&x.j.reply)done(x.j.reply);else{if(x.j&&x.j.fallback)AI=false;done(local(q));}})
+   .catch(function(){AI=false;done(local(q));});}
+function open(o){panel.hidden=!o;btn.setAttribute('aria-expanded',o);if(o){if(!started){started=true;drawChips();setTimeout(function(){add(L(T.hi),'b');H.push({role:'assistant',content:L(T.hi)});},250);}setTimeout(function(){inp.focus()},300);}}
+btn.addEventListener('click',function(){open(panel.hidden);});document.getElementById('cwx').addEventListener('click',function(){open(false);});
+form.addEventListener('submit',function(e){e.preventDefault();send(inp.value);});
 })();
 </script>
 </body>
