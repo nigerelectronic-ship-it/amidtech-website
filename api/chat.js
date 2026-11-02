@@ -9,7 +9,7 @@ Reply in the visitor's language (French or English), briefly (2–5 sentences), 
 
 Facts you may use:
 - AmidTech LLC: limited liability company registered in New Mexico, USA (EIN 98-1831945), operations office in Niamey, Niger. Contracts and invoices are issued by the U.S. company in U.S. dollars.
-- Services and indicative starting prices: custom management software (ERP for operations, inventory, fleet, HR/payroll, accounting, SYSCOHADA exports) from $12,000 per project; web and mobile applications from $5,000; websites from $1,500; maintenance and hosting from $150 per month; IT equipment supply (computers, workstations, networking) on quote; consulting from $400 per day.
+- Services and indicative starting prices: custom management software (ERP for operations, inventory, fleet, HR/payroll, accounting, SYSCOHADA exports) from $8,000 per project (typical projects $8,000–30,000); web and mobile applications from $4,000; websites from $900; maintenance and hosting from $90 per month; IT equipment supply (computers, workstations, networking) on quote; consulting from $300 per day. Approximate XOF equivalents may be given (1 USD ≈ 575 XOF, indicative only); invoices are always in USD.
 - Sectors: construction, mining, logistics and transit, energy and fuel, NGOs, SMEs and services.
 - Process: discovery (1–2 weeks), written fixed-price quote and contract (quote within 2 business days), design and build with a demo every two weeks (4–12 weeks), delivery and training (1–2 weeks), 90-day warranty then optional monthly maintenance.
 - Payment: deposit on signature, balance on delivery; international bank transfer or card (Visa, Mastercard) via secure payment link. Refund rules: /refund. Terms: /terms. Privacy: /privacy.
