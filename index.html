@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"AmidTech LLC","url":"https://amidtechgroup.com","email":"contact@amidtechgroup.com","telephone":"+227 92 35 65 96","taxID":"98-1831945","address":[{"@type":"PostalAddress","streetAddress":"1209 Mountain Road PL NE, Suite N","addressLocality":"Albuquerque","addressRegion":"NM","postalCode":"87110","addressCountry":"US"},{"@type":"PostalAddress","streetAddress":"1170 Boulevard Mali Bero, Bâtiment C23","addressLocality":"Niamey","addressCountry":"NE"}],"founder":{"@type":"Person","name":"Mahmoud Sagdoun"}}
+{"@context":"https://schema.org","@type":"Organization","name":"AmidTech LLC","url":"https://amidtechgroup.com","email":"contact@amidtechgroup.com","telephone":"+227 92 35 65 96","taxID":"98-1831945","address":[{"@type":"PostalAddress","streetAddress":"1209 Mountain Road PL NE, Suite N","addressLocality":"Albuquerque","addressRegion":"NM","postalCode":"87110","addressCountry":"US"},{"@type":"PostalAddress","streetAddress":"1170 Boulevard Mali Bero, Bâtiment C23","addressLocality":"Niamey","addressCountry":"NE"}]}
 </script>
 <style>
 :root{
@@ -242,6 +242,11 @@ footer .brand{color:#fff;margin-bottom:14px}
   .fgrid{grid-template-columns:1fr}
   .panel,.case{padding:26px}
 }
+.mtog{display:none;margin-left:auto;border:1px solid #DDE1F3;background:#fff;border-radius:10px;width:42px;height:42px;font-size:20px;line-height:1;color:var(--ind);cursor:pointer}
+section[id],main [id]{scroll-margin-top:84px}
+@media (max-width:1000px){.mtog{display:block}.lang{margin-left:0}
+  .menu.open{display:flex;flex-direction:column;gap:0;position:absolute;top:74px;left:0;right:0;background:#fff;border-bottom:1px solid #DDE1F3;box-shadow:0 18px 30px -18px rgba(30,27,75,.35);padding:8px 24px 16px;margin:0}
+  .menu.open a{padding:14px 0;border-bottom:1px solid #EEF0F8;font-size:16px}.menu.open a:last-child{border:0}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -254,7 +259,8 @@ footer .brand{color:#fff;margin-bottom:14px}
     <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="url(#lg)"/><path d="M18 46 L32 16 L46 46 M24 36 H40" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <span>AmidTech<small>LLC · New Mexico, USA</small></span>
   </a>
-  <nav class="menu" aria-label="Main">
+  <button class="mtog" id="mtog" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mnav">☰</button>
+  <nav class="menu" id="mnav" aria-label="Main">
     <a href="#about"><span class="en">About</span><span class="fr">Qui sommes-nous</span></a>
     <a href="#services">Services</a>
     <a href="#process"><span class="en">Process</span><span class="fr">Méthode</span></a>
@@ -348,7 +354,7 @@ footer .brand{color:#fff;margin-bottom:14px}
   <div>
     <div class="founder">
       <blockquote><span class="en">“Our clients don't need more software. They need software that fits how their teams already work — and someone who answers the phone after delivery.”</span><span class="fr">« Nos clients n'ont pas besoin de plus de logiciels. Ils ont besoin d'outils adaptés à la façon dont leurs équipes travaillent déjà — et de quelqu'un qui répond au téléphone après la livraison. »</span></blockquote>
-      <div class="who"><div class="av">MS</div><div><strong>Mahmoud Sagdoun</strong><span class="en">Founder & Managing Member</span><span class="fr">Fondateur et gérant</span></div></div>
+      <div class="who"><div class="av">A</div><div><strong>AmidTech LLC</strong><span class="en">Management</span><span class="fr">Direction</span></div></div>
     </div>
     <div class="facts">
       <div><strong>2</strong><span class="en">offices — USA and Niger</span><span class="fr">bureaux — USA et Niger</span></div>
@@ -460,7 +466,6 @@ footer .brand{color:#fff;margin-bottom:14px}
       <tr><th>EIN</th><td>98-1831945</td></tr>
       <tr><th><span class="en">Registered office</span><span class="fr">Siège légal</span></th><td>1209 Mountain Road PL NE, Suite N, Albuquerque, NM 87110, USA</td></tr>
       <tr><th><span class="en">Operations office</span><span class="fr">Bureau opérationnel</span></th><td>1170 Boulevard Mali Bero, Bâtiment C23, Niamey, Niger</td></tr>
-      <tr><th><span class="en">Managing member</span><span class="fr">Gérant</span></th><td>Mahmoud Sagdoun</td></tr>
     </table>
   </div>
 </div></section>
@@ -538,6 +543,11 @@ document.getElementById('qf').addEventListener('submit',function(e){e.preventDef
   var b='Name: '+f.name.value+'\nCompany: '+f.company.value+'\nE-mail: '+f.email.value+'\nPhone: '+f.phone.value+'\nNeed: '+f.need.value+'\n\n'+f.msg.value;
   location.href='mailto:contact@amidtechgroup.com?subject='+encodeURIComponent('Quote request — '+f.need.value+(f.company.value?' — '+f.company.value:''))+'&body='+encodeURIComponent(b);
   document.getElementById('sent').style.display='inline';});
+</script>
+<script>
+(function(){var b=document.getElementById('mtog'),m=document.getElementById('mnav');if(!b||!m)return;
+b.addEventListener('click',function(){var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o);b.textContent=o?'✕':'☰';});
+m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');b.setAttribute('aria-expanded','false');b.textContent='☰';});});})();
 </script>
 </body>
 </html>
