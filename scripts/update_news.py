@@ -17,14 +17,15 @@ def gnews(q, lang):
     hl, gl, ceid = ("fr", "NE", "NE:fr") if lang == "fr" else ("en-US", "US", "US:en")
     return "https://news.google.com/rss/search?" + urllib.parse.urlencode({"q": q + " when:7d", "hl": hl, "gl": gl, "ceid": ceid})
 
+# (lang, category, feed URL, the title must match this pattern to be kept)
 FEEDS = [
-    ("fr", "tech", gnews("transformation numérique Afrique entreprises", "fr")),
-    ("fr", "niger", gnews("Niger économie", "fr")),
-    ("fr", "mines", gnews("Niger mines or", "fr")),
-    ("en", "tech", gnews("enterprise software Africa", "en")),
-    ("en", "ai", gnews("artificial intelligence business", "en")),
+    ("fr", "tech", gnews("numérique Afrique entreprises startup", "fr"), r"num[ée]rique|digital|tech|logiciel|startup|IA\b|intelligence artificielle|internet|t[ée]l[ée]com|fintech|data|cloud|innovation"),
+    ("fr", "niger", gnews("Niger économie investissement entreprises", "fr"), r"[ée]conom|investiss|entrepr|march[ée]|croissance|budget|énergie|[ée]nergie|projet|infrastructure|commerce|export"),
+    ("fr", "mines", gnews("Afrique de l'Ouest mines or production", "fr"), r"\bmine|minier|minière|or\b|cuivre|uranium|lithium|production|gisement"),
+    ("en", "tech", gnews("Africa tech startups enterprise software", "en"), r"tech|software|startup|digital|AI\b|cloud|fintech|data|internet|telecom"),
+    ("en", "ai", gnews("artificial intelligence business productivity", "en"), r"\bAI\b|artificial intelligence|automation|software|productivity|cloud"),
 ]
-BLOCK = re.compile(r"(décès|mort|tué|attaque|massacre|viol|terror|killed|dead|attack|shooting|war\b|guerre)", re.I)
+BLOCK = re.compile(r"(d[ée]c[èe]s|mort|tu[ée]|attaque|massacre|viol|terror|jihad|djihad|arm[ée]e|militaire|soldat|d[ée]fense|affrontement|conflit|sanction|coup d|putsch|rebelle|M23|otage|guerre|killed|dead|death|attack|shooting|\bwar\b|military|troops|sanction|coup\b|rebel|hostage|election|[ée]lection|scandal|scandale)", re.I)
 
 def fetch(url):
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (AmidTech news bot)"})
@@ -58,9 +59,10 @@ def parse(raw, lang, cat):
 def main():
     items, seen = [], set()
     now = datetime.datetime.now(datetime.timezone.utc)
-    for lang, cat, url in FEEDS:
+    for lang, cat, url, must in FEEDS:
+        keep = re.compile(must, re.I)
         try:
-            for x in parse(fetch(url), lang, cat)[:6]:
+            for x in [y for y in parse(fetch(url), lang, cat) if keep.search(y["title"])][:5]:
                 key = re.sub(r"\W+", "", x["title"].lower())[:60]
                 age = now - datetime.datetime.fromisoformat(x["date"])
                 if key in seen or age.days > MAX_AGE_DAYS:
