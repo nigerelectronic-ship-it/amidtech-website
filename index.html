@@ -277,6 +277,40 @@ section[id],main [id]{scroll-margin-top:84px}
 .kpis strong{font-variant-numeric:tabular-nums}
 @media (max-width:1000px){.t1{right:8px;top:-58px}.t2{left:8px;bottom:40px}.t3{right:8px;bottom:-28px}}
 @media (max-width:620px){.toast{min-width:0;max-width:78%}.t2{display:none}}
+
+/* ---- more animation ---- */
+.live{display:inline-flex;align-items:center;gap:6px;color:#0B6B80!important;font-weight:600!important}
+.live i{width:7px;height:7px;border-radius:50%;background:#10B981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulse 1.6s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
+.spark{width:100%;height:56px;margin:-4px 0 6px;display:block}
+.sp-line{stroke-dasharray:420;stroke-dashoffset:420;animation:draw 2.2s cubic-bezier(.2,.7,.2,1) forwards}
+.sp-fill{opacity:0;animation:fadeIn 1s .9s forwards}.sp-dot{opacity:0;animation:fadeIn .4s 2s forwards,blink 1.4s 2.4s infinite}
+@keyframes draw{to{stroke-dashoffset:0}}@keyframes fadeIn{to{opacity:1}}@keyframes blink{50%{opacity:.35}}
+.payrun{background:var(--paper);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.pr-top{display:flex;gap:6px;align-items:baseline;font-size:12px;color:var(--mut)}.pr-top span:first-child{flex:1}
+.pr-n{font-size:20px;color:var(--ink);font-variant-numeric:tabular-nums}
+.bar.big{height:8px;margin:8px 0}
+.pr-flow{display:flex;align-items:center;gap:6px;font-size:16px}
+.pr-flow i{flex:1;height:2px;background:linear-gradient(90deg,#4F46E5 50%,transparent 50%);background-size:12px 2px;animation:dash .6s linear infinite}
+@keyframes dash{to{background-position:12px 0}}
+.dock{position:relative;height:64px;background:var(--paper);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.road{position:absolute;left:12px;right:46px;bottom:14px;height:2px;background:repeating-linear-gradient(90deg,#C7CBF2 0 8px,transparent 8px 14px)}
+.truck{position:absolute;bottom:12px;left:-34px;font-size:24px;transform:scaleX(-1);animation:drive 6s ease-in-out infinite}
+@keyframes drive{0%{left:-34px;opacity:1}45%,62%{left:calc(100% - 78px);opacity:1}72%,100%{left:calc(100% - 78px);opacity:0}}
+.depot{position:absolute;right:10px;bottom:10px;font-size:26px}
+.crate{position:absolute;bottom:40px;right:18px;font-size:13px;opacity:0;animation:drop 6s infinite}
+.crate.c2{animation-delay:.35s;right:30px}.crate.c3{animation-delay:.7s;right:6px}
+@keyframes drop{0%,48%{opacity:0;transform:translateY(-14px)}56%{opacity:1;transform:none}85%{opacity:1}100%{opacity:0}}
+.map{height:110px;background:var(--paper);border-radius:12px;margin-bottom:10px;overflow:hidden}.map svg{width:100%;height:100%}
+.ticker{display:flex;align-items:center;gap:18px;background:var(--ink);color:#D4D7F5;overflow:hidden;font-size:14px}
+.tk-lbl{flex:none;display:flex;align-items:center;gap:8px;padding:14px 0 14px max(24px,calc((100vw - 1180px)/2));font-weight:600;color:#fff;white-space:nowrap}
+.tk-lbl i{width:8px;height:8px;border-radius:50%;background:#10B981;animation:pulse 1.6s infinite}
+.tk-view{overflow:hidden;flex:1;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.tk-track{display:flex;gap:34px;list-style:none;width:max-content;animation:tick 55s linear infinite;padding:14px 0}
+.tk-track li{white-space:nowrap;display:flex;gap:8px;align-items:center}.tk-track b{font-weight:400}
+.ticker:hover .tk-track{animation-play-state:paused}
+@keyframes tick{to{transform:translateX(-50%)}}
+@media (max-width:620px){.tk-lbl{display:none}.side button{white-space:nowrap}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -326,6 +360,9 @@ section[id],main [id]{scroll-margin-top:84px}
         <button role="tab" aria-selected="true" aria-controls="p1" id="t1"><span class="tmr"><i></i></span><span class="en">Projects</span><span class="fr">Chantiers</span></button>
         <button role="tab" aria-selected="false" aria-controls="p2" id="t2"><span class="tmr"><i></i></span><span class="en">Inventory</span><span class="fr">Stocks</span></button>
         <button role="tab" aria-selected="false" aria-controls="p3" id="t3"><span class="tmr"><i></i></span><span class="en">Invoices</span><span class="fr">Factures</span></button>
+        <button role="tab" aria-selected="false" aria-controls="p4" id="t4"><span class="tmr"><i></i></span><span class="en">Payroll</span><span class="fr">Paie</span></button>
+        <button role="tab" aria-selected="false" aria-controls="p5" id="t5"><span class="tmr"><i></i></span><span class="en">Receiving</span><span class="fr">Arrivages</span></button>
+        <button role="tab" aria-selected="false" aria-controls="p6" id="t6"><span class="tmr"><i></i></span><span class="en">Fleet</span><span class="fr">Flotte</span></button>
       </div>
       <div class="main">
         <div class="pane" id="p1" role="tabpanel" aria-labelledby="t1">
@@ -351,6 +388,7 @@ section[id],main [id]{scroll-margin-top:84px}
         <div class="pane" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
           <h4><span class="en">Invoices</span><span class="fr">Factures</span><small><span class="en">This month</span><span class="fr">Ce mois-ci</span></small></h4>
           <div class="kpis"><div><em><span class="en">Issued</span><span class="fr">Émises</span></em><strong>$148k</strong></div><div><em><span class="en">Collected</span><span class="fr">Encaissé</span></em><strong>$112k</strong></div><div><em><span class="en">Overdue</span><span class="fr">En retard</span></em><strong>3</strong></div></div>
+          <svg class="spark" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="sg" x1="0" x2="1"><stop offset="0" stop-color="#4F46E5"/><stop offset="1" stop-color="#06B6D4"/></linearGradient><linearGradient id="sf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#06B6D4" stop-opacity=".25"/><stop offset="1" stop-color="#06B6D4" stop-opacity="0"/></linearGradient></defs><path class="sp-fill" d="M0 50 L30 44 L60 46 L90 36 L120 38 L150 28 L180 30 L210 20 L240 22 L270 12 L300 8 L300 60 L0 60Z" fill="url(#sf)"/><path class="sp-line" d="M0 50 L30 44 L60 46 L90 36 L120 38 L150 28 L180 30 L210 20 L240 22 L270 12 L300 8" fill="none" stroke="url(#sg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle class="sp-dot" cx="300" cy="8" r="4" fill="#06B6D4"/></svg>
           <div class="rows">
             <div><span>INV-2026-118</span><span class="bar"><i style="--w:100%"></i></span><span class="chip c-ok"><span class="en">Paid</span><span class="fr">Payée</span></span></div>
             <div><span>INV-2026-119</span><span class="bar"><i style="--w:40%"></i></span><span class="chip c-run"><span class="en">Partial</span><span class="fr">Partiel</span></span></div>
@@ -358,16 +396,35 @@ section[id],main [id]{scroll-margin-top:84px}
             <div><span>INV-2026-121</span><span class="bar"><i style="--w:0%"></i></span><span class="chip c-wait"><span class="en">Due</span><span class="fr">À payer</span></span></div>
           </div>
         </div>
+        <div class="pane" id="p4" role="tabpanel" aria-labelledby="t4" hidden>
+          <h4><span class="en">Payroll — October</span><span class="fr">Paie — octobre</span><small class="live"><i></i><span class="en">Transfers running</span><span class="fr">Virements en cours</span></small></h4>
+          <div class="kpis"><div><em><span class="en">Employees</span><span class="fr">Employés</span></em><strong>214</strong></div><div><em><span class="en">Net payroll</span><span class="fr">Masse nette</span></em><strong>$96.4k</strong></div><div><em><span class="en">Mobile money</span><span class="fr">Mobile money</span></em><strong>61%</strong></div></div>
+          <div class="payrun"><div class="pr-top"><span><span class="en">Salaries transferred</span><span class="fr">Salaires virés</span></span><b class="pr-n">0</b><span>/ 214</span></div><div class="bar big"><i class="pr-bar" style="--w:100%"></i></div><div class="pr-flow" aria-hidden="true"><span>🏦</span><i></i><i></i><i></i><i></i><span>👷</span></div></div>
+          <div class="rows"><div><span><span class="en">Bank transfers</span><span class="fr">Virements bancaires</span></span><span class="bar"><i style="--w:100%"></i></span><span class="chip c-ok"><span class="en">Sent</span><span class="fr">Envoyés</span></span></div><div><span><span class="en">Mobile money</span><span class="fr">Mobile money</span></span><span class="bar"><i style="--w:78%"></i></span><span class="chip c-run">78%</span></div><div><span><span class="en">Payslips e-mailed</span><span class="fr">Bulletins envoyés</span></span><span class="bar"><i style="--w:92%"></i></span><span class="chip c-run">92%</span></div></div>
+        </div>
+        <div class="pane" id="p5" role="tabpanel" aria-labelledby="t5" hidden>
+          <h4><span class="en">Goods receiving</span><span class="fr">Arrivages de stock</span><small><span class="en">Main depot</span><span class="fr">Dépôt principal</span></small></h4>
+          <div class="kpis"><div><em><span class="en">Deliveries today</span><span class="fr">Livraisons du jour</span></em><strong>6</strong></div><div><em><span class="en">Received</span><span class="fr">Réceptionné</span></em><strong>38 t</strong></div><div><em><span class="en">Pending checks</span><span class="fr">Contrôles</span></em><strong>2</strong></div></div>
+          <div class="dock" aria-hidden="true"><div class="road"></div><div class="truck">🚚</div><div class="crate c1">📦</div><div class="crate c2">📦</div><div class="crate c3">📦</div><div class="depot">🏭</div></div>
+          <div class="rows"><div><span><span class="en">Cement 50 kg — 800 bags</span><span class="fr">Ciment 50 kg — 800 sacs</span></span><span class="bar"><i style="--w:100%"></i></span><span class="chip c-ok"><span class="en">Received</span><span class="fr">Reçu</span></span></div><div><span><span class="en">Diesel — 12,000 L</span><span class="fr">Gasoil — 12 000 L</span></span><span class="bar"><i style="--w:70%"></i></span><span class="chip c-run"><span class="en">Unloading</span><span class="fr">Déchargement</span></span></div><div><span><span class="en">Spare tyres — 24</span><span class="fr">Pneus — 24</span></span><span class="bar"><i style="--w:20%"></i></span><span class="chip c-wait"><span class="en">On the way</span><span class="fr">En route</span></span></div></div>
+        </div>
+        <div class="pane" id="p6" role="tabpanel" aria-labelledby="t6" hidden>
+          <h4><span class="en">Fleet tracking</span><span class="fr">Suivi de flotte</span><small class="live"><i></i>GPS</small></h4>
+          <div class="map" aria-hidden="true"><svg viewBox="0 0 300 110" preserveAspectRatio="none"><path id="rt1" d="M10 90 C 70 20, 140 100, 200 40 S 280 30, 292 18" fill="none" stroke="#C7CBF2" stroke-width="2" stroke-dasharray="4 5"/><path id="rt2" d="M10 30 C 80 60, 120 10, 190 70 S 270 95, 292 92" fill="none" stroke="#C7CBF2" stroke-width="2" stroke-dasharray="4 5"/><circle r="6" fill="#4F46E5"><animateMotion dur="7s" repeatCount="indefinite" rotate="auto"><mpath href="#rt1"/></animateMotion></circle><circle r="6" fill="#06B6D4"><animateMotion dur="9s" repeatCount="indefinite" begin="-3s"><mpath href="#rt2"/></animateMotion></circle><circle cx="292" cy="18" r="5" fill="#10B981"/><circle cx="292" cy="92" r="5" fill="#10B981"/></svg></div>
+          <div class="rows"><div><span><span class="en">Truck #4 — to site A</span><span class="fr">Camion n°4 — vers site A</span></span><span class="bar"><i style="--w:64%"></i></span><span class="chip c-run">64%</span></div><div><span><span class="en">Truck #7 — to depot</span><span class="fr">Camion n°7 — vers dépôt</span></span><span class="bar"><i style="--w:38%"></i></span><span class="chip c-run">38%</span></div><div><span><span class="en">Loader — maintenance</span><span class="fr">Chargeuse — entretien</span></span><span class="bar"><i style="--w:100%"></i></span><span class="chip c-wait"><span class="en">Planned</span><span class="fr">Planifié</span></span></div></div>
+        </div>
       </div>
     </div>
   </div>
   <div class="toasts" aria-hidden="true">
-    <div class="toast t1"><b class="ti ok">✓</b><div><strong><span class="en">Invoice INV-2026-121 paid</span><span class="fr">Facture INV-2026-121 payée</span></strong><small>+ $8,400 · <span class="en">bank transfer</span><span class="fr">virement</span></small></div></div>
-    <div class="toast t2"><b class="ti warn">!</b><div><strong><span class="en">Low stock: cement 50 kg</span><span class="fr">Stock bas : ciment 50 kg</span></strong><small><span class="en">Purchase order created automatically</span><span class="fr">Bon de commande créé automatiquement</span></small></div></div>
-    <div class="toast t3"><b class="ti info">↗</b><div><strong><span class="en">Monthly report sent</span><span class="fr">Rapport mensuel envoyé</span></strong><small><span class="en">PDF · 14 pages · to management</span><span class="fr">PDF · 14 pages · à la direction</span></small></div></div>
+    <div class="toast t1" data-slot="0"><b class="ti ok">✓</b><div><strong><span class="en">Invoice INV-2026-121 paid</span><span class="fr">Facture INV-2026-121 payée</span></strong><small>+ $8,400 · <span class="en">bank transfer</span><span class="fr">virement</span></small></div></div>
+    <div class="toast t2" data-slot="1"><b class="ti warn">!</b><div><strong><span class="en">Low stock: cement 50 kg</span><span class="fr">Stock bas : ciment 50 kg</span></strong><small><span class="en">Purchase order created automatically</span><span class="fr">Bon de commande créé automatiquement</span></small></div></div>
+    <div class="toast t3" data-slot="2"><b class="ti info">↗</b><div><strong><span class="en">Monthly report sent</span><span class="fr">Rapport mensuel envoyé</span></strong><small><span class="en">PDF · 14 pages · to management</span><span class="fr">PDF · 14 pages · à la direction</span></small></div></div>
   </div>
   </div>
 </div></section>
+
+<div class="ticker" aria-hidden="true"><div class="tk-lbl"><i></i><span class="en">Live from our clients' systems — demo</span><span class="fr">En direct des systèmes clients — démo</span></div><div class="tk-view"><ul class="tk-track"><li><b>✓</b><span class="en">Salaries paid — 214 employees</span><span class="fr">Salaires virés — 214 employés</span></li><li><b>📦</b><span class="en">800 bags of cement received</span><span class="fr">800 sacs de ciment réceptionnés</span></li><li><b>⛽</b><span class="en">12,000 L of diesel delivered</span><span class="fr">12 000 L de gasoil livrés</span></li><li><b>🧾</b><span class="en">Invoice INV-2026-121 paid</span><span class="fr">Facture INV-2026-121 payée</span></li><li><b>📱</b><span class="en">Mobile money payment received</span><span class="fr">Paiement mobile money reçu</span></li><li><b>🚚</b><span class="en">Truck #4 arrived on site</span><span class="fr">Camion n°4 arrivé sur site</span></li><li><b>⏱</b><span class="en">Attendance: 198 / 214 on site</span><span class="fr">Pointage : 198 / 214 présents</span></li><li><b>📄</b><span class="en">Quote Q-2026-044 approved</span><span class="fr">Devis D-2026-044 approuvé</span></li><li><b>🔧</b><span class="en">Generator service scheduled</span><span class="fr">Entretien du groupe planifié</span></li><li><b>📊</b><span class="en">Monthly report sent</span><span class="fr">Rapport mensuel envoyé</span></li><li><b>💾</b><span class="en">Daily backup completed</span><span class="fr">Sauvegarde quotidienne terminée</span></li><li><b>⚠</b><span class="en">Low stock: drill bits</span><span class="fr">Stock bas : taillants</span></li><li><b>✓</b><span class="en">Salaries paid — 214 employees</span><span class="fr">Salaires virés — 214 employés</span></li><li><b>📦</b><span class="en">800 bags of cement received</span><span class="fr">800 sacs de ciment réceptionnés</span></li><li><b>⛽</b><span class="en">12,000 L of diesel delivered</span><span class="fr">12 000 L de gasoil livrés</span></li><li><b>🧾</b><span class="en">Invoice INV-2026-121 paid</span><span class="fr">Facture INV-2026-121 payée</span></li><li><b>📱</b><span class="en">Mobile money payment received</span><span class="fr">Paiement mobile money reçu</span></li><li><b>🚚</b><span class="en">Truck #4 arrived on site</span><span class="fr">Camion n°4 arrivé sur site</span></li><li><b>⏱</b><span class="en">Attendance: 198 / 214 on site</span><span class="fr">Pointage : 198 / 214 présents</span></li><li><b>📄</b><span class="en">Quote Q-2026-044 approved</span><span class="fr">Devis D-2026-044 approuvé</span></li><li><b>🔧</b><span class="en">Generator service scheduled</span><span class="fr">Entretien du groupe planifié</span></li><li><b>📊</b><span class="en">Monthly report sent</span><span class="fr">Rapport mensuel envoyé</span></li><li><b>💾</b><span class="en">Daily backup completed</span><span class="fr">Sauvegarde quotidienne terminée</span></li><li><b>⚠</b><span class="en">Low stock: drill bits</span><span class="fr">Stock bas : taillants</span></li></ul></div></div>
 
 <div class="sectors"><div class="wrap">
   <p><span class="en">Built for</span><span class="fr">Pour les secteurs</span></p>
@@ -594,7 +651,7 @@ function count(el){var t=el.getAttribute('data-v');if(t===null){t=el.textContent
   function step(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/900),e=1-Math.pow(1-p,3);el.textContent=f(n*e);if(p<1)requestAnimationFrame(step);}
   requestAnimationFrame(step);}
 function show(i,user){idx=i;tabs.forEach(function(x,k){x.setAttribute('aria-selected',k===i?'true':'false');var p=document.getElementById(x.getAttribute('aria-controls'));p.hidden=k!==i;
-  if(k===i){p.style.animation='none';p.offsetWidth;p.style.animation='';p.querySelectorAll('.bar i,.rows div').forEach(function(b){b.style.animation='none';b.offsetWidth;b.style.animation='';});p.querySelectorAll('.kpis strong').forEach(count);}});
+  if(k===i){p.style.animation='none';p.offsetWidth;p.style.animation='';p.querySelectorAll('.bar i,.rows div').forEach(function(b){b.style.animation='none';b.offsetWidth;b.style.animation='';});p.querySelectorAll('.kpis strong').forEach(count);var pn=p.querySelector('.pr-n');if(pn){pn.setAttribute('data-v','214');count(pn);}var sl=p.querySelectorAll('.sp-line,.sp-fill,.sp-dot,.truck,.crate');sl.forEach(function(b){b.style.animation='none';b.offsetWidth;b.style.animation='';});}});
   var tm=tabs[i].querySelector('.tmr i');if(tm){tm.style.animation='none';tm.offsetWidth;tm.style.animation='';}
   if(user){pause();clearTimeout(resumeT);resumeT=setTimeout(play,12000);}}
 function next(){show((idx+1)%tabs.length);}
@@ -608,9 +665,24 @@ if(!reduce&&matchMedia('(pointer:fine)').matches){stage.addEventListener('mousem
   app.style.transform='rotateY('+(x*6)+'deg) rotateX('+(-y*5)+'deg)';});stage.addEventListener('mouseleave',function(){app.style.transform='';});}
 // notifications
 var ts=[].slice.call(stage.querySelectorAll('.toast')),ti=0;
-function toast(){if(reduce){ts.forEach(function(t){t.classList.add('on')});return;}ts.forEach(function(t){t.classList.remove('on')});var t=ts[ti%ts.length];ti++;setTimeout(function(){t.classList.add('on')},250);}
+var EV=[['ok','✓','Salaries paid — 214 employees','Salaires virés — 214 employés','$96,400 · bank + mobile money','96 400 $ · banque + mobile money'],
+ ['info','📦','Stock arrival: 800 bags of cement','Arrivage : 800 sacs de ciment','Main depot · checked','Dépôt principal · contrôlé'],
+ ['ok','✓','Invoice INV-2026-121 paid','Facture INV-2026-121 payée','+ $8,400 · bank transfer','+ 8 400 $ · virement'],
+ ['info','⛽','Diesel delivered: 12,000 L','Gasoil livré : 12 000 L','Tank level 92%','Cuve remplie à 92 %'],
+ ['warn','!','Low stock: drill bits','Stock bas : taillants','Purchase order created','Bon de commande créé'],
+ ['ok','📱','Mobile money received','Paiement mobile money reçu','+ 250,000 XOF · client','+ 250 000 FCFA · client'],
+ ['info','🚚','Truck #4 arrived on site','Camion n°4 arrivé sur site','GPS · 09:42','GPS · 09 h 42'],
+ ['info','⏱','Attendance: 198 / 214','Pointage : 198 / 214','Morning shift','Équipe du matin'],
+ ['ok','📄','Quote Q-2026-044 approved','Devis D-2026-044 approuvé','Contract generated','Contrat généré'],
+ ['warn','🔧','Generator service due','Entretien du groupe à prévoir','550 kVA · 250 h','550 kVA · 250 h'],
+ ['info','📊','Monthly report sent','Rapport mensuel envoyé','PDF · 14 pages','PDF · 14 pages'],
+ ['ok','💾','Daily backup completed','Sauvegarde quotidienne terminée','Encrypted · off-site','Chiffrée · hors site']];
+function fill(t,e){t.innerHTML='<b class="ti '+e[0]+'">'+e[1]+'</b><div><strong><span class="en">'+e[2]+'</span><span class="fr">'+e[3]+'</span></strong><small><span class="en">'+e[4]+'</span><span class="fr">'+e[5]+'</span></small></div>';}
+function toast(){if(reduce){ts.forEach(function(t,k){fill(t,EV[k]);t.classList.add('on')});return;}
+  var t=ts[ti%ts.length],e=EV[ti%EV.length];ti++;t.classList.remove('on');setTimeout(function(){fill(t,e);t.classList.add('on');},450);
+  var o=ts[(ti+1)%ts.length];setTimeout(function(){o.classList.remove('on');},1800);}
 // start when visible
-var started=false;function start(){if(started)return;started=true;show(0);play();toast();if(!reduce)setInterval(toast,3600);}
+var started=false;function start(){if(started)return;started=true;show(0);play();toast();if(!reduce)setInterval(toast,2600);}
 if('IntersectionObserver' in window){new IntersectionObserver(function(en,o){en.forEach(function(e){if(e.isIntersecting){start();o.disconnect();}})},{threshold:.25}).observe(stage);}else start();
 document.addEventListener('visibilitychange',function(){if(document.hidden)pause();else if(started&&!paused)play();});
 })();
