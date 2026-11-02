@@ -6,7 +6,15 @@
 .top{background:linear-gradient(135deg,#4F46E5,#06B6D4);color:#fff;padding:22px}.top a{color:#fff;font-weight:700;text-decoration:none}
 main{max-width:860px;margin:0 auto;padding:40px 22px 60px}h1{color:#1E1B4B;font-size:32px;margin:0 0 6px}h2{color:#1E1B4B;font-size:19px;margin-top:30px}
 .eff{color:#6B7194;font-size:14px}a{color:#4F46E5}.box{background:#fff;border:1px solid #E3E8F7;border-radius:14px;padding:18px;margin-top:30px;font-size:14px}
-ul{padding-left:22px}footer{text-align:center;font-size:13px;color:#6B7194;padding:20px}</style></head>
+ul{padding-left:22px}footer{text-align:center;font-size:13px;color:#6B7194;padding:20px}.top{position:relative;overflow:hidden;padding:38px 22px;background:linear-gradient(120deg,#4F46E5,#06B6D4,#6366F1,#0EA5E9);background-size:300% 300%;animation:gshift 14s ease infinite}
+.top a{position:relative;z-index:2}
+.top::after{content:"";position:absolute;top:0;bottom:0;width:30%;left:-30%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);transform:skewX(-20deg);animation:sweep 5.5s ease-in-out infinite}
+.top::before{content:"";position:absolute;inset:-80px;z-index:1;opacity:.35}
+@keyframes gshift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes sweep{0%{left:-30%}60%,100%{left:130%}}
+@media (prefers-reduced-motion:reduce){.top,.top::before,.top::after{animation:none!important}}
+.top::before{background-image:radial-gradient(circle,rgba(255,255,255,.55) 1.4px,transparent 1.6px),radial-gradient(circle,rgba(255,255,255,.25) 1px,transparent 1.2px);background-size:26px 26px,13px 13px;background-position:0 0,6px 6px;animation:dots 10s linear infinite}@keyframes dots{to{transform:translate(-26px,13px)}}
+</style></head>
 <body><div class="top"><a href="/">← AmidTech LLC</a></div><main><h1>Privacy Policy</h1><p class="eff">Effective date: November 2, 2026</p>
 <p>This Privacy Policy explains how AmidTech LLC collects and uses personal information from clients, prospects and website visitors.</p>
 <h2>1. Information we collect</h2><ul><li>Contact details you send us: name, company, e-mail, phone, message content.</li><li>Billing information: company name, address, tax identifiers, invoice and payment records.</li><li>Project data you entrust to us to build or maintain your software.</li><li>Basic technical data from our hosting provider (server logs, IP address) for security.</li></ul><p>Card payments are processed by our third-party payment processor; we do not receive or store full card numbers.</p>

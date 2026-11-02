@@ -6,7 +6,15 @@
 .top{background:linear-gradient(135deg,#4F46E5,#06B6D4);color:#fff;padding:22px}.top a{color:#fff;font-weight:700;text-decoration:none}
 main{max-width:860px;margin:0 auto;padding:40px 22px 60px}h1{color:#1E1B4B;font-size:32px;margin:0 0 6px}h2{color:#1E1B4B;font-size:19px;margin-top:30px}
 .eff{color:#6B7194;font-size:14px}a{color:#4F46E5}.box{background:#fff;border:1px solid #E3E8F7;border-radius:14px;padding:18px;margin-top:30px;font-size:14px}
-ul{padding-left:22px}footer{text-align:center;font-size:13px;color:#6B7194;padding:20px}</style></head>
+ul{padding-left:22px}footer{text-align:center;font-size:13px;color:#6B7194;padding:20px}.top{position:relative;overflow:hidden;padding:38px 22px;background:linear-gradient(120deg,#4F46E5,#06B6D4,#6366F1,#0EA5E9);background-size:300% 300%;animation:gshift 14s ease infinite}
+.top a{position:relative;z-index:2}
+.top::after{content:"";position:absolute;top:0;bottom:0;width:30%;left:-30%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);transform:skewX(-20deg);animation:sweep 5.5s ease-in-out infinite}
+.top::before{content:"";position:absolute;inset:-80px;z-index:1;opacity:.35}
+@keyframes gshift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes sweep{0%{left:-30%}60%,100%{left:130%}}
+@media (prefers-reduced-motion:reduce){.top,.top::before,.top::after{animation:none!important}}
+.top::before{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.28) 0 2px,transparent 2px 22px);animation:stripes 6s linear infinite}@keyframes stripes{to{transform:translateX(31px)}}
+</style></head>
 <body><div class="top"><a href="/">← AmidTech LLC</a></div><main><h1>Refund &amp; Cancellation Policy</h1><p class="eff">Effective date: November 2, 2026</p>
 <p>This policy applies to all services and products sold by AmidTech LLC. Our goal is to resolve every issue fairly and quickly.</p>
 <h2>1. Software, application and website projects</h2><ul><li><strong>Before work starts:</strong> if the Client cancels within 7 days of paying the deposit and before work has begun, the deposit is refunded in full.</li><li><strong>After work starts:</strong> the deposit covers work performed and is non-refundable; if the work performed is worth less than the deposit, the difference is refunded. Completed milestones are invoiced at their agreed value.</li><li><strong>Non-conformity:</strong> if a deliverable does not meet the agreed specifications and we are unable to correct it within a reasonable time, the Client is entitled to a refund of the amounts paid for the non-conforming part.</li></ul>
