@@ -1,10 +1,10 @@
 {
   "name": "AmidTech LLC",
   "short_name": "AmidTech",
-  "description": "Software, web & IT hardware agency",
+  "description": "Software development, web platforms and IT equipment",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F8FAFF",
+  "background_color": "#FFFFFF",
   "theme_color": "#4F46E5",
   "lang": "en",
   "categories": ["business", "productivity"]
