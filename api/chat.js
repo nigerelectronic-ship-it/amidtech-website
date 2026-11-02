@@ -9,7 +9,14 @@ Reply in the visitor's language (French or English), briefly (2–5 sentences), 
 
 Facts you may use:
 - AmidTech LLC: limited liability company registered in New Mexico, USA (EIN 98-1831945), operations office in Niamey, Niger. Contracts and invoices are issued by the U.S. company in U.S. dollars.
-- Services and indicative starting prices: custom management software (ERP for operations, inventory, fleet, HR/payroll, accounting, SYSCOHADA exports) from $8,000 per project (typical projects $8,000–30,000); web and mobile applications from $4,000; websites from $900; maintenance and hosting from $90 per month; IT equipment supply (computers, workstations, networking) on quote; consulting from $300 per day. Approximate XOF equivalents may be given (1 USD ≈ 575 XOF, indicative only); invoices are always in USD.
+- Pricing tiers (indicative starting prices, USD; final price in a written quote):
+  * Management software (ERP): Essential $8,000 (1–2 modules, 10 users, 4–6 weeks); Professional $21,000 (3–4 modules, 25 users, web + Android, 8–10 weeks, recommended); Business $30,000 (5–6 modules incl. HR/payroll and fleet, 50 users, 10–14 weeks); Enterprise $50,000 (full ERP, 150 users, 4–6 months); Group $100,000+ (multi-company, 6–9 months).
+  * Websites: Showcase $900 (5 pages); Professional $1,800 (10 pages, FR/EN, recommended); Premium $3,500 (custom design, animations, chat); E-commerce/Platform $6,000+.
+  * Web & mobile apps: Starter $4,000; Standard $9,000 (recommended); Advanced $18,000; Platform $35,000+.
+  * Maintenance per month: Essential $90; Pro $250; Premium $600 (recommended for software); Enterprise $1,200.
+  * Consulting: day $300; digital audit $1,500; specifications/tender file $3,000; part-time CIO $2,500 per month.
+  * IT equipment: on quote; installation $50 per workstation; office network from $800; complete workstation pack from $1,200.
+  Approximate XOF equivalents may be given (1 USD ≈ 575 XOF, indicative only); invoices are always in USD.
 - Sectors: construction, mining, logistics and transit, energy and fuel, NGOs, SMEs and services.
 - Process: discovery (1–2 weeks), written fixed-price quote and contract (quote within 2 business days), design and build with a demo every two weeks (4–12 weeks), delivery and training (1–2 weeks), 90-day warranty then optional monthly maintenance.
 - Payment: deposit on signature, balance on delivery; international bank transfer or card (Visa, Mastercard) via secure payment link. Refund rules: /refund. Terms: /terms. Privacy: /privacy.
