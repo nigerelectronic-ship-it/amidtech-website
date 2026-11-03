@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ERP minier international — Démo interactive AmidTech</title>
+<meta name="description" content="Démo interactive d’un ERP pour groupe minier : production, traçabilité des lots d’or, finance consolidée multi-pays, application terrain hors connexion.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#4F46E5">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#EEF1F7}
+.dm-bar{position:sticky;top:0;z-index:100;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;padding:10px clamp(14px,3vw,28px);background:#fff;border-bottom:1px solid #E2E8F0;font:500 14px/1.4 Poppins,system-ui,sans-serif;color:#1E1B4B}
+.dm-bar a{color:#1E1B4B;text-decoration:none}
+.dm-brand{display:flex;align-items:center;gap:10px;font-weight:600}
+.dm-brand svg{width:30px;height:30px}
+.dm-tag{font-size:12px;font-weight:600;color:#3730A3;background:#EEF0FF;padding:4px 10px;border-radius:999px}
+.dm-act{display:flex;gap:10px;flex-wrap:wrap}
+.dm-btn{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border-radius:10px;font-weight:600;font-size:14px}
+.dm-btn.p{background:#4F46E5;color:#fff!important}.dm-btn.g{box-shadow:inset 0 0 0 1.5px #C9CEEA}
+.dm-mob{padding:64px 20px 80px;display:flex;flex-wrap:wrap;gap:40px;justify-content:center;align-items:center;font-family:Poppins,system-ui,sans-serif}
+.dm-mob h2{margin:0 0 12px;font-size:clamp(26px,3vw,38px);line-height:1.08;letter-spacing:-.035em;color:#1E1B4B;font-weight:800}
+.dm-mob p{margin:0;color:#45436B;font-size:16px;line-height:1.7;max-width:30em}
+.dm-phone{width:390px;max-width:100%;border-radius:44px;padding:12px;background:#0F172A;box-shadow:0 30px 80px -30px rgba(30,27,75,.5)}
+.dm-phone>div{border-radius:34px;overflow:hidden;height:844px;max-height:80vh;overflow-y:auto}
+.dm-foot{text-align:center;padding:0 20px 60px;font:400 13px Poppins,system-ui,sans-serif;color:#7176A0}
+
+
+body{margin:0}
+a{color:#1D4ED8}a:hover{color:#1E3A8A}
+@keyframes fxIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.fx-in{animation:fxIn .5s ease-out both}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.bar{transform-origin:bottom;animation:grow 1s cubic-bezier(.2,.8,.2,1) both}
+@keyframes slideIn{from{opacity:0;transform:translateY(-12px) scale(.98)}to{opacity:1;transform:none}}
+.toast-in{animation:slideIn .4s ease-out both}
+@keyframes pulseRing{0%,100%{box-shadow:0 0 0 0 rgba(29,78,216,.45)}50%{box-shadow:0 0 0 8px rgba(29,78,216,0)}}
+@keyframes blink{50%{opacity:.3}}
+.live{animation:blink 1.4s ease-in-out infinite}
+@keyframes rowIn{from{background:#BBF7D0}to{background:transparent}}
+.row-new{animation:rowIn 2s ease-out both}
+.seg{transition:background .5s ease}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+
+
+body{margin:0}
+a{color:#1D4ED8}a:hover{color:#1E3A8A}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:none}}
+.pop{animation:pop .4s ease-out both}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+
+</style>
+</head>
+<body>
+<div class="dm-bar">
+  <a class="dm-brand" href="/"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="dlg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4F46E5"/><stop offset="1" stop-color="#06B6D4"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#dlg)"/><path d="M18 46 L32 16 L46 46 M24 36 H40" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>AmidTech</span></a>
+  <span class="dm-tag">Démo interactive · données fictives</span>
+  <div class="dm-act"><a class="dm-btn g" href="/#demos">← Toutes les démos</a><a class="dm-btn p" href="/#contact">Demander un devis</a></div>
+</div>
+<div id="app-main"></div>
+<section class="dm-mob">
+  <div><h2>Et sur le terrain, même sans réseau</h2><p>L’application mobile du chef de site enregistre la production, les incidents HSE et les inventaires hors connexion, puis synchronise tout avec le siège dès que le réseau revient.</p></div>
+  <div class="dm-phone"><div id="app-mobile"></div></div>
+</section>
+<p class="dm-foot">Démo réalisée par AmidTech LLC · amidtechgroup.com · Les écrans, chiffres et noms sont fictifs.</p>
+<template id="t-main">
+<div style="font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #0F172A; background: #F3F5F8; min-height: 100vh; display: flex; flex-wrap: wrap">
+
+<nav aria-label="Navigation principale" style="flex: 1 1 240px; max-width: 100%; background: #0B2545; color: #E2E8F0; padding: 24px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; align-items: center; gap: 12px; padding: 0 8px">
+<div style="width: 40px; height: 40px; border-radius: 8px; background: #C9A227; color: #0B2545; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px">M</div>
+<div style="display: flex; flex-direction: column">
+<span style="font-weight: 600; font-size: 15px; color: #FFFFFF">Groupe Minier Démo</span>
+<span style="font-size: 12px; color: #CBD5E1">ERP Groupe · v1.0</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 11px; letter-spacing: 0.08em; color: #94A3B8; padding: 0 8px 6px">MODULES</span>
+<template data-sc="for" list="{{nav}}" as="item" hint-placeholder-count="4">
+<button type="button" onClick="{{item.pick}}" style="{{item.style}}">{{item.label}}</button>
+</template>
+<span style="font-size: 13px; color: #94A3B8; padding: 10px 12px 0">Permis &amp; SIG</span>
+<span style="font-size: 13px; color: #94A3B8; padding: 6px 12px 0">Achats &amp; stocks</span>
+<span style="font-size: 13px; color: #94A3B8; padding: 6px 12px 0">RH &amp; paie</span>
+<span style="font-size: 13px; color: #94A3B8; padding: 6px 12px 0">HSE &amp; communautés</span>
+<span style="font-size: 13px; color: #94A3B8; padding: 6px 12px 0">Juridique &amp; GED</span>
+<span style="font-size: 13px; color: #94A3B8; padding: 6px 12px 0">Portail investisseurs</span>
+</div>
+<div style="margin-top: auto; padding: 12px; border-radius: 8px; background: #13325A; font-size: 12px; color: #CBD5E1; line-height: 1.5">Hébergement multi-régions<br>Europe · Afrique · Amériques<br><span style="color: #86EFAC">● Tous les services opérationnels</span></div>
+</nav>
+
+<main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+
+<header style="background: #FFFFFF; border-bottom: 1px solid #E2E8F0; padding: 14px 28px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+<label for="entite" style="font-size: 12px; color: #475569">Entité</label>
+<select id="entite" style="font-family: inherit; font-size: 14px; padding: 8px 10px; border: 1px solid #CBD5E1; border-radius: 6px; background: #FFFFFF; min-height: 40px">
+<option>Groupe consolidé (14 entités)</option>
+<option>Siège — Niamey (Niger)</option>
+<option>Site minier — Agadez (Niger)</option>
+<option>Bureau commercial — Dubaï (EAU)</option>
+<option>Bureau — Genève (Suisse)</option>
+<option>Holding — Albuquerque (USA)</option>
+</select>
+<label for="devise" style="font-size: 12px; color: #475569">Devise</label>
+<select id="devise" style="font-family: inherit; font-size: 14px; padding: 8px 10px; border: 1px solid #CBD5E1; border-radius: 6px; background: #FFFFFF; min-height: 40px">
+<option>USD</option><option>XOF</option><option>EUR</option><option>CNY</option><option>AED</option>
+</select>
+<label for="langue" style="font-size: 12px; color: #475569">Langue</label>
+<select id="langue" style="font-family: inherit; font-size: 14px; padding: 8px 10px; border: 1px solid #CBD5E1; border-radius: 6px; background: #FFFFFF; min-height: 40px">
+<option>Français</option><option>English</option><option>العربية</option><option>中文</option>
+</select>
+</div>
+<div style="display: flex; gap: 12px; align-items: center">
+<label for="recherche" style="position: absolute; left: -9999px">Recherche globale</label>
+<input id="recherche" type="search" placeholder="Rechercher un lot, un client, une facture…" style="font-family: inherit; font-size: 14px; padding: 9px 12px; border: 1px solid #CBD5E1; border-radius: 6px; width: 280px; max-width: 100%; min-height: 40px; box-sizing: border-box">
+<span style="font-size: 12px; color: #475569; font-family: 'IBM Plex Mono', monospace">UTC+1 · Niamey</span>
+<div aria-label="Utilisateur : Directeur général" style="width: 40px; height: 40px; border-radius: 50%; background: #0B2545; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600">DG</div>
+</div>
+</header>
+
+<div style="background: #0B2545; color: #E2E8F0; padding: 10px 28px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center">
+<button type="button" onClick="{{toggleAuto}}" style="font-family: inherit; font-size: 13px; font-weight: 600; min-height: 36px; padding: 0 14px; border-radius: 18px; border: 1px solid #C9A227; background: #C9A227; color: #0B2545; cursor: pointer">{{autoLabel}}</button>
+<span style="font-size: 13px; display: flex; gap: 8px; align-items: center"><span class="live" style="color: #86EFAC">●</span>{{captionLine}}</span>
+<div aria-hidden="true" style="display: flex; gap: 4px; flex: 1 1 200px; min-width: 160px">
+<template data-sc="for" list="{{segs}}" as="g" hint-placeholder-count="7">
+<div class="seg" style="{{g.style}}"></div>
+</template>
+</div>
+</div>
+
+<div style="padding: 28px; display: flex; flex-direction: column; gap: 24px; max-width: 1240px; width: 100%; box-sizing: border-box">
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
+<div>
+<h1 style="margin: 0; font-size: 26px; font-weight: 600">{{title}}</h1>
+<p style="margin: 6px 0 0; font-size: 14px; color: #475569">{{subtitle}}</p>
+</div>
+<span style="font-size: 12px; color: #92400E; background: #FEF3C7; padding: 6px 10px; border-radius: 6px">Données fictives de démonstration</span>
+</div>
+
+<template data-sc="if" value="{{hasToast}}" hint-placeholder-val="{{ false }}">
+<div role="status" class="toast-in" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; background: #DCFCE7; border: 1px solid #86EFAC; color: #14532D; border-radius: 10px; padding: 14px 16px; font-size: 14px">
+<span style="display: flex; gap: 10px; align-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l3 3 5-6"></path></svg><b>Opération réussie —</b> {{toast}}</span>
+<button type="button" onClick="{{closeToast}}" style="font-family: inherit; font-size: 13px; min-height: 36px; padding: 0 12px; border-radius: 6px; border: 1px solid #86EFAC; background: #FFFFFF; color: #14532D; cursor: pointer">Fermer</button>
+</div>
+</template>
+
+<template data-sc="if" value="{{isDash}}" hint-placeholder-val="{{ true }}">
+<div class="fx-in" style="display: flex; flex-direction: column; gap: 24px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+<div class="fx-in" style="animation-delay: 0.0s; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; color: #475569">Or produit — octobre</span>
+<span style="font-size: 28px; font-weight: 600; font-family: 'IBM Plex Mono', monospace">1 248 oz</span>
+<span style="font-size: 12px; color: #15803D">▲ vs septembre</span>
+</div>
+<div class="fx-in" style="animation-delay: 0.1s; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; color: #475569">Concentré de cuivre</span>
+<span style="font-size: 28px; font-weight: 600; font-family: 'IBM Plex Mono', monospace">412 t</span>
+<span style="font-size: 12px; color: #475569">Teneur moyenne 24 % Cu</span>
+</div>
+<div class="fx-in" style="animation-delay: 0.2s; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; color: #475569">Chiffre d'affaires consolidé</span>
+<span style="font-size: 28px; font-weight: 600; font-family: 'IBM Plex Mono', monospace">9,46 M USD</span>
+<span style="font-size: 12px; color: #475569">14 entités · 6 devises</span>
+</div>
+<div class="fx-in" style="animation-delay: 0.3s; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; color: #475569">Trésorerie groupe</span>
+<span style="font-size: 28px; font-weight: 600; font-family: 'IBM Plex Mono', monospace">5,12 M USD</span>
+<span style="font-size: 12px; color: #475569">23 comptes · 9 banques</span>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px">
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">Production d'or — 6 derniers mois</h2>
+<div role="img" aria-label="Histogramme de production mensuelle, en hausse de mai à octobre" style="display: flex; align-items: flex-end; gap: 14px; height: 200px; padding-top: 10px; border-bottom: 1px solid #CBD5E1">
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px"><div class="bar" style="animation-delay: 0.00s; width: 100%; height: 92px; background: #94A3B8; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px"><div class="bar" style="animation-delay: 0.12s; width: 100%; height: 110px; background: #94A3B8; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px"><div class="bar" style="animation-delay: 0.24s; width: 100%; height: 104px; background: #94A3B8; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px"><div class="bar" style="animation-delay: 0.36s; width: 100%; height: 132px; background: #94A3B8; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px"><div class="bar" style="animation-delay: 0.48s; width: 100%; height: 150px; background: #94A3B8; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px"><div class="bar" style="animation-delay: 0.60s; width: 100%; height: 176px; background: #0B2545; border-radius: 4px 4px 0 0"></div></div>
+</div>
+<div style="display: flex; gap: 14px; font-size: 12px; color: #475569">
+<span style="flex: 1; text-align: center">Mai</span><span style="flex: 1; text-align: center">Juin</span><span style="flex: 1; text-align: center">Juil.</span><span style="flex: 1; text-align: center">Août</span><span style="flex: 1; text-align: center">Sept.</span><span style="flex: 1; text-align: center; color: #0F172A; font-weight: 600">Oct.</span>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">Implantations — 3 continents, 53+ pays clients</h2>
+<div style="display: flex; flex-direction: column">
+<div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #F1F5F9; font-size: 14px"><span><b>Niamey</b> · Niger — Siège</span><span style="color: #475569">Afrique · XOF · SYSCOHADA</span></div>
+<div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #F1F5F9; font-size: 14px"><span><b>Agadez</b> · Niger — Sites miniers</span><span style="color: #475569">Afrique · XOF · SYSCOHADA</span></div>
+<div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #F1F5F9; font-size: 14px"><span><b>Lagos</b> · Nigeria — Agent export</span><span style="color: #475569">Afrique · NGN · IFRS</span></div>
+<div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #F1F5F9; font-size: 14px"><span><b>Genève</b> · Suisse — Négoce</span><span style="color: #475569">Europe · CHF · IFRS</span></div>
+<div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #F1F5F9; font-size: 14px"><span><b>Dubaï</b> · EAU — Bureau commercial</span><span style="color: #475569">Asie · AED · IFRS</span></div>
+<div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #F1F5F9; font-size: 14px"><span><b>Shanghai</b> · Chine — Représentation</span><span style="color: #475569">Asie · CNY · normes locales</span></div>
+<div style="display: flex; justify-content: space-between; padding: 10px 0; font-size: 14px"><span><b>Albuquerque</b> · USA — Holding</span><span style="color: #475569">Amériques · USD · US GAAP</span></div>
+</div>
+</section>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px">
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">Lots en cours d'expédition</h2>
+<div style="overflow-x: auto">
+<table style="width: 100%; border-collapse: collapse; font-size: 13px">
+<thead><tr style="text-align: left; color: #475569"><th style="padding: 8px 6px; font-weight: 500">Lot</th><th style="padding: 8px 6px; font-weight: 500">Produit</th><th style="padding: 8px 6px; font-weight: 500">Destination</th><th style="padding: 8px 6px; font-weight: 500">Statut</th></tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #F1F5F9"><td style="padding: 9px 6px; font-family: 'IBM Plex Mono', monospace">AU-2026-0147</td><td style="padding: 9px 6px">Doré</td><td style="padding: 9px 6px">Dubaï</td><td style="padding: 9px 6px"><span style="background: #DBEAFE; color: #1E3A8A; padding: 3px 8px; border-radius: 10px">Export douane</span></td></tr>
+<tr style="border-top: 1px solid #F1F5F9"><td style="padding: 9px 6px; font-family: 'IBM Plex Mono', monospace">CU-2026-0031</td><td style="padding: 9px 6px">Concentré Cu</td><td style="padding: 9px 6px">Shanghai</td><td style="padding: 9px 6px"><span style="background: #FEF3C7; color: #92400E; padding: 3px 8px; border-radius: 10px">En transit</span></td></tr>
+<tr style="border-top: 1px solid #F1F5F9"><td style="padding: 9px 6px; font-family: 'IBM Plex Mono', monospace">AU-2026-0146</td><td style="padding: 9px 6px">Doré</td><td style="padding: 9px 6px">Genève</td><td style="padding: 9px 6px"><span style="background: #DCFCE7; color: #14532D; padding: 3px 8px; border-radius: 10px">Payé</span></td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">Alertes conformité</h2>
+<div style="display: flex; gap: 10px; align-items: flex-start; padding: 10px; background: #FEF2F2; border-radius: 8px; font-size: 13px"><b style="color: #991B1B">Urgent</b><span>Permis P-02 — renouvellement à déposer avant 60 jours</span></div>
+<div style="display: flex; gap: 10px; align-items: flex-start; padding: 10px; background: #FFFBEB; border-radius: 8px; font-size: 13px"><b style="color: #92400E">À traiter</b><span>KYC acheteur Shanghai — pièces expirées</span></div>
+<div style="display: flex; gap: 10px; align-items: flex-start; padding: 10px; background: #FFFBEB; border-radius: 8px; font-size: 13px"><b style="color: #92400E">À traiter</b><span>Déclaration de redevance minière — octobre</span></div>
+<div style="display: flex; gap: 10px; align-items: flex-start; padding: 10px; background: #F0FDF4; border-radius: 8px; font-size: 13px"><b style="color: #14532D">OK</b><span>Filtrage sanctions ONU / OFAC / UE — 312 contreparties, aucun résultat</span></div>
+</section>
+</div>
+
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">Journal des opérations exécutées</h2>
+<span style="font-size: 13px; color: #14532D; background: #DCFCE7; padding: 5px 10px; border-radius: 6px">{{logCount}} opérations réussies · 0 échec</span>
+</div>
+<div style="overflow-x: auto">
+<table style="width: 100%; border-collapse: collapse; font-size: 13px; min-width: 680px">
+<thead><tr style="text-align: left; color: #475569"><th style="padding: 8px 6px; font-weight: 500">Heure</th><th style="padding: 8px 6px; font-weight: 500">Opération</th><th style="padding: 8px 6px; font-weight: 500">Module</th><th style="padding: 8px 6px; font-weight: 500">Bureau</th><th style="padding: 8px 6px; font-weight: 500">Par</th><th style="padding: 8px 6px; font-weight: 500">Résultat</th></tr></thead>
+<tbody>
+<template data-sc="for" list="{{log}}" as="op" hint-placeholder-count="5">
+<tr class="{{op.cls}}" style="border-top: 1px solid #F1F5F9"><td style="padding: 9px 6px; font-family: 'IBM Plex Mono', monospace; white-space: nowrap">{{op.time}}</td><td style="padding: 9px 6px">{{op.text}}</td><td style="padding: 9px 6px; color: #475569">{{op.module}}</td><td style="padding: 9px 6px; color: #475569">{{op.where}}</td><td style="padding: 9px 6px; color: #475569">{{op.by}}</td><td style="padding: 9px 6px"><span style="background: #DCFCE7; color: #14532D; padding: 3px 8px; border-radius: 10px; white-space: nowrap">✓ Succès</span></td></tr>
+</template>
+</tbody>
+</table>
+</div>
+<p style="margin: 0; font-size: 13px; color: #475569">Essayez : approuvez un paiement (Finance), validez l'export d'un lot (Traçabilité), ajoutez une saisie (Production) ou lancez la consolidation. Chaque opération s'ajoute ici.</p>
+</section>
+</div>
+</template>
+
+<template data-sc="if" value="{{isLot}}" hint-placeholder-val="{{ false }}">
+<div class="fx-in" style="display: flex; flex-direction: column; gap: 16px">
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 22px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #475569">Lot</span><span style="font-size: 22px; font-weight: 600; font-family: 'IBM Plex Mono', monospace">AU-2026-0147</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #475569">Poids brut</span><span style="font-size: 18px; font-family: 'IBM Plex Mono', monospace">12,438 kg</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #475569">Titre</span><span style="font-size: 18px; font-family: 'IBM Plex Mono', monospace">88,6 %</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #475569">Scellé n°</span><span style="font-size: 18px; font-family: 'IBM Plex Mono', monospace">SC-204817</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #475569">Acheteur</span><span style="font-size: 18px">Affineur partenaire, Dubaï</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+<button type="button" onClick="{{exportLot}}" style="font-family: inherit; font-size: 14px; min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #1D4ED8; background: #1D4ED8; color: #FFFFFF; cursor: pointer">{{exportLabel}}</button>
+<button type="button" onClick="{{download}}" style="font-family: inherit; font-size: 14px; min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #0B2545; background: #0B2545; color: #FFFFFF; cursor: pointer">{{dossierLabel}}</button>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">Chaîne de possession — du site à l'acheteur</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px">
+<template data-sc="for" list="{{steps}}" as="s" hint-placeholder-count="7">
+<div style="{{s.style}}">
+<span style="font-size: 11px; font-family: 'IBM Plex Mono', monospace">{{s.num}}</span>
+<span style="font-size: 14px; font-weight: 600">{{s.label}}</span>
+<span style="font-size: 12px">{{s.detail}}</span>
+<span style="font-size: 12px; font-weight: 600">{{s.state}}</span>
+</div>
+</template>
+</div>
+</section>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px">
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0 0 4px; font-size: 16px; font-weight: 600">Pièces justificatives</h2>
+<span style="font-size: 14px; padding: 8px 0; border-bottom: 1px solid #F1F5F9">✓ Certificat d'origine</span>
+<span style="font-size: 14px; padding: 8px 0; border-bottom: 1px solid #F1F5F9">✓ Autorisation d'exportation — Ministère des Mines</span>
+<span style="font-size: 14px; padding: 8px 0; border-bottom: 1px solid #F1F5F9">✓ Bulletin d'analyse du laboratoire</span>
+<span style="font-size: 14px; padding: 8px 0; border-bottom: 1px solid #F1F5F9">✓ Déclaration en douane</span>
+<span style="font-size: 14px; padding: 8px 0; color: #92400E">○ Certificat d'affinage — en attente</span>
+</section>
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0 0 4px; font-size: 16px; font-weight: 600">Diligence raisonnable (Guide OCDE)</h2>
+<span style="font-size: 14px; padding: 8px 0; border-bottom: 1px solid #F1F5F9">KYC acheteur — <b style="color: #14532D">validé</b></span>
+<span style="font-size: 14px; padding: 8px 0; border-bottom: 1px solid #F1F5F9">Filtrage sanctions ONU / OFAC / UE — <b style="color: #14532D">aucun résultat</b></span>
+<span style="font-size: 14px; padding: 8px 0; border-bottom: 1px solid #F1F5F9">Risques annexe II — <b style="color: #14532D">aucun signal</b></span>
+<span style="font-size: 14px; padding: 8px 0">Journal d'audit — 38 événements horodatés, non modifiables</span>
+</section>
+</div>
+</div>
+</template>
+
+<template data-sc="if" value="{{isProd}}" hint-placeholder-val="{{ false }}">
+<div class="fx-in" style="display: flex; flex-direction: column; gap: 16px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
+<div class="fx-in" style="animation-delay: 0.0s; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; color: #475569">Minerai traité (24 h)</span><span style="font-size: 26px; font-weight: 600; font-family: 'IBM Plex Mono', monospace">640 t</span></div>
+<div class="fx-in" style="animation-delay: 0.1s; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; color: #475569">Teneur d'alimentation</span><span style="font-size: 26px; font-weight: 600; font-family: 'IBM Plex Mono', monospace">3,85 g/t</span></div>
+<div class="fx-in" style="animation-delay: 0.2s; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; color: #475569">Taux de récupération CIL</span><span style="font-size: 26px; font-weight: 600; font-family: 'IBM Plex Mono', monospace">91,4 %</span></div>
+<div class="fx-in" style="animation-delay: 0.3s; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; color: #475569">Disponibilité des engins</span><span style="font-size: 26px; font-weight: 600; font-family: 'IBM Plex Mono', monospace">87 %</span></div>
+</div>
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">Rapport journalier — site AMZEGUER</h2>
+<button type="button" onClick="{{addRow}}" style="font-family: inherit; font-size: 14px; min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #0B2545; background: #0B2545; color: #FFFFFF; cursor: pointer">+ Nouvelle saisie (validée)</button>
+</div>
+<div style="overflow-x: auto">
+<table style="width: 100%; border-collapse: collapse; font-size: 13px; min-width: 640px">
+<thead><tr style="text-align: left; color: #475569"><th style="padding: 8px 6px; font-weight: 500">Poste</th><th style="padding: 8px 6px; font-weight: 500">Extrait (t)</th><th style="padding: 8px 6px; font-weight: 500">Stériles (t)</th><th style="padding: 8px 6px; font-weight: 500">Traité (t)</th><th style="padding: 8px 6px; font-weight: 500">Cyanure (kg)</th><th style="padding: 8px 6px; font-weight: 500">Gasoil (L)</th><th style="padding: 8px 6px; font-weight: 500">Validé par</th></tr></thead>
+<tbody style="font-family: 'IBM Plex Mono', monospace">
+<template data-sc="for" list="{{rows}}" as="r" hint-placeholder-count="2">
+<tr style="{{r.style}}"><td style="padding: 9px 6px">{{r.poste}}</td><td style="padding: 9px 6px">1 180</td><td style="padding: 9px 6px">2 950</td><td style="padding: 9px 6px">320</td><td style="padding: 9px 6px">410</td><td style="padding: 9px 6px">3 870</td><td style="padding: 9px 6px">{{r.by}}</td></tr>
+</template>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</template>
+
+<template data-sc="if" value="{{isFin}}" hint-placeholder-val="{{ false }}">
+<div class="fx-in" style="display: flex; flex-direction: column; gap: 16px">
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">Consolidation IFRS — clôture octobre</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+<span style="font-size: 13px; color: #14532D; background: #DCFCE7; padding: 5px 10px; border-radius: 6px">{{closedLabel}}</span>
+<button type="button" onClick="{{consolidate}}" style="font-family: inherit; font-size: 14px; min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #0B2545; background: #0B2545; color: #FFFFFF; cursor: pointer">{{consoLabel}}</button>
+</div>
+</div>
+<div style="overflow-x: auto">
+<table style="width: 100%; border-collapse: collapse; font-size: 13px; min-width: 700px">
+<thead><tr style="text-align: left; color: #475569"><th style="padding: 8px 6px; font-weight: 500">Entité</th><th style="padding: 8px 6px; font-weight: 500">Pays</th><th style="padding: 8px 6px; font-weight: 500">Référentiel</th><th style="padding: 8px 6px; font-weight: 500">Devise</th><th style="padding: 8px 6px; font-weight: 500">CA local</th><th style="padding: 8px 6px; font-weight: 500">CA en USD</th><th style="padding: 8px 6px; font-weight: 500">Clôture</th></tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #F1F5F9"><td style="padding: 9px 6px">Société mère</td><td style="padding: 9px 6px">Niger</td><td style="padding: 9px 6px">SYSCOHADA</td><td style="padding: 9px 6px">XOF</td><td style="padding: 9px 6px; font-family: 'IBM Plex Mono', monospace">2 710 M</td><td style="padding: 9px 6px; font-family: 'IBM Plex Mono', monospace">4,52 M</td><td style="padding: 9px 6px; color: #14532D">Clôturée</td></tr>
+<tr style="border-top: 1px solid #F1F5F9"><td style="padding: 9px 6px">Négoce</td><td style="padding: 9px 6px">Suisse</td><td style="padding: 9px 6px">IFRS</td><td style="padding: 9px 6px">CHF</td><td style="padding: 9px 6px; font-family: 'IBM Plex Mono', monospace">2,31 M</td><td style="padding: 9px 6px; font-family: 'IBM Plex Mono', monospace">2,59 M</td><td style="padding: 9px 6px; color: #14532D">Clôturée</td></tr>
+<tr style="border-top: 1px solid #F1F5F9"><td style="padding: 9px 6px">Bureau commercial</td><td style="padding: 9px 6px">EAU</td><td style="padding: 9px 6px">IFRS</td><td style="padding: 9px 6px">AED</td><td style="padding: 9px 6px; font-family: 'IBM Plex Mono', monospace">5,84 M</td><td style="padding: 9px 6px; font-family: 'IBM Plex Mono', monospace">1,59 M</td><td style="{{uaeStyle}}">{{uaeStatus}}</td></tr>
+<tr style="border-top: 1px solid #F1F5F9"><td style="padding: 9px 6px">Holding</td><td style="padding: 9px 6px">USA</td><td style="padding: 9px 6px">US GAAP</td><td style="padding: 9px 6px">USD</td><td style="padding: 9px 6px; font-family: 'IBM Plex Mono', monospace">0,76 M</td><td style="padding: 9px 6px; font-family: 'IBM Plex Mono', monospace">0,76 M</td><td style="padding: 9px 6px; color: #14532D">Clôturée</td></tr>
+<tr style="border-top: 2px solid #0B2545; font-weight: 600"><td style="padding: 9px 6px" colspan="5">Total groupe après éliminations intra-groupe</td><td style="padding: 9px 6px; font-family: 'IBM Plex Mono', monospace">9,46 M</td><td style="padding: 9px 6px"></td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0 0 4px; font-size: 16px; font-weight: 600">Taux de change du jour</h2>
+<span style="font-size: 14px; font-family: 'IBM Plex Mono', monospace">USD/XOF  562,40  · source BCEAO</span>
+<span style="font-size: 14px; font-family: 'IBM Plex Mono', monospace">EUR/XOF  655,957  · parité fixe</span>
+<span style="font-size: 14px; font-family: 'IBM Plex Mono', monospace">USD/CNY  7,1240  · source marché</span>
+<span style="font-size: 14px; font-family: 'IBM Plex Mono', monospace">USD/AED  3,6725  · parité fixe</span>
+</section>
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0 0 4px; font-size: 16px; font-weight: 600">Paiements à approuver</h2>
+<span style="font-size: 14px; padding: 6px 0; border-bottom: 1px solid #F1F5F9">Paie site Agadez — virement — 38 M XOF — <b style="{{payStyle}}">{{payStatus}}</b></span>
+<span style="font-size: 14px; padding: 6px 0">Transitaire Lagos — 4 600 USD — <b style="{{payStyle}}">{{payStatus}}</b></span>
+<button type="button" onClick="{{approve}}" style="font-family: inherit; font-size: 14px; min-height: 44px; margin-top: 6px; border-radius: 8px; border: 1px solid #0B2545; background: #0B2545; color: #FFFFFF; cursor: pointer">{{approveLabel}}</button>
+</section>
+</div>
+</div>
+</template>
+
+</div>
+</main>
+</div>
+</template>
+<template id="t-mobile">
+<div style="width: 390px; height: 844px; box-sizing: border-box; font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #0F172A; background: #F3F5F8; display: flex; flex-direction: column; overflow: hidden">
+
+<header style="background: #0B2545; color: #FFFFFF; padding: 22px 20px 18px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 12px; color: #CBD5E1">Site AMZEGUER · Poste de jour</span>
+<span style="font-size: 20px; font-weight: 600">Bonjour, Chef de site</span>
+</div>
+<div aria-label="Utilisateur : Chef de site" style="width: 40px; height: 40px; border-radius: 50%; background: #C9A227; color: #0B2545; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">CS</div>
+</div>
+<div style="{{bannerStyle}}">
+<div style="display: flex; align-items: center; gap: 10px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 8.8a15 15 0 0 1 4-2.5M10.7 5.1A15 15 0 0 1 22 8.8M5 12.9a10 10 0 0 1 5.2-2.7M19 12.9a10 10 0 0 0-1.9-1.5M8.5 16.4a5 5 0 0 1 7 0M12 20h.01"></path></svg>
+<span><b>{{bannerTitle}}</b> — {{bannerText}}</span>
+</div>
+<div aria-hidden="true" style="height: 6px; border-radius: 3px; background: rgba(0,0,0,0.12); overflow: hidden"><div style="{{barStyle}}"></div></div>
+</div>
+</header>
+
+<div style="padding: 18px 20px; display: flex; flex-direction: column; gap: 16px; flex: 1">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<button type="button" style="font-family: inherit; min-height: 84px; border-radius: 12px; border: 1px solid #E2E8F0; background: #FFFFFF; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 6px; padding: 12px 14px; cursor: pointer; color: #0F172A">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 20h18M6 16l4-8 4 5 4-9"></path></svg>
+<span style="font-size: 14px; font-weight: 600">Saisir la production</span></button>
+<button type="button" style="font-family: inherit; min-height: 84px; border-radius: 12px; border: 1px solid #E2E8F0; background: #FFFFFF; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 6px; padding: 12px 14px; cursor: pointer; color: #0F172A">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3l9 16H3zM12 10v4M12 17h.01"></path></svg>
+<span style="font-size: 14px; font-weight: 600">Déclarer un incident HSE</span></button>
+<button type="button" style="font-family: inherit; min-height: 84px; border-radius: 12px; border: 1px solid #E2E8F0; background: #FFFFFF; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 6px; padding: 12px 14px; cursor: pointer; color: #0F172A">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M8 9h8M8 13h8M8 17h5"></path></svg>
+<span style="font-size: 14px; font-weight: 600">Inventaire magasin</span></button>
+<button type="button" style="font-family: inherit; min-height: 84px; border-radius: 12px; border: 1px solid #E2E8F0; background: #FFFFFF; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 6px; padding: 12px 14px; cursor: pointer; color: #0F172A">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3 20c0-3 3-5 6-5s6 2 6 5M17 11l2 2 3-4"></path></svg>
+<span style="font-size: 14px; font-weight: 600">Pointage équipe</span></button>
+</div>
+
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">Saisie production — poste de jour</h2>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<label for="extrait" style="font-size: 13px; color: #475569">Minerai extrait (t)</label>
+<input id="extrait" type="text" value="{{extrait}}" readonly placeholder="0" style="font-family: 'IBM Plex Mono', monospace; font-size: 16px; min-height: 44px; padding: 0 12px; border: 1px solid #CBD5E1; border-radius: 8px; box-sizing: border-box">
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<label for="carbu" style="font-size: 13px; color: #475569">Gasoil consommé (L)</label>
+<input id="carbu" type="number" placeholder="0" style="font-family: 'IBM Plex Mono', monospace; font-size: 16px; min-height: 44px; padding: 0 12px; border: 1px solid #CBD5E1; border-radius: 8px; box-sizing: border-box">
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<label for="engin" style="font-size: 13px; color: #475569">Engin</label>
+<select id="engin" style="font-family: inherit; font-size: 15px; min-height: 44px; padding: 0 10px; border: 1px solid #CBD5E1; border-radius: 8px; background: #FFFFFF">
+<option>Pelle hydraulique PH-02</option><option>Chargeuse CH-01</option><option>Camion benne CB-05</option>
+</select>
+</div>
+<button type="button" style="font-family: inherit; font-size: 15px; font-weight: 600; min-height: 48px; border-radius: 10px; border: none; background: #0B2545; color: #FFFFFF; cursor: pointer">Enregistrer (synchronisé au retour du réseau)</button>
+</section>
+
+<template data-sc="if" value="{{hasToast}}" hint-placeholder-val="{{ false }}">
+<div role="status" class="pop" style="display: flex; gap: 8px; align-items: center; background: #DCFCE7; border: 1px solid #86EFAC; color: #14532D; border-radius: 10px; padding: 12px; font-size: 13px"><b>✓ Enregistré</b><span>{{toast}}</span></div>
+</template>
+<span style="font-size: 12px; color: #475569; text-align: center">Photos géolocalisées · horodatage UTC · données chiffrées sur l'appareil</span>
+</div>
+</div>
+</template>
+<script src="/demo/dc-lite.js"></script>
+<script>
+(function(){
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.seq = [
+      { screen: 'dash', caption: 'Vue d’ensemble du groupe — 14 entités, 3 continents' },
+      { screen: 'fin', caption: 'Le DAF et le DG approuvent les paiements', act: 'actApprove' },
+      { screen: 'fin', caption: 'Consolidation IFRS des 14 entités', act: 'actConsolidate' },
+      { screen: 'lot', caption: 'Validation de l’export du lot AU-2026-0147', act: 'actExport' },
+      { screen: 'lot', caption: 'Génération du dossier de traçabilité signé', act: 'actDossier' },
+      { screen: 'prod', caption: 'Le chef de site enregistre la production', act: 'actAddRow' },
+      { screen: 'dash', caption: 'Toutes les opérations sont inscrites au journal' }
+    ];
+    this.state = Object.assign({ screen: 'dash', auto: true, autoStep: 0, caption: this.seq[0].caption }, this.freshData());
+  }
+  freshData() {
+    return {
+      toast: '', paid: false, dossier: false, exported: false, consolidated: false, extraRows: 0,
+      log: [
+        { time: '22:41', text: 'Paiement SWIFT fournisseur de réactifs — 27 300 USD approuvé (double validation)', module: 'Finance', where: 'Niamey', by: 'DAF + DG', cls: '' },
+        { time: '21:58', text: 'Lot AU-2026-0146 — paiement reçu et rapproché automatiquement', module: 'Traçabilité', where: 'Genève', by: 'Trésorier', cls: '' },
+        { time: '20:15', text: 'Clôture mensuelle de la holding — US GAAP, convertie en IFRS', module: 'Comptabilité', where: 'Albuquerque', by: 'Comptable', cls: '' },
+        { time: '18:02', text: 'Rapport de production du poste de jour — validé et synchronisé', module: 'Production', where: 'Agadez', by: 'Chef de site', cls: '' },
+        { time: '16:30', text: 'Filtrage sanctions ONU / OFAC / UE — 312 contreparties contrôlées', module: 'Conformité', where: 'Dubaï', by: 'Compliance', cls: '' }
+      ]
+    };
+  }
+  componentDidMount() {
+    var self = this;
+    this.timer = setInterval(function () { self.tick(); }, 4200);
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    clearTimeout(this.actTimer);
+  }
+  tick() {
+    if (!this.state.auto) return;
+    var self = this;
+    var i = (this.state.autoStep + 1) % this.seq.length;
+    var step = this.seq[i];
+    if (i === 0) {
+      this.setState(Object.assign(this.freshData(), { screen: step.screen, autoStep: 0, caption: step.caption }));
+      return;
+    }
+    this.setState({ screen: step.screen, autoStep: i, caption: step.caption, toast: '' });
+    if (step.act) {
+      clearTimeout(this.actTimer);
+      this.actTimer = setTimeout(function () { self[step.act](); }, 1400);
+    }
+  }
+  doOp(msg, module, where, by, patch) {
+    var old = this.state.log.map(function (o) { return Object.assign({}, o, { cls: '' }); });
+    var entry = { time: 'À l’instant', text: msg, module: module, where: where, by: by, cls: 'row-new' };
+    this.setState(Object.assign({}, patch, { toast: msg, log: [entry].concat(old) }));
+  }
+  actApprove() {
+    if (this.state.paid) return;
+    this.doOp('2 paiements approuvés (paie Agadez + transitaire Lagos) et transmis aux banques', 'Finance', 'Niamey', 'DAF + DG', { paid: true });
+  }
+  actConsolidate() {
+    if (this.state.consolidated) return;
+    this.doOp('Consolidation IFRS d’octobre terminée — 14 entités, éliminations intra-groupe appliquées', 'Comptabilité', 'Genève', 'DAF groupe', { consolidated: true });
+  }
+  actExport() {
+    if (this.state.exported) return;
+    this.doOp('Lot AU-2026-0147 — export douane validé, lot transmis à l’affineur', 'Traçabilité', 'Niamey', 'Responsable export', { exported: true });
+  }
+  actDossier() {
+    this.doOp('Dossier de traçabilité AU-2026-0147.pdf généré (12 pages, signé électroniquement)', 'GED', 'Niamey', 'Responsable export', { dossier: true });
+  }
+  actAddRow() {
+    var n = this.state.extraRows + 1;
+    this.doOp('Saisie de production n° ' + n + ' enregistrée et validée — site AMZEGUER', 'Production', 'Agadez', 'Chef de site', { extraRows: n });
+  }
+  renderVals() {
+    var cur = this.state.screen;
+    var self = this;
+    var st = this.state;
+    var base = 'font-family: inherit; text-align: left; font-size: 14px; min-height: 44px; padding: 0 12px; border-radius: 8px; border: none; cursor: pointer; width: 100%; transition: background .4s ease, color .4s ease;';
+    var items = [
+      { id: 'dash', label: 'Tableau de bord groupe' },
+      { id: 'lot', label: 'Traçabilité des lots' },
+      { id: 'prod', label: 'Production & usine' },
+      { id: 'fin', label: 'Finance & consolidation' }
+    ];
+    var nav = items.map(function (it) {
+      var on = it.id === cur;
+      return {
+        label: it.label,
+        style: base + (on ? 'background: #C9A227; color: #0B2545; font-weight: 600;' : 'background: transparent; color: #E2E8F0;'),
+        pick: function () { self.setState({ screen: it.id, auto: false, toast: '' }); }
+      };
+    });
+    var titles = {
+      dash: ['Tableau de bord groupe', 'Vue consolidée de toutes les entités, en temps réel'],
+      lot: ['Traçabilité — lot AU-2026-0147', 'Chaîne de possession complète, du site d’extraction au paiement'],
+      prod: ['Production & usine', 'Suivi journalier de la mine et de l’usine CIL'],
+      fin: ['Finance & consolidation', 'Comptabilité multi-référentiels et consolidation du groupe']
+    };
+    var done = 'background: #F0FDF4; border: 1px solid #BBF7D0; color: #14532D; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px; transition: all .5s ease;';
+    var now = 'background: #EFF6FF; border: 2px solid #1D4ED8; color: #1E3A8A; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px; animation: pulseRing 1.6s ease-in-out infinite; transition: all .5s ease;';
+    var todo = 'background: #F8FAFC; border: 1px dashed #94A3B8; color: #475569; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px; transition: all .5s ease;';
+    var steps = [
+      { num: '01', label: 'Extraction', detail: 'Site AMZEGUER, Agadez', state: 'Terminé', style: done },
+      { num: '02', label: 'Coulée', detail: 'Usine CIL · coulée n° 57', state: 'Terminé', style: done },
+      { num: '03', label: 'Scellé & coffre', detail: 'Pesée contradictoire', state: 'Terminé', style: done },
+      { num: '04', label: 'Transport', detail: 'Convoi sécurisé → Niamey', state: 'Terminé', style: done },
+      { num: '05', label: 'Export douane', detail: 'Aéroport de Niamey', state: st.exported ? 'Terminé' : 'En cours', style: st.exported ? done : now },
+      { num: '06', label: 'Affinage', detail: 'Affineur, Dubaï', state: st.exported ? 'En cours' : 'À venir', style: st.exported ? now : todo },
+      { num: '07', label: 'Paiement', detail: 'Rapprochement bancaire', state: 'À venir', style: todo }
+    ];
+    var rowBase = 'border-top: 1px solid #F1F5F9;';
+    var rows = [
+      { poste: 'Jour 06h–18h', by: 'Chef de site', style: rowBase },
+      { poste: 'Nuit 18h–06h', by: 'Chef d’usine', style: rowBase }
+    ];
+    for (var i = 1; i <= st.extraRows; i++) {
+      rows.push({ poste: 'Saisie complémentaire n° ' + i, by: 'Vous · validée ✓', style: rowBase + ' background: #F0FDF4;' });
+    }
+    var total = this.seq.length;
+    var segs = [];
+    for (var k = 0; k < total; k++) {
+      var filled = st.auto ? k <= st.autoStep : false;
+      segs.push({ style: 'flex: 1; height: 6px; border-radius: 3px; background: ' + (filled ? '#C9A227' : '#1E3A5F') + ';' });
+    }
+    return {
+      nav: nav,
+      steps: steps,
+      rows: rows,
+      segs: segs,
+      log: st.log,
+      logCount: st.log.length,
+      hasToast: !!st.toast,
+      toast: st.toast,
+      closeToast: function () { self.setState({ toast: '' }); },
+      autoLabel: st.auto ? '❚❚ Pause' : '▶ Lancer la démo animée',
+      captionLine: st.auto ? ('Démo automatique · étape ' + (st.autoStep + 1) + '/' + total + ' — ' + st.caption) : 'Mode manuel — cliquez sur les boutons pour exécuter les opérations',
+      toggleAuto: function () {
+        if (st.auto) { self.setState({ auto: false }); }
+        else { self.setState(Object.assign(self.freshData(), { auto: true, autoStep: 0, screen: 'dash', caption: self.seq[0].caption })); }
+      },
+      approveLabel: st.paid ? 'Paiements approuvés ✓' : 'Approuver (double validation requise)',
+      payStatus: st.paid ? 'approuvé ✓' : 'en attente',
+      payStyle: st.paid ? 'color: #14532D' : 'color: #92400E',
+      approve: function () { self.actApprove(); },
+      exportLabel: st.exported ? 'Export validé ✓' : 'Valider l’export douane',
+      exportLot: function () { self.actExport(); },
+      dossierLabel: st.dossier ? 'Dossier généré ✓ (AU-2026-0147.pdf)' : 'Générer le dossier de traçabilité (PDF)',
+      download: function () { self.actDossier(); },
+      addRow: function () { self.actAddRow(); },
+      closedLabel: st.consolidated ? '14 / 14 entités clôturées' : '12 / 14 entités clôturées',
+      consoLabel: st.consolidated ? 'Consolidation terminée ✓' : 'Lancer la consolidation',
+      uaeStatus: st.consolidated ? 'Clôturée' : 'En cours',
+      uaeStyle: st.consolidated ? 'padding: 9px 6px; color: #14532D' : 'padding: 9px 6px; color: #92400E',
+      consolidate: function () { self.actConsolidate(); },
+      title: titles[cur][0],
+      subtitle: titles[cur][1],
+      isDash: cur === 'dash',
+      isLot: cur === 'lot',
+      isProd: cur === 'prod',
+      isFin: cur === 'fin'
+    };
+  }
+}
+
+dcLite.mount(document.getElementById('app-main'), document.getElementById('t-main'), Component);
+})();
+(function(){
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { t: 0 };
+  }
+  componentDidMount() {
+    var self = this;
+    this.timer = setInterval(function () { self.setState({ t: (self.state.t + 1) % 22 }); }, 800);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+  renderVals() {
+    var t = this.state.t;
+    var typed = ['', '1', '18', '186', '186'];
+    var extrait = t < 5 ? typed[t] : (t < 7 ? '186' : '');
+    var pending = t < 6 ? 14 : 15;
+    var phase = 'offline';
+    var pct = 0;
+    if (t >= 10 && t < 16) { phase = 'sync'; pct = Math.round((t - 9) / 6 * 100); pending = Math.max(0, 15 - (t - 9) * 3); }
+    if (t >= 16) { phase = 'online'; pct = 100; pending = 0; }
+    var base = 'display: flex; flex-direction: column; gap: 8px; border-radius: 8px; padding: 10px 12px; font-size: 13px; transition: background .5s ease, color .5s ease;';
+    var styles = { offline: 'background: #FEF3C7; color: #78350F;', sync: 'background: #DBEAFE; color: #1E3A8A;', online: 'background: #DCFCE7; color: #14532D;' };
+    var titles = { offline: 'Hors connexion', sync: 'Réseau retrouvé', online: 'Connecté' };
+    var texts = {
+      offline: pending + ' saisies en attente de synchronisation',
+      sync: 'synchronisation en cours… ' + pending + ' restantes',
+      online: '15 saisies synchronisées avec le siège ✓'
+    };
+    return {
+      extrait: extrait,
+      bannerStyle: base + styles[phase],
+      bannerTitle: titles[phase],
+      bannerText: texts[phase],
+      barStyle: 'height: 100%; width: ' + pct + '%; background: currentColor; transition: width .7s ease;',
+      hasToast: t >= 5 && t < 10,
+      toast: 'Production 186 t — stockée sur l’appareil, envoi au retour du réseau'
+    };
+  }
+}
+
+dcLite.mount(document.getElementById('app-mobile'), document.getElementById('t-mobile'), Component);
+})();
+</script>
+</body>
+</html>

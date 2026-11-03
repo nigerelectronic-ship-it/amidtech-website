@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gestion de réseau de stations-service — Démo interactive AmidTech</title>
+<meta name="description" content="Démo interactive d’un logiciel de gestion de stations-service : clôture d’équipe, cuves et livraisons, cartes flotte, prix, parc, chantiers et tableau de bord de direction.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#4F46E5">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#EEF1F7}
+.dm-bar{position:sticky;top:0;z-index:100;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;padding:10px clamp(14px,3vw,28px);background:#fff;border-bottom:1px solid #E2E8F0;font:500 14px/1.4 Poppins,system-ui,sans-serif;color:#1E1B4B}
+.dm-bar a{color:#1E1B4B;text-decoration:none}
+.dm-brand{display:flex;align-items:center;gap:10px;font-weight:600}
+.dm-brand svg{width:30px;height:30px}
+.dm-tag{font-size:12px;font-weight:600;color:#3730A3;background:#EEF0FF;padding:4px 10px;border-radius:999px}
+.dm-act{display:flex;gap:10px;flex-wrap:wrap}
+.dm-btn{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border-radius:10px;font-weight:600;font-size:14px}
+.dm-btn.p{background:#4F46E5;color:#fff!important}.dm-btn.g{box-shadow:inset 0 0 0 1.5px #C9CEEA}
+.dm-mob{padding:64px 20px 80px;display:flex;flex-wrap:wrap;gap:40px;justify-content:center;align-items:center;font-family:Poppins,system-ui,sans-serif}
+.dm-mob h2{margin:0 0 12px;font-size:clamp(26px,3vw,38px);line-height:1.08;letter-spacing:-.035em;color:#1E1B4B;font-weight:800}
+.dm-mob p{margin:0;color:#45436B;font-size:16px;line-height:1.7;max-width:30em}
+.dm-phone{width:390px;max-width:100%;border-radius:44px;padding:12px;background:#0F172A;box-shadow:0 30px 80px -30px rgba(30,27,75,.5)}
+.dm-phone>div{border-radius:34px;overflow:hidden;height:844px;max-height:80vh;overflow-y:auto}
+.dm-foot{text-align:center;padding:0 20px 60px;font:400 13px Poppins,system-ui,sans-serif;color:#7176A0}
+
+
+body{margin:0}
+a{color:#C2410C}a:hover{color:#9A3412}
+@keyframes fxIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.fx-in{animation:fxIn .5s ease-out both}
+@keyframes slideIn{from{opacity:0;transform:translateY(-12px) scale(.98)}to{opacity:1;transform:none}}
+.toast-in{animation:slideIn .4s ease-out both}
+@keyframes blink{50%{opacity:.3}}
+.live{animation:blink 1.4s ease-in-out infinite}
+@keyframes rowIn{from{background:#FED7AA}to{background:transparent}}
+.row-new{animation:rowIn 2.2s ease-out both}
+@keyframes pulseRing{0%,100%{box-shadow:0 0 0 0 rgba(234,88,12,.45)}50%{box-shadow:0 0 0 9px rgba(234,88,12,0)}}
+.pulse{animation:pulseRing 1.6s ease-in-out infinite}
+@keyframes wave{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+
+
+body{margin:0}
+a{color:#C2410C}a:hover{color:#9A3412}
+@keyframes pop{from{opacity:0;transform:translateY(-14px) scale(.96)}to{opacity:1;transform:none}}
+.pop{animation:pop .45s ease-out both}
+@keyframes blink{50%{opacity:.3}}
+.live{animation:blink 1.4s ease-in-out infinite}
+@keyframes pulseRing{0%,100%{box-shadow:0 0 0 0 rgba(234,88,12,.5)}50%{box-shadow:0 0 0 10px rgba(234,88,12,0)}}
+.pulse{animation:pulseRing 1.4s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+
+</style>
+</head>
+<body>
+<div class="dm-bar">
+  <a class="dm-brand" href="/"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="dlg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4F46E5"/><stop offset="1" stop-color="#06B6D4"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#dlg)"/><path d="M18 46 L32 16 L46 46 M24 36 H40" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>AmidTech</span></a>
+  <span class="dm-tag">Démo interactive · données fictives</span>
+  <div class="dm-act"><a class="dm-btn g" href="/#demos">← Toutes les démos</a><a class="dm-btn p" href="/#contact">Demander un devis</a></div>
+</div>
+<div id="app-main"></div>
+<section class="dm-mob">
+  <div><h2>Le réseau dans la poche du dirigeant</h2><p>Ventes en direct, alertes antifraude, pannes et commandes à valider : le dirigeant suit ses 30 stations depuis son téléphone et décide en un geste.</p></div>
+  <div class="dm-phone"><div id="app-mobile"></div></div>
+</section>
+<p class="dm-foot">Démo réalisée par AmidTech LLC · amidtechgroup.com · Les écrans, chiffres et noms sont fictifs.</p>
+<template id="t-main">
+<div style="font-family: 'Manrope', system-ui, sans-serif; color: #0F172A; background: #F4F6F8; min-height: 100vh; display: flex; flex-wrap: wrap">
+
+<nav aria-label="Navigation principale" style="flex: 1 1 240px; max-width: 100%; background: #10263F; color: #E2E8F0; padding: 24px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; align-items: center; gap: 12px; padding: 0 8px">
+<div style="width: 40px; height: 40px; border-radius: 10px; background: #F97316; color: #10263F; display: flex; align-items: center; justify-content: center">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V5a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v16M3 21h13M7 8h5M15 10h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0V9l-3-3"></path></svg>
+</div>
+<div style="display: flex; flex-direction: column">
+<span style="font-weight: 700; font-size: 15px; color: #FFFFFF">Sahel Énergie</span>
+<span style="font-size: 12px; color: #CBD5E1">Plateforme réseau · 30 stations</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 11px; letter-spacing: 0.08em; color: #94A3B8; padding: 0 8px 6px">MODULES</span>
+<template data-sc="for" list="{{nav}}" as="item" hint-placeholder-count="4">
+<button type="button" onClick="{{item.pick}}" style="{{item.style}}">{{item.label}}</button>
+</template>
+<span style="font-size: 13px; color: #94A3B8; padding: 10px 12px 0">Boutique, gaz &amp; lubrifiants</span>
+<span style="font-size: 13px; color: #94A3B8; padding: 6px 12px 0">Comptabilité SYSCOHADA</span>
+<span style="font-size: 13px; color: #94A3B8; padding: 6px 12px 0">RH, équipes &amp; paie</span>
+<span style="font-size: 13px; color: #94A3B8; padding: 6px 12px 0">Maintenance &amp; HSE</span>
+</div>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px">
+<div style="padding: 12px; border-radius: 8px; background: #17344F; font-size: 12px; color: #CBD5E1; line-height: 1.6">Stations connectées<br><b style="color: #FFFFFF; font-size: 15px">{{onlineLabel}}</b><br><span style="color: #FDBA74">{{offlineLabel}}</span></div>
+<span style="font-size: 11px; color: #94A3B8; padding: 0 4px; line-height: 1.5">Démo préparée par AmidTech LLC<br>amidtechgroup.com</span>
+</div>
+</nav>
+
+<main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+
+<header style="background: #FFFFFF; border-bottom: 1px solid #E2E8F0; padding: 14px 28px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+<label for="station" style="font-size: 12px; color: #475569">Station</label>
+<select id="station" style="font-family: inherit; font-size: 14px; padding: 8px 10px; border: 1px solid #CBD5E1; border-radius: 6px; background: #FFFFFF; min-height: 40px">
+<option>Tout le réseau (30 stations)</option><option>Niamey (12 stations)</option><option>Agadez (5)</option><option>Maradi (4)</option><option>Zinder (3)</option><option>Arlit (2)</option><option>Konni (1)</option><option>Madaoua (1)</option><option>Tchimia (1)</option><option>Iferouane (1)</option>
+</select>
+<label for="periode" style="font-size: 12px; color: #475569">Période</label>
+<select id="periode" style="font-family: inherit; font-size: 14px; padding: 8px 10px; border: 1px solid #CBD5E1; border-radius: 6px; background: #FFFFFF; min-height: 40px">
+<option>Aujourd'hui</option><option>Cette semaine</option><option>Ce mois</option>
+</select>
+</div>
+<div style="display: flex; gap: 12px; align-items: center">
+<span style="font-size: 13px; color: #475569; font-family: 'JetBrains Mono', monospace">{{clock}}</span>
+<div aria-label="Utilisateur : Directeur général" style="width: 40px; height: 40px; border-radius: 50%; background: #10263F; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">DG</div>
+</div>
+</header>
+
+<div style="background: #10263F; color: #E2E8F0; padding: 10px 28px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center">
+<button type="button" onClick="{{toggleAuto}}" style="font-family: inherit; font-size: 13px; font-weight: 700; min-height: 36px; padding: 0 14px; border-radius: 18px; border: 1px solid #F97316; background: #F97316; color: #10263F; cursor: pointer">{{autoLabel}}</button>
+<span style="font-size: 13px; display: flex; gap: 8px; align-items: center"><span class="live" style="color: #86EFAC">●</span>{{captionLine}}</span>
+<div aria-hidden="true" style="display: flex; gap: 4px; flex: 1 1 200px; min-width: 160px">
+<template data-sc="for" list="{{segs}}" as="g" hint-placeholder-count="7">
+<div style="{{g.style}}"></div>
+</template>
+</div>
+</div>
+
+<div style="padding: 28px; display: flex; flex-direction: column; gap: 22px; max-width: 1240px; width: 100%; box-sizing: border-box">
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
+<div>
+<h1 style="margin: 0; font-size: 26px; font-weight: 700">{{title}}</h1>
+<p style="margin: 6px 0 0; font-size: 14px; color: #475569">{{subtitle}}</p>
+</div>
+<span style="font-size: 12px; color: #92400E; background: #FEF3C7; padding: 6px 10px; border-radius: 6px">Démo · données et prix fictifs</span>
+</div>
+
+<template data-sc="if" value="{{hasToast}}" hint-placeholder-val="{{ false }}">
+<div role="status" class="toast-in" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; background: #DCFCE7; border: 1px solid #86EFAC; color: #14532D; border-radius: 10px; padding: 14px 16px; font-size: 14px">
+<span style="display: flex; gap: 10px; align-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l3 3 5-6"></path></svg><b>Opération réussie —</b> {{toast}}</span>
+<button type="button" onClick="{{closeToast}}" style="font-family: inherit; font-size: 13px; min-height: 36px; padding: 0 12px; border-radius: 6px; border: 1px solid #86EFAC; background: #FFFFFF; color: #14532D; cursor: pointer">Fermer</button>
+</div>
+</template>
+
+<template data-sc="if" value="{{isDash}}" hint-placeholder-val="{{ true }}">
+<div class="fx-in" style="display: flex; flex-direction: column; gap: 22px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px">
+<template data-sc="for" list="{{kpis}}" as="k" hint-placeholder-count="4">
+<div class="fx-in" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; color: #475569">{{k.label}}</span>
+<span style="font-size: 26px; font-weight: 700; font-family: 'JetBrains Mono', monospace">{{k.value}}</span>
+<span style="{{k.subStyle}}">{{k.sub}}</span>
+</div>
+</template>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 16px">
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Stocks moyens en cuve par ville — 30 stations</h2>
+<template data-sc="for" list="{{stations}}" as="s" hint-placeholder-count="6">
+<div style="display: flex; flex-direction: column; gap: 6px; padding: 6px 0; border-bottom: 1px solid #F1F5F9">
+<div style="display: flex; justify-content: space-between; font-size: 14px"><b>{{s.name}}</b><span style="{{s.flagStyle}}">{{s.flag}}</span></div>
+<div style="display: grid; grid-template-columns: 70px 1fr 44px; gap: 8px; align-items: center; font-size: 12px; color: #475569">
+<span>Super</span><div style="height: 10px; background: #F1F5F9; border-radius: 5px; overflow: hidden"><div style="{{s.superBar}}"></div></div><span style="font-family: 'JetBrains Mono', monospace">{{s.superPct}}</span>
+<span>Gasoil</span><div style="height: 10px; background: #F1F5F9; border-radius: 5px; overflow: hidden"><div style="{{s.gasoilBar}}"></div></div><span style="font-family: 'JetBrains Mono', monospace">{{s.gasoilPct}}</span>
+</div>
+</div>
+</template>
+</section>
+
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Alertes antifraude en temps réel</h2>
+<div style="{{fraudStyle}}">
+<b style="{{fraudTagStyle}}">{{fraudTag}}</b>
+<span style="flex: 1">Maradi — Station MAR-02 · cuve Super : baisse de 240 L à 02:14, hors heures de vente, aucun ticket associé.</span>
+</div>
+<button type="button" onClick="{{treatFraud}}" style="font-family: inherit; font-size: 14px; min-height: 44px; border-radius: 8px; border: 1px solid #10263F; background: #10263F; color: #FFFFFF; cursor: pointer">{{fraudBtn}}</button>
+<div style="display: flex; gap: 10px; padding: 10px; background: #FFFBEB; border-radius: 8px; font-size: 13px"><b style="color: #92400E">À surveiller</b><span>Zinder — gasoil : autonomie inférieure à 2 jours, commande au dépôt SONIDEP suggérée</span></div>
+<div style="display: flex; gap: 10px; padding: 10px; background: #F0FDF4; border-radius: 8px; font-size: 13px"><b style="color: #14532D">OK</b><span>Versements bancaires d'hier : 30 stations sur 30 rapprochées</span></div>
+</section>
+</div>
+
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Journal des opérations exécutées</h2>
+<span style="font-size: 13px; color: #14532D; background: #DCFCE7; padding: 5px 10px; border-radius: 6px">{{logCount}} opérations réussies · 0 échec</span>
+</div>
+<div style="overflow-x: auto">
+<table style="width: 100%; border-collapse: collapse; font-size: 13px; min-width: 680px">
+<thead><tr style="text-align: left; color: #475569"><th style="padding: 8px 6px; font-weight: 600">Heure</th><th style="padding: 8px 6px; font-weight: 600">Opération</th><th style="padding: 8px 6px; font-weight: 600">Station</th><th style="padding: 8px 6px; font-weight: 600">Par</th><th style="padding: 8px 6px; font-weight: 600">Résultat</th></tr></thead>
+<tbody>
+<template data-sc="for" list="{{log}}" as="op" hint-placeholder-count="5">
+<tr class="{{op.cls}}" style="border-top: 1px solid #F1F5F9"><td style="padding: 9px 6px; font-family: 'JetBrains Mono', monospace; white-space: nowrap">{{op.time}}</td><td style="padding: 9px 6px">{{op.text}}</td><td style="padding: 9px 6px; color: #475569">{{op.where}}</td><td style="padding: 9px 6px; color: #475569">{{op.by}}</td><td style="padding: 9px 6px"><span style="background: #DCFCE7; color: #14532D; padding: 3px 8px; border-radius: 10px; white-space: nowrap">✓ Succès</span></td></tr>
+</template>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</template>
+
+<template data-sc="if" value="{{isShift}}" hint-placeholder-val="{{ false }}">
+<div class="fx-in" style="display: flex; flex-direction: column; gap: 16px">
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Niamey — Station NIA-01 · équipe du matin (06h–14h) · pompiste : Issa M.</h2>
+<span style="{{shiftBadgeStyle}}">{{shiftBadge}}</span>
+</div>
+<div style="overflow-x: auto">
+<table style="width: 100%; border-collapse: collapse; font-size: 13px; min-width: 720px">
+<thead><tr style="text-align: left; color: #475569"><th style="padding: 8px 6px; font-weight: 600">Pistolet</th><th style="padding: 8px 6px; font-weight: 600">Produit</th><th style="padding: 8px 6px; font-weight: 600">Index début</th><th style="padding: 8px 6px; font-weight: 600">Index fin</th><th style="padding: 8px 6px; font-weight: 600">Litres</th><th style="padding: 8px 6px; font-weight: 600">Prix / L</th><th style="padding: 8px 6px; font-weight: 600">Montant dû</th></tr></thead>
+<tbody style="font-family: 'JetBrains Mono', monospace">
+<template data-sc="for" list="{{pumps}}" as="p" hint-placeholder-count="4">
+<tr style="border-top: 1px solid #F1F5F9"><td style="padding: 9px 6px">{{p.id}}</td><td style="padding: 9px 6px; font-family: 'Manrope', sans-serif">{{p.product}}</td><td style="padding: 9px 6px">{{p.start}}</td><td style="padding: 9px 6px">{{p.end}}</td><td style="padding: 9px 6px">{{p.liters}}</td><td style="padding: 9px 6px">{{p.price}}</td><td style="padding: 9px 6px">{{p.due}}</td></tr>
+</template>
+<tr style="border-top: 2px solid #10263F; font-weight: 700"><td style="padding: 9px 6px; font-family: 'Manrope', sans-serif" colspan="4">Total à encaisser</td><td style="padding: 9px 6px">{{totLiters}}</td><td style="padding: 9px 6px"></td><td style="padding: 9px 6px">{{totDue}}</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px">
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0 0 4px; font-size: 16px; font-weight: 700">Encaissements par moyen de paiement</h2>
+<template data-sc="for" list="{{pays}}" as="m" hint-placeholder-count="5">
+<div style="display: flex; justify-content: space-between; font-size: 14px; padding: 7px 0; border-bottom: 1px solid #F1F5F9"><span>{{m.label}}</span><span style="font-family: 'JetBrains Mono', monospace">{{m.amount}}</span></div>
+</template>
+<div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; padding-top: 6px"><span>Total encaissé</span><span style="font-family: 'JetBrains Mono', monospace">{{totPaid}}</span></div>
+</section>
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Rapprochement automatique</h2>
+<div style="display: flex; justify-content: space-between; font-size: 14px"><span>Litres vendus (index des pompes)</span><b style="font-family: 'JetBrains Mono', monospace">{{totLiters}}</b></div>
+<div style="display: flex; justify-content: space-between; font-size: 14px"><span>Baisse mesurée en cuves (jaugeurs)</span><b style="font-family: 'JetBrains Mono', monospace">7 398 L</b></div>
+<div style="display: flex; justify-content: space-between; font-size: 14px"><span>Écart volume</span><b style="font-family: 'JetBrains Mono', monospace; color: #14532D">+6 L · dans la tolérance</b></div>
+<div style="display: flex; justify-content: space-between; font-size: 14px; padding: 10px; border-radius: 8px; background: #FFF7ED"><span>Écart de caisse</span><b style="font-family: 'JetBrains Mono', monospace; color: #9A3412">{{gap}}</b></div>
+<button type="button" onClick="{{closeShift}}" style="font-family: inherit; font-size: 14px; font-weight: 600; min-height: 46px; border-radius: 8px; border: none; background: #EA580C; color: #FFFFFF; cursor: pointer">{{closeShiftLabel}}</button>
+</section>
+</div>
+</div>
+</template>
+
+<template data-sc="if" value="{{isTanks}}" hint-placeholder-val="{{ false }}">
+<div class="fx-in" style="display: flex; flex-direction: column; gap: 16px">
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Cuves — Niamey Aéroport (jaugeurs électroniques, volumes à 15 °C)</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px">
+<template data-sc="for" list="{{tanks}}" as="t" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px">
+<div role="img" aria-label="{{t.aria}}" style="position: relative; width: 120px; height: 200px; border: 3px solid #10263F; border-radius: 16px; background: #F1F5F9; overflow: hidden">
+<div style="{{t.fill}}"></div>
+<span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 600; color: #0F172A">{{t.pct}}</span>
+</div>
+<b style="font-size: 14px">{{t.name}}</b>
+<span style="font-size: 12px; color: #475569; font-family: 'JetBrains Mono', monospace">{{t.vol}}</span>
+</div>
+</template>
+</div>
+</section>
+<section style="{{recvStyle}}">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Réception citerne CIT-0412 · gasoil · dépôt SONIDEP Niamey · transporteur Trans-Ténéré · plombs n° 55 120 à 55 123 intacts</h2>
+<span style="{{recvBadgeStyle}}">{{recvBadge}}</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px">
+<div style="background: #F8FAFC; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #475569">Bon de livraison SONIDEP</span><b style="font-family: 'JetBrains Mono', monospace; font-size: 18px">30 000 L</b></div>
+<div style="background: #F8FAFC; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #475569">Jaugeage avant dépotage</span><b style="font-family: 'JetBrains Mono', monospace; font-size: 18px">8 450 L</b></div>
+<div style="background: #F8FAFC; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #475569">Jaugeage après dépotage</span><b style="font-family: 'JetBrains Mono', monospace; font-size: 18px">{{afterLevel}}</b></div>
+<div style="background: #F8FAFC; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #475569">Écart de transport</span><b style="font-family: 'JetBrains Mono', monospace; font-size: 18px">{{transportGap}}</b></div>
+</div>
+<button type="button" onClick="{{receive}}" style="font-family: inherit; font-size: 14px; font-weight: 600; min-height: 46px; border-radius: 8px; border: none; background: #EA580C; color: #FFFFFF; cursor: pointer">{{receiveLabel}}</button>
+</section>
+</div>
+</template>
+
+<template data-sc="if" value="{{isFleet}}" hint-placeholder-val="{{ false }}">
+<div class="fx-in" style="display: flex; flex-direction: column; gap: 16px">
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Clients flottes et cartes carburant</h2>
+<button type="button" onClick="{{topup}}" style="font-family: inherit; font-size: 14px; font-weight: 600; min-height: 44px; padding: 0 16px; border-radius: 8px; border: none; background: #EA580C; color: #FFFFFF; cursor: pointer">{{topupLabel}}</button>
+</div>
+<div style="overflow-x: auto">
+<table style="width: 100%; border-collapse: collapse; font-size: 13px; min-width: 700px">
+<thead><tr style="text-align: left; color: #475569"><th style="padding: 8px 6px; font-weight: 600">Client</th><th style="padding: 8px 6px; font-weight: 600">Formule</th><th style="padding: 8px 6px; font-weight: 600">Véhicules</th><th style="padding: 8px 6px; font-weight: 600">Consommé ce mois</th><th style="padding: 8px 6px; font-weight: 600">Solde</th></tr></thead>
+<tbody>
+<template data-sc="for" list="{{fleet}}" as="f" hint-placeholder-count="3">
+<tr class="{{f.cls}}" style="border-top: 1px solid #F1F5F9"><td style="padding: 9px 6px"><b>{{f.name}}</b></td><td style="padding: 9px 6px">{{f.plan}}</td><td style="padding: 9px 6px">{{f.cars}}</td><td style="padding: 9px 6px; font-family: 'JetBrains Mono', monospace">{{f.used}}</td><td style="padding: 9px 6px; font-family: 'JetBrains Mono', monospace; font-weight: 600">{{f.balance}}</td></tr>
+</template>
+</tbody>
+</table>
+</div>
+</section>
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Prix à la pompe — mise à jour centralisée (arrêté n° 2026-118)</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
+<template data-sc="for" list="{{prices}}" as="pr" hint-placeholder-count="3">
+<div style="{{pr.style}}"><span style="font-size: 13px; color: #475569">{{pr.name}}</span><b style="font-family: 'JetBrains Mono', monospace; font-size: 22px">{{pr.value}}</b><span style="font-size: 12px; color: #475569">{{pr.note}}</span></div>
+</template>
+</div>
+<button type="button" onClick="{{applyPrice}}" style="font-family: inherit; font-size: 14px; font-weight: 600; min-height: 46px; border-radius: 8px; border: 1px solid #10263F; background: #10263F; color: #FFFFFF; cursor: pointer">{{priceLabel}}</button>
+</section>
+</div>
+</template>
+<template data-sc="if" value="{{isParc}}" hint-placeholder-val="{{ false }}">
+<div class="fx-in" style="display: flex; flex-direction: column; gap: 16px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
+<template data-sc="for" list="{{parcCards}}" as="c" hint-placeholder-count="4">
+<div class="fx-in" style="{{c.style}}"><span style="font-size: 13px; font-weight: 600">{{c.label}}</span><span style="font-size: 30px; font-weight: 800; font-family: 'JetBrains Mono', monospace">{{c.value}}</span><span style="font-size: 12px">{{c.sub}}</span></div>
+</template>
+</div>
+
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Stations et équipements en panne</h2>
+<button type="button" onClick="{{fix}}" style="font-family: inherit; font-size: 14px; font-weight: 600; min-height: 44px; padding: 0 16px; border-radius: 8px; border: none; background: #EA580C; color: #FFFFFF; cursor: pointer">{{fixLabel}}</button>
+</div>
+<div style="overflow-x: auto">
+<table style="width: 100%; border-collapse: collapse; font-size: 13px; min-width: 760px">
+<thead><tr style="text-align: left; color: #475569"><th style="padding: 8px 6px; font-weight: 600">Station</th><th style="padding: 8px 6px; font-weight: 600">Équipement</th><th style="padding: 8px 6px; font-weight: 600">Depuis</th><th style="padding: 8px 6px; font-weight: 600">Impact</th><th style="padding: 8px 6px; font-weight: 600">Intervention</th><th style="padding: 8px 6px; font-weight: 600">Statut</th></tr></thead>
+<tbody>
+<template data-sc="for" list="{{pannes}}" as="p" hint-placeholder-count="2">
+<tr class="{{p.cls}}" style="border-top: 1px solid #F1F5F9"><td style="padding: 9px 6px"><b>{{p.station}}</b></td><td style="padding: 9px 6px">{{p.equip}}</td><td style="padding: 9px 6px">{{p.since}}</td><td style="padding: 9px 6px">{{p.impact}}</td><td style="padding: 9px 6px">{{p.who}}</td><td style="padding: 9px 6px"><span style="{{p.statusStyle}}">{{p.status}}</span></td></tr>
+</template>
+</tbody>
+</table>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Stations en rénovation</h2>
+<button type="button" onClick="{{jalon}}" style="font-family: inherit; font-size: 14px; font-weight: 600; min-height: 44px; padding: 0 16px; border-radius: 8px; border: none; background: #EA580C; color: #FFFFFF; cursor: pointer">{{jalonLabel}}</button>
+</div>
+<template data-sc="for" list="{{renos}}" as="r" hint-placeholder-count="3">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; align-items: center; padding: 10px 0; border-top: 1px solid #F1F5F9; font-size: 13px">
+<div style="display: flex; flex-direction: column; gap: 2px"><b style="font-size: 14px">{{r.name}}</b><span style="color: #475569">{{r.scope}}</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><div style="height: 12px; background: #F1F5F9; border-radius: 6px; overflow: hidden"><div style="{{r.bar}}"></div></div><span style="font-family: 'JetBrains Mono', monospace">{{r.pct}} · {{r.step}}</span></div>
+<span style="color: #475569; font-family: 'JetBrains Mono', monospace">{{r.money}}</span>
+</div>
+</template>
+</section>
+
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Nouvelles stations en construction</h2>
+<button type="button" onClick="{{decaisse}}" style="font-family: inherit; font-size: 14px; font-weight: 600; min-height: 44px; padding: 0 16px; border-radius: 8px; border: none; background: #EA580C; color: #FFFFFF; cursor: pointer">{{decaisseLabel}}</button>
+</div>
+<template data-sc="for" list="{{builds}}" as="b" hint-placeholder-count="2">
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 12px 0; border-top: 1px solid #F1F5F9">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 14px"><b>{{b.name}}</b><span style="font-family: 'JetBrains Mono', monospace; color: #475569">{{b.money}}</span></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 6px">
+<template data-sc="for" list="{{b.phases}}" as="ph" hint-placeholder-count="6">
+<div style="{{ph.style}}">{{ph.label}}</div>
+</template>
+</div>
+<span style="{{b.noteStyle}}">{{b.note}}</span>
+</div>
+</template>
+</section>
+</div>
+</template>
+
+<template data-sc="if" value="{{isDg}}" hint-placeholder-val="{{ false }}">
+<div class="fx-in" style="display: flex; flex-direction: column; gap: 16px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
+<template data-sc="for" list="{{dgKpis}}" as="k" hint-placeholder-count="4">
+<div class="fx-in" style="background: #10263F; color: #FFFFFF; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; color: #CBD5E1">{{k.label}}</span><span style="font-size: 24px; font-weight: 800; font-family: 'JetBrains Mono', monospace">{{k.value}}</span><span style="font-size: 12px; color: #FDBA74">{{k.sub}}</span></div>
+</template>
+</div>
+
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Budget annuel — prévu et réalisé (en millions FCFA)</h2>
+<div style="overflow-x: auto">
+<table style="width: 100%; border-collapse: collapse; font-size: 13px; min-width: 640px">
+<thead><tr style="text-align: left; color: #475569"><th style="padding: 8px 6px; font-weight: 600">Poste</th><th style="padding: 8px 6px; font-weight: 600">Budget</th><th style="padding: 8px 6px; font-weight: 600">Réalisé</th><th style="padding: 8px 6px; font-weight: 600; width: 40%">Consommation</th></tr></thead>
+<tbody>
+<template data-sc="for" list="{{budget}}" as="bu" hint-placeholder-count="6">
+<tr style="border-top: 1px solid #F1F5F9"><td style="padding: 9px 6px"><b>{{bu.poste}}</b></td><td style="padding: 9px 6px; font-family: 'JetBrains Mono', monospace">{{bu.bud}}</td><td style="padding: 9px 6px; font-family: 'JetBrains Mono', monospace">{{bu.real}}</td><td style="padding: 9px 6px"><div style="display: flex; gap: 8px; align-items: center"><div style="flex: 1; height: 10px; background: #F1F5F9; border-radius: 5px; overflow: hidden"><div style="{{bu.bar}}"></div></div><span style="font-family: 'JetBrains Mono', monospace; width: 44px">{{bu.pct}}</span></div></td></tr>
+</template>
+</tbody>
+</table>
+</div>
+</section>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Ressources humaines</h2>
+<template data-sc="for" list="{{rh}}" as="h" hint-placeholder-count="5">
+<div style="display: flex; justify-content: space-between; gap: 10px; font-size: 14px; padding: 6px 0; border-bottom: 1px solid #F1F5F9"><span>{{h.label}}</span><b style="font-family: 'JetBrains Mono', monospace">{{h.value}}</b></div>
+</template>
+</section>
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Juridique, licences et conformité</h2>
+<template data-sc="for" list="{{conf}}" as="cf" hint-placeholder-count="5">
+<div style="display: flex; gap: 10px; font-size: 13px; padding: 6px 0; border-bottom: 1px solid #F1F5F9"><b style="{{cf.tagStyle}}">{{cf.tag}}</b><span>{{cf.text}}</span></div>
+</template>
+</section>
+</div>
+
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Parapheur électronique du PDG</h2>
+<button type="button" onClick="{{sign}}" style="font-family: inherit; font-size: 14px; font-weight: 600; min-height: 44px; padding: 0 16px; border-radius: 8px; border: none; background: #EA580C; color: #FFFFFF; cursor: pointer">{{signLabel}}</button>
+</div>
+<template data-sc="for" list="{{docs}}" as="d" hint-placeholder-count="4">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 14px; padding: 10px 0; border-top: 1px solid #F1F5F9"><span>{{d.title}}</span><span style="{{d.statusStyle}}">{{d.status}}</span></div>
+</template>
+</section>
+</div>
+</template>
+
+
+</div>
+</main>
+</div>
+</template>
+<template id="t-mobile">
+<div style="width: 390px; height: 844px; box-sizing: border-box; font-family: 'Manrope', system-ui, sans-serif; color: #0F172A; background: #F4F6F8; display: flex; flex-direction: column; overflow: hidden">
+
+<header style="background: #10263F; color: #FFFFFF; padding: 22px 20px 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 12px; color: #CBD5E1">Sahel Énergie · 30 stations</span>
+<span style="font-size: 20px; font-weight: 700">Bonjour, Monsieur le PDG</span>
+</div>
+<div aria-label="Utilisateur : Directeur général" style="width: 40px; height: 40px; border-radius: 50%; background: #F97316; color: #10263F; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px">DG</div>
+</div>
+<div style="background: #17344F; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12px; color: #CBD5E1; display: flex; gap: 6px; align-items: center"><span class="live" style="color: #86EFAC">●</span>Litres vendus aujourd'hui · en direct</span>
+<span style="font-size: 32px; font-weight: 700; font-family: 'JetBrains Mono', monospace">{{liters}}</span>
+<span style="font-size: 13px; color: #FDBA74">{{revenue}}</span>
+</div>
+</header>
+
+<div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; flex: 1">
+<template data-sc="if" value="{{hasNotif}}" hint-placeholder-val="{{ true }}">
+<div role="status" class="pop" style="{{notifStyle}}">
+<b style="font-size: 13px">{{notifTitle}}</b>
+<span style="font-size: 13px">{{notifText}}</span>
+</div>
+</template>
+
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 15px; font-weight: 700">Commande à valider</h2>
+<span style="font-size: 13px; color: #475569">Zinder — Station ZIN-01 · gasoil · 30 000 L · autonomie 1,5 jour</span>
+<button type="button" class="{{approveCls}}" style="{{approveStyle}}">{{approveLabel}}</button>
+</section>
+
+<section style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; text-align: center; font-size: 11px">
+<div style="background: #DCFCE7; color: #14532D; border-radius: 8px; padding: 8px 2px; transition: all .6s ease"><b style="font-size: 18px; display: block">{{inService}}</b>en service</div>
+<div style="background: #FEE2E2; color: #7F1D1D; border-radius: 8px; padding: 8px 2px"><b style="font-size: 18px; display: block">{{down}}</b>en panne</div>
+<div style="background: #FFEDD5; color: #7C2D12; border-radius: 8px; padding: 8px 2px"><b style="font-size: 18px; display: block">3</b>rénovation</div>
+<div style="background: #DBEAFE; color: #1E3A8A; border-radius: 8px; padding: 8px 2px"><b style="font-size: 18px; display: block">2</b>chantiers</div>
+</div>
+<h2 style="margin: 0; font-size: 15px; font-weight: 700">Top stations du jour</h2>
+<template data-sc="for" list="{{top}}" as="s" hint-placeholder-count="3">
+<div style="display: grid; grid-template-columns: 1fr 120px; gap: 8px; align-items: center; font-size: 13px">
+<span>{{s.name}}</span>
+<div style="height: 10px; background: #F1F5F9; border-radius: 5px; overflow: hidden"><div style="{{s.bar}}"></div></div>
+</div>
+</template>
+</section>
+</div>
+</div>
+</template>
+<script src="/demo/dc-lite.js"></script>
+<script>
+(function(){
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.seq = [
+      { screen: 'dash', caption: 'Vue du réseau : ventes, stocks et alertes en direct' },
+      { screen: 'shift', caption: 'Clôture d’équipe : rapprochement pompes / cuves / caisse', act: 'actCloseShift' },
+      { screen: 'tanks', caption: 'Réception d’une citerne avec jaugeage avant et après', act: 'actReceive' },
+      { screen: 'parc', caption: 'Panne réparée : la station de Konni est remise en service', act: 'actFix' },
+      { screen: 'parc', caption: 'Rénovation : le jalon de NIA-07 est validé', act: 'actJalon' },
+      { screen: 'parc', caption: 'Chantier TAH-01 : décaissement approuvé', act: 'actDecaisse' },
+      { screen: 'fleet', caption: 'Recharge du compte carburant d’un client flotte', act: 'actTopup' },
+      { screen: 'fleet', caption: 'Nouveau prix officiel appliqué aux 30 stations', act: 'actPrice' },
+      { screen: 'dg', caption: 'Direction générale : le PDG signe le parapheur électronique', act: 'actSign' },
+      { screen: 'dash', caption: 'Traitement d’une alerte antifraude', act: 'actFraud' },
+      { screen: 'dash', caption: 'Toutes les opérations sont inscrites au journal' }
+    ];
+    this.state = Object.assign({ screen: 'dash', auto: true, autoStep: 0, caption: this.seq[0].caption, tick: 0 }, this.freshData());
+  }
+  freshData() {
+    return {
+      toast: '', fixed: false, jalonOk: false, decaisseOk: false, signed: false, shiftClosed: false, received: false, topped: false, priced: false, fraudDone: false, soldToday: 98420,
+      log: [
+        { time: '13:52', text: 'Versement bancaire de l’équipe de nuit rapproché automatiquement', where: 'Niamey — Station NIA-04', by: 'Gérant', cls: '' },
+        { time: '12:30', text: 'Commande de 36 000 L de super validée au dépôt SONIDEP de Niamey', where: 'Siège', by: 'Resp. approvisionnement', cls: '' },
+        { time: '11:05', text: 'Paiement Airtel Money de 125 000 FCFA confirmé pour un client', where: 'Maradi — Station MAR-02', by: 'Caisse 2', cls: '' },
+        { time: '10:15', text: 'Citerne partie du dépôt SONIDEP d’Agadez vers Iferouane, suivie par GPS', where: 'Iferouane', by: 'Logistique', cls: '' },
+        { time: '09:40', text: 'Pistolet P6 étalonné (contrôle à 20 L) et remis en service', where: 'Zinder — Station ZIN-01', by: 'Technicien', cls: '' }
+      ]
+    };
+  }
+  componentDidMount() {
+    var self = this;
+    this.timer = setInterval(function () { self.tickAuto(); }, 4500);
+    this.clockTimer = setInterval(function () {
+      self.setState({ tick: self.state.tick + 1, soldToday: self.state.soldToday + 7 + Math.floor(Math.random() * 18) });
+    }, 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer); clearInterval(this.clockTimer); clearTimeout(this.actTimer);
+  }
+  tickAuto() {
+    if (!this.state.auto) return;
+    var self = this;
+    var i = (this.state.autoStep + 1) % this.seq.length;
+    var step = this.seq[i];
+    if (i === 0) {
+      this.setState(Object.assign(this.freshData(), { screen: step.screen, autoStep: 0, caption: step.caption }));
+      return;
+    }
+    this.setState({ screen: step.screen, autoStep: i, caption: step.caption, toast: '' });
+    if (step.act) {
+      clearTimeout(this.actTimer);
+      this.actTimer = setTimeout(function () { self[step.act](); }, 1500);
+    }
+  }
+  doOp(msg, where, by, patch) {
+    var old = this.state.log.map(function (o) { return Object.assign({}, o, { cls: '' }); });
+    var entry = { time: 'À l’instant', text: msg, where: where, by: by, cls: 'row-new' };
+    this.setState(Object.assign({}, patch, { toast: msg, log: [entry].concat(old) }));
+  }
+  actCloseShift() {
+    if (this.state.shiftClosed) return;
+    this.doOp('Équipe du matin clôturée — 7 392 L vendus, écart de caisse de 8 000 FCFA imputé au pompiste', 'Niamey — Station NIA-01', 'Gérant', { shiftClosed: true });
+  }
+  actReceive() {
+    if (this.state.received) return;
+    this.doOp('Citerne CIT-0412 réceptionnée — 29 910 L reçus sur 30 000 L, écart de 0,30 % conforme', 'Niamey — Station NIA-01', 'Gérant + chauffeur', { received: true });
+  }
+  actTopup() {
+    if (this.state.topped) return;
+    this.doOp('Compte carburant de l’ONG Santé Sahel rechargé de 5 000 000 FCFA (virement reçu)', 'Siège', 'Service clients', { topped: true });
+  }
+  actPrice() {
+    if (this.state.priced) return;
+    this.doOp('Nouveaux prix officiels envoyés aux 30 stations, effet à 00:00 sur toutes les pompes', 'Tout le réseau', 'DG (double validation)', { priced: true });
+  }
+  actFix() {
+    if (this.state.fixed) return;
+    this.doOp('Intervention INT-0231 clôturée — groupe électrogène réparé, Konni KON-01 remise en service', 'Konni — Station KON-01', 'Maintenance', { fixed: true });
+  }
+  actJalon() {
+    if (this.state.jalonOk) return;
+    this.doOp('Rénovation NIA-07 — jalon « auvent et piste » réceptionné, avancement 80 %', 'Niamey — Station NIA-07', 'Direction technique', { jalonOk: true });
+  }
+  actDecaisse() {
+    if (this.state.decaisseOk) return;
+    this.doOp('Chantier TAH-01 — décaissement de 48 M FCFA approuvé pour l’installation des cuves', 'Tahoua — TAH-01 (nouveau site)', 'DAF + PDG', { decaisseOk: true });
+  }
+  actSign() {
+    if (this.state.signed) return;
+    this.doOp('Parapheur — 4 documents signés électroniquement par le PDG et transmis aux services', 'Siège', 'PDG', { signed: true });
+  }
+  actFraud() {
+    if (this.state.fraudDone) return;
+    this.doOp('Alerte de Maradi traitée — vidéo consultée, enquête ouverte, pistolet bloqué à distance', 'Maradi — Station MAR-02', 'Superviseur régional', { fraudDone: true });
+  }
+  renderVals() {
+    var st = this.state, self = this, cur = st.screen;
+    function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+    var base = 'font-family: inherit; text-align: left; font-size: 14px; min-height: 44px; padding: 0 12px; border-radius: 8px; border: none; cursor: pointer; width: 100%; transition: background .4s ease, color .4s ease;';
+    var navItems = [
+      { id: 'dash', label: 'Tableau de bord réseau' },
+      { id: 'shift', label: 'Équipes & caisse' },
+      { id: 'tanks', label: 'Cuves & livraisons' },
+      { id: 'fleet', label: 'Flottes & prix' },
+      { id: 'parc', label: 'Parc : pannes, rénovations, chantiers' },
+      { id: 'dg', label: 'Direction générale' }
+    ];
+    var nav = navItems.map(function (it) {
+      var on = it.id === cur;
+      return { label: it.label, style: base + (on ? 'background: #F97316; color: #10263F; font-weight: 700;' : 'background: transparent; color: #E2E8F0;'), pick: function () { self.setState({ screen: it.id, auto: false, toast: '' }); } };
+    });
+    var titles = {
+      dash: ['Tableau de bord du réseau', 'Toutes les stations en temps réel'],
+      shift: ['Clôture d’équipe', 'Rapprochement automatique : litres vendus, stock en cuve, argent encaissé'],
+      tanks: ['Cuves & livraisons', 'Niveaux en direct et réception contrôlée des citernes'],
+      fleet: ['Flottes & prix', 'Cartes carburant des clients et prix officiels du réseau'],
+      parc: ['Parc de stations', 'Stations en panne, en rénovation et en construction'],
+      dg: ['Direction générale', 'Pilotage global : finances, budget, RH, juridique et décisions']
+    };
+    var bar = function (pct, color) { return 'height: 100%; width: ' + pct + '%; background: ' + color + '; border-radius: 5px; transition: width 1s ease;'; };
+    var stationsRaw = [
+      { name: 'Niamey · 12 stations', s: 62, g: st.received ? 71 : 49 },
+      { name: 'Agadez · 5 stations', s: 54, g: 58 },
+      { name: 'Maradi · 4 stations', s: 39, g: 64 },
+      { name: 'Zinder · 3 stations', s: 71, g: 12 },
+      { name: 'Arlit · 2 stations', s: 45, g: 52 },
+      { name: 'Konni · 1 station', s: 66, g: 41 },
+      { name: 'Madaoua · 1 station', s: 58, g: 47 },
+      { name: 'Tchimia · 1 station', s: 49, g: 36 },
+      { name: 'Iferouane · 1 station', s: 28, g: 33 }
+    ];
+    var stations = stationsRaw.map(function (x) {
+      var low = x.g < 20 || x.s < 20;
+      var flag = x.name.indexOf('Maradi') === 0 && !st.fraudDone ? 'Alerte antifraude' : (low ? 'Stock bas' : 'Normal');
+      var fs = flag === 'Normal' ? 'font-size: 12px; color: #14532D' : 'font-size: 12px; font-weight: 700; color: #9A3412';
+      return { name: x.name, flag: flag, flagStyle: fs, superPct: x.s + ' %', gasoilPct: x.g + ' %', superBar: bar(x.s, '#EA580C'), gasoilBar: bar(x.g, x.g < 20 ? '#B91C1C' : '#1D4ED8') };
+    });
+    var kpis = [
+      { label: 'Litres vendus aujourd’hui', value: fmt(st.soldToday) + ' L', sub: '● en direct', subStyle: 'font-size: 12px; color: #14532D' },
+      { label: 'Chiffre d’affaires du jour', value: fmt(Math.round(st.soldToday * 0.604)) + ' k', sub: 'FCFA · carburant + boutique', subStyle: 'font-size: 12px; color: #475569' },
+      { label: 'Stations en service', value: (st.fixed ? 26 : 25) + ' / 30', sub: (st.fixed ? '1 en panne' : '2 en panne') + ' · 3 en rénovation · 2 chantiers', subStyle: 'font-size: 12px; color: #92400E' },
+      { label: 'Écarts du jour', value: st.fraudDone ? '1' : '2', sub: st.fraudDone ? '1 alerte traitée' : '1 alerte critique ouverte', subStyle: 'font-size: 12px; color: ' + (st.fraudDone ? '#14532D' : '#9A3412') }
+    ];
+    var pumpsRaw = [
+      { id: 'P1', product: 'Super', a: 184220, b: 186015, p: 540 },
+      { id: 'P2', product: 'Super', a: 92410, b: 93602, p: 540 },
+      { id: 'P3', product: 'Gasoil', a: 251030, b: 253890, p: 668 },
+      { id: 'P4', product: 'Gasoil', a: 118700, b: 120245, p: 668 }
+    ];
+    var totL = 0, totD = 0;
+    var pumps = pumpsRaw.map(function (x) { var l = x.b - x.a, d = l * x.p; totL += l; totD += d; return { id: x.id, product: x.product, start: fmt(x.a), end: fmt(x.b), liters: fmt(l) + ' L', price: x.p + ' F', due: fmt(d) + ' F' }; });
+    var paysRaw = [['Espèces', 2690000], ['Airtel Money', 612500], ['Moov Money', 248000], ['Zamani Cash', 95000], ['Cartes carburant (flottes)', 902020]];
+    var totP = 0;
+    var pays = paysRaw.map(function (x) { totP += x[1]; return { label: x[0], amount: fmt(x[1]) + ' F' }; });
+    var after = st.received ? 38360 : 8450;
+    var tanks = [
+      { name: 'Cuve 1 — Super', pct: '62 %', vol: '18 600 / 30 000 L', fill: 'position: absolute; left: 0; right: 0; bottom: 0; height: 62%; background: #FDBA74; transition: height 2s ease;', aria: 'Cuve super remplie à 62 %' },
+      { name: 'Cuve 2 — Gasoil', pct: (st.received ? 77 : 17) + ' %', vol: fmt(after) + ' / 50 000 L', fill: 'position: absolute; left: 0; right: 0; bottom: 0; height: ' + (st.received ? 77 : 17) + '%; background: ' + (st.received ? '#93C5FD' : '#FCA5A5') + '; transition: height 2.4s ease, background 1s ease;', aria: 'Cuve gasoil' },
+      { name: 'Cuve 3 — Pétrole', pct: '41 %', vol: '4 100 / 10 000 L', fill: 'position: absolute; left: 0; right: 0; bottom: 0; height: 41%; background: #C4B5FD; transition: height 2s ease;', aria: 'Cuve pétrole remplie à 41 %' }
+    ];
+    var fleet = [
+      { name: 'ONG Santé Sahel', plan: 'Prépayé', cars: '24 véhicules', used: '3 180 000 F', balance: fmt(st.topped ? 7450000 : 2450000) + ' F', cls: st.topped ? 'row-new' : '' },
+      { name: 'Société de transport Ténéré', plan: 'Crédit 30 jours', cars: '41 camions', used: '11 920 000 F', balance: 'Plafond 20 000 000 F', cls: '' },
+      { name: 'Ministère (client démo)', plan: 'Bons + cartes', cars: '63 véhicules', used: '6 400 000 F', balance: fmt(1850000) + ' F', cls: '' }
+    ];
+    var pBase = 'border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 4px; transition: all .6s ease;';
+    var on = 'background: #FFF7ED; border: 2px solid #EA580C;';
+    var off = 'background: #F8FAFC; border: 1px solid #E2E8F0;';
+    var prices = [
+      { name: 'Super sans plomb', value: st.priced ? '545 F / L' : '540 F / L', note: st.priced ? 'Appliqué · 30 / 30 stations ✓' : 'Nouveau prix : 545 F à 00:00', style: pBase + (st.priced ? on : off) },
+      { name: 'Gasoil', value: st.priced ? '673 F / L' : '668 F / L', note: st.priced ? 'Appliqué · 30 / 30 stations ✓' : 'Nouveau prix : 673 F à 00:00', style: pBase + (st.priced ? on : off) },
+      { name: 'Pétrole lampant', value: '495 F / L', note: 'Inchangé', style: pBase + off }
+    ];
+    var card = function (bg, bd, col) { return 'background: ' + bg + '; border: 1px solid ' + bd + '; color: ' + col + '; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 4px; transition: all .6s ease;'; };
+    var parcCards = [
+      { label: 'En service', value: String(st.fixed ? 26 : 25), sub: 'sur 30 stations existantes', style: card('#F0FDF4', '#BBF7D0', '#14532D') },
+      { label: 'En panne', value: String(st.fixed ? 1 : 2), sub: st.fixed ? 'Konni remise en service ✓' : 'interventions en cours', style: card('#FEF2F2', '#FECACA', '#7F1D1D') },
+      { label: 'En rénovation', value: '3', sub: 'Niamey, Agadez, Arlit', style: card('#FFF7ED', '#FED7AA', '#7C2D12') },
+      { label: 'En construction', value: '2', sub: 'nouveaux sites', style: card('#EFF6FF', '#BFDBFE', '#1E3A8A') }
+    ];
+    var chip = function (bg, col) { return 'background: ' + bg + '; color: ' + col + '; padding: 3px 8px; border-radius: 10px; white-space: nowrap; font-weight: 600;'; };
+    var pannes = [
+      { station: 'Konni — KON-01', equip: 'Groupe électrogène (station à l’arrêt)', since: '2 jours', impact: 'Ventes arrêtées', who: 'INT-0231 · technicien sur place', status: st.fixed ? 'Réparé ✓' : 'En cours', statusStyle: st.fixed ? chip('#DCFCE7', '#14532D') : chip('#FEE2E2', '#991B1B'), cls: st.fixed ? 'row-new' : '' },
+      { station: 'Zinder — ZIN-02', equip: 'Jaugeur électronique cuve 2', since: '5 jours', impact: 'Jaugeage manuel', who: 'INT-0228 · pièce commandée', status: 'Pièce attendue', statusStyle: chip('#FEF3C7', '#92400E'), cls: '' }
+    ];
+    var rbar = function (p, c) { return 'height: 100%; width: ' + p + '%; background: ' + c + '; border-radius: 6px; transition: width 1.4s ease;'; };
+    var renos = [
+      { name: 'Niamey — NIA-07', scope: 'Réfection de la piste, nouvel auvent, éclairage LED', pct: (st.jalonOk ? 80 : 64) + ' %', step: st.jalonOk ? 'jalon réceptionné ✓' : 'jalon auvent à réceptionner', bar: rbar(st.jalonOk ? 80 : 64, '#EA580C'), money: 'Dépensé 74 / 95 M F · fin : 15 déc.' },
+      { name: 'Agadez — AGZ-03', scope: 'Remplacement de 2 cuves, double paroi', pct: '35 %', step: 'terrassement', bar: rbar(35, '#EA580C'), money: 'Dépensé 41 / 120 M F · fin : fév.' },
+      { name: 'Arlit — ARL-02', scope: 'Mise aux normes incendie et HSE', pct: '82 %', step: 'tests en cours', bar: rbar(82, '#EA580C'), money: 'Dépensé 22 / 27 M F · fin : 30 nov.' }
+    ];
+    var ph = function (labels, doneN, curN) { return labels.map(function (l, i) { var sty = i < doneN ? 'background: #DCFCE7; color: #14532D;' : (i === curN ? 'background: #FFEDD5; color: #9A3412; animation: pulseRing 1.6s ease-in-out infinite;' : 'background: #F1F5F9; color: #475569;'); return { label: (i < doneN ? '✓ ' : '') + l, style: sty + ' border-radius: 6px; padding: 8px 6px; font-size: 12px; font-weight: 600; text-align: center;' }; }); };
+    var P = ['Permis', 'Terrassement', 'Cuves', 'Gros œuvre', 'Équipements', 'Mise en service'];
+    var builds = [
+      { name: 'Tahoua — TAH-01 (nouveau site, entrée de ville)', money: 'Budget 310 M F · engagé ' + (st.decaisseOk ? '158' : '110') + ' M F', phases: ph(P, st.decaisseOk ? 3 : 2, st.decaisseOk ? 3 : 2), note: st.decaisseOk ? 'Décaissement de 48 M F approuvé ✓ — cuves livrées, gros œuvre lancé' : 'Décaissement de 48 M F en attente — installation des cuves', noteStyle: 'font-size: 13px; font-weight: 600; color: ' + (st.decaisseOk ? '#14532D' : '#9A3412') },
+      { name: 'Niamey — NIA-13 (nouveau site)', money: 'Budget 285 M F · engagé 236 M F', phases: ph(P, 4, 4), note: 'Pompes et caisse en cours d’installation · ouverture prévue en janvier', noteStyle: 'font-size: 13px; color: #475569' }
+    ];
+    var dgKpis = [
+      { label: 'Chiffre d’affaires du mois', value: '2 184 M F', sub: '+6 % sur le mois précédent' },
+      { label: 'Marge brute du mois', value: '163 M F', sub: '7,5 % du chiffre d’affaires' },
+      { label: 'Trésorerie disponible', value: '412 M F', sub: '6 banques + mobile money' },
+      { label: 'Investissements en cours', value: '837 M F', sub: '3 rénovations + 2 chantiers' }
+    ];
+    var bb = function (p) { var c = p > 95 ? '#B91C1C' : (p > 80 ? '#EA580C' : '#1D4ED8'); return 'height: 100%; width: ' + Math.min(p, 100) + '%; background: ' + c + '; border-radius: 5px; transition: width 1.2s ease;'; };
+    var budget = [['Achats de carburant', 21400, 17650], ['Salaires et charges', 640, 528], ['Maintenance et pannes', 180, 171], ['Rénovations', 260, 137], ['Constructions', 595, st.decaisseOk ? 394 : 346], ['Frais généraux du siège', 210, 162]].map(function (x) { var p = Math.round(x[2] / x[1] * 100); return { poste: x[0], bud: fmt(x[1]), real: fmt(x[2]), pct: p + ' %', bar: bb(p) }; });
+    var rh = [
+      { label: 'Effectif total', value: '286' },
+      { label: 'Pompistes / caissiers / gérants', value: '198 / 34 / 30' },
+      { label: 'Personnel du siège', value: '24' },
+      { label: 'Absences aujourd’hui', value: '7' },
+      { label: 'Masse salariale du mois', value: '48 M F' }
+    ];
+    var tg = function (c) { return 'color: ' + c + '; white-space: nowrap'; };
+    var conf = [
+      { tag: 'Urgent', tagStyle: tg('#991B1B'), text: 'Licence d’exploitation de MAD-01 à renouveler avant 30 jours' },
+      { tag: 'À faire', tagStyle: tg('#92400E'), text: 'Contrôle métrologique annuel : 6 stations à programmer' },
+      { tag: 'À faire', tagStyle: tg('#92400E'), text: 'Contrat de location-gérance ARL-02 : renouvellement à signer' },
+      { tag: 'OK', tagStyle: tg('#14532D'), text: 'Assurances multirisques : 30 stations couvertes jusqu’en 2027' },
+      { tag: 'OK', tagStyle: tg('#14532D'), text: 'Déclarations fiscales et sociales d’octobre déposées' }
+    ];
+    var dstat = st.signed ? { status: 'Signé ✓', statusStyle: chip('#DCFCE7', '#14532D') } : { status: 'À signer', statusStyle: chip('#FFEDD5', '#9A3412') };
+    var docs = ['Ordre de décaissement — chantier TAH-01', 'Contrat de location-gérance — ARL-02', 'Bon de commande — pièces jaugeur ZIN-02', 'Budget prévisionnel 2027 — version finale'].map(function (t) { return { title: t, status: dstat.status, statusStyle: dstat.statusStyle }; });
+    var segs = [];
+    for (var k = 0; k < this.seq.length; k++) { segs.push({ style: 'flex: 1; height: 6px; border-radius: 3px; transition: background .5s ease; background: ' + (st.auto && k <= st.autoStep ? '#F97316' : '#1E3A5F') + ';' }); }
+    var d = new Date();
+    var clock = ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2) + ':' + ('0' + d.getSeconds()).slice(-2) + ' · Niamey';
+    var badgeOk = 'font-size: 13px; font-weight: 700; padding: 6px 10px; border-radius: 6px; background: #DCFCE7; color: #14532D;';
+    var badgeWait = 'font-size: 13px; font-weight: 700; padding: 6px 10px; border-radius: 6px; background: #FFEDD5; color: #9A3412;';
+    return {
+      parcCards: parcCards, pannes: pannes, renos: renos, builds: builds, dgKpis: dgKpis, budget: budget, rh: rh, conf: conf, docs: docs,
+      fix: function () { self.actFix(); }, fixLabel: st.fixed ? 'Intervention clôturée ✓' : 'Clôturer l’intervention de Konni',
+      jalon: function () { self.actJalon(); }, jalonLabel: st.jalonOk ? 'Jalon validé ✓' : 'Valider le jalon NIA-07',
+      decaisse: function () { self.actDecaisse(); }, decaisseLabel: st.decaisseOk ? 'Décaissement approuvé ✓' : 'Approuver le décaissement TAH-01',
+      sign: function () { self.actSign(); }, signLabel: st.signed ? 'Documents signés ✓' : 'Signer les 4 documents',
+      nav: nav, kpis: kpis, stations: stations, pumps: pumps, pays: pays, tanks: tanks, fleet: fleet, prices: prices, segs: segs, clock: clock,
+      log: st.log, logCount: st.log.length,
+      onlineLabel: '29 / 30 en ligne', offlineLabel: 'Iferouane : mode local, synchro en attente',
+      title: titles[cur][0], subtitle: titles[cur][1],
+      isParc: cur === 'parc', isDg: cur === 'dg',
+      isDash: cur === 'dash', isShift: cur === 'shift', isTanks: cur === 'tanks', isFleet: cur === 'fleet',
+      hasToast: !!st.toast, toast: st.toast, closeToast: function () { self.setState({ toast: '' }); },
+      autoLabel: st.auto ? '❚❚ Pause' : '▶ Lancer la démo animée',
+      captionLine: st.auto ? ('Démo automatique · étape ' + (st.autoStep + 1) + '/' + this.seq.length + ' — ' + st.caption) : 'Mode manuel — cliquez sur les boutons pour exécuter les opérations',
+      toggleAuto: function () { if (st.auto) self.setState({ auto: false }); else self.setState(Object.assign(self.freshData(), { auto: true, autoStep: 0, screen: 'dash', caption: self.seq[0].caption })); },
+      totLiters: fmt(totL) + ' L', totDue: fmt(totD) + ' F', totPaid: fmt(totP) + ' F', gap: fmt(totP - totD).replace('-', '− ') + ' F',
+      shiftBadge: st.shiftClosed ? 'Équipe clôturée ✓' : 'Équipe en cours', shiftBadgeStyle: st.shiftClosed ? badgeOk : badgeWait,
+      closeShiftLabel: st.shiftClosed ? 'Équipe clôturée ✓ — rapport envoyé au siège' : 'Clôturer l’équipe',
+      closeShift: function () { self.actCloseShift(); },
+      afterLevel: st.received ? '38 360 L' : '— en attente', transportGap: st.received ? '− 90 L (− 0,30 %) ✓' : '—',
+      recvBadge: st.received ? 'Réception conforme ✓' : 'Citerne arrivée — à contrôler', recvBadgeStyle: st.received ? badgeOk : badgeWait,
+      recvStyle: 'background: #FFFFFF; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 14px; transition: border .5s ease; border: ' + (st.received ? '1px solid #86EFAC' : '2px solid #EA580C') + ';',
+      receiveLabel: st.received ? 'Réception validée ✓ — stock mis à jour' : 'Valider la réception',
+      receive: function () { self.actReceive(); },
+      topupLabel: st.topped ? 'Compte rechargé ✓' : 'Recharger le compte ONG — 5 000 000 F',
+      topup: function () { self.actTopup(); },
+      priceLabel: st.priced ? 'Prix appliqués sur tout le réseau ✓' : 'Appliquer les nouveaux prix aux 30 stations',
+      applyPrice: function () { self.actPrice(); },
+      fraudTag: st.fraudDone ? 'Traitée' : 'Critique',
+      fraudTagStyle: st.fraudDone ? 'color: #14532D' : 'color: #991B1B',
+      fraudStyle: 'display: flex; gap: 10px; padding: 12px; border-radius: 8px; font-size: 13px; transition: background .5s ease; background: ' + (st.fraudDone ? '#F0FDF4' : '#FEF2F2') + ';' + (st.fraudDone ? '' : ' animation: pulseRing 1.6s ease-in-out infinite;'),
+      fraudBtn: st.fraudDone ? 'Alerte traitée ✓ — pistolet bloqué, enquête ouverte' : 'Traiter l’alerte (voir la vidéo, bloquer le pistolet)',
+      treatFraud: function () { self.actFraud(); }
+    };
+  }
+}
+
+dcLite.mount(document.getElementById('app-main'), document.getElementById('t-main'), Component);
+})();
+(function(){
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { t: 0, liters: 98420 };
+  }
+  componentDidMount() {
+    var self = this;
+    this.timer = setInterval(function () {
+      var t = (self.state.t + 1) % 24;
+      self.setState({ t: t, liters: t === 0 ? 98420 : self.state.liters + 9 + Math.floor(Math.random() * 20) });
+    }, 900);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+  renderVals() {
+    var t = this.state.t;
+    function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+    var notifs = [
+      { from: 2, to: 6, title: 'Équipe clôturée — Niamey NIA-01', text: '7 392 L · écart de caisse − 8 000 F imputé', kind: 'ok' },
+      { from: 7, to: 11, title: 'Panne réparée — Konni KON-01', text: 'Groupe électrogène réparé, station remise en service', kind: 'ok' },
+      { from: 12, to: 15, title: 'Alerte — Maradi MAR-02', text: 'Baisse de 240 L dans la cuve super à 02:14, hors vente', kind: 'alert' },
+      { from: 16, to: 23, title: 'Commande validée', text: '30 000 L de gasoil pour Zinder — bon envoyé au dépôt SONIDEP', kind: 'ok' }
+    ];
+    var n = null;
+    for (var i = 0; i < notifs.length; i++) { if (t >= notifs[i].from && t <= notifs[i].to) n = notifs[i]; }
+    var approved = t >= 16;
+    var base = 'border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; ';
+    var top = [
+      { name: 'Niamey — Station NIA-01', w: 92 },
+      { name: 'Agadez — Station AGZ-01', w: 81 },
+      { name: 'Maradi — Station MAR-02', w: 70 },
+      { name: 'Arlit — Station ARL-01', w: 58 }
+    ].map(function (s) { return { name: s.name, bar: 'height: 100%; width: ' + s.w + '%; background: #EA580C; border-radius: 5px;' }; });
+    return {
+      liters: fmt(this.state.liters) + ' L',
+      revenue: '≈ ' + fmt(Math.round(this.state.liters * 0.604)) + ' 000 FCFA · données fictives',
+      hasNotif: !!n,
+      notifTitle: n ? n.title : '',
+      notifText: n ? n.text : '',
+      notifStyle: base + (n && n.kind === 'alert' ? 'background: #FEF2F2; border: 1px solid #FCA5A5; color: #7F1D1D;' : 'background: #DCFCE7; border: 1px solid #86EFAC; color: #14532D;'),
+      approveLabel: approved ? 'Commande validée ✓' : (t >= 13 ? 'Valider la commande…' : 'Valider la commande'),
+      approveCls: !approved && t >= 13 ? 'pulse' : '',
+      approveStyle: 'font-family: inherit; font-size: 15px; font-weight: 700; min-height: 48px; border-radius: 10px; border: none; cursor: pointer; transition: background .5s ease; color: #FFFFFF; background: ' + (approved ? '#15803D' : '#EA580C') + ';',
+      top: top,
+      inService: t >= 7 ? '26' : '25',
+      down: t >= 7 ? '1' : '2'
+    };
+  }
+}
+
+dcLite.mount(document.getElementById('app-mobile'), document.getElementById('t-mobile'), Component);
+})();
+</script>
+</body>
+</html>
