@@ -6,7 +6,7 @@ merges them with AmidTech's own announcements (data/announcements.json)
 and writes news.json, which the website ticker reads.
 Runs on GitHub Actions (see .github/workflows/news.yml). Standard library only.
 """
-import json, re, html, datetime, urllib.request, urllib.parse, email.utils, pathlib, sys
+import os, json, re, html, datetime, urllib.request, urllib.parse, email.utils, pathlib, sys
 import xml.etree.ElementTree as ET
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -58,8 +58,14 @@ def parse(raw, lang, cat):
 
 def main():
     items, seen = [], set()
+    # The site shows AmidTech announcements only (external headlines diluted the message).
+    # Set INCLUDE_EXTERNAL_NEWS=1 to fetch press headlines again.
+    if os.environ.get('INCLUDE_EXTERNAL_NEWS') != '1':
+        FEEDS_TO_READ = []
+    else:
+        FEEDS_TO_READ = FEEDS
     now = datetime.datetime.now(datetime.timezone.utc)
-    for lang, cat, url, must in FEEDS:
+    for lang, cat, url, must in FEEDS_TO_READ:
         keep = re.compile(must, re.I)
         try:
             for x in [y for y in parse(fetch(url), lang, cat) if keep.search(y["title"])][:5]:
@@ -76,7 +82,7 @@ def main():
     if p.exists():
         ann = json.loads(p.read_text(encoding="utf-8"))
     old = ROOT / "news.json"
-    if not items and old.exists():          # keep previous headlines if every feed failed
+    if FEEDS_TO_READ and not items and old.exists():          # keep previous headlines if every feed failed
         items = [x for x in json.loads(old.read_text(encoding="utf-8")).get("items", []) if x.get("cat") != "amidtech"]
     data = {"updated": now.isoformat(timespec="minutes"), "items": ann + items[:MAX_ITEMS]}
     old.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
