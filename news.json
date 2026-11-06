@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-06T01:31+00:00",
+ "updated": "2026-11-06T10:48+00:00",
  "items": [
   {
    "title": "AmidTech LLC lance son nouveau site : logiciels de gestion, applications et matériel informatique",
@@ -18,6 +18,14 @@
    "lang": "all",
    "cat": "amidtech",
    "date": "2026-11-02T05:00:00+00:00"
+  },
+  {
+   "title": "Startup Bridge: Africa and Czechia",
+   "source": "The Recursive",
+   "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5QQjJwWmxqNUpWRm5PaFhqbjdIQTByR1BNVUNzTkxlRWRJWHJrSmtoQjJ0d3NpeXdXSHFCRFVpaEI2aU5yY0JhWGVfZ3R4c1hpNndtcTlVSnpsa2NuWWpRTzVKdmlTMDQ4cE9lZ1dUd3NzcG94cHFnQU5fLVpYbVU?oc=5",
+   "lang": "en",
+   "cat": "tech",
+   "date": "2026-11-06T09:43:42+00:00"
   },
   {
    "title": "Forum International des DSI 2026 : Hammamet accueille la 12ᵉ édition sur l’IA créatrice de valeur",
@@ -108,20 +116,20 @@
    "date": "2026-11-03T22:52:13+00:00"
   },
   {
-   "title": "Egypt’s Nclude Unlocks $112 Million to Back Fintech and AI Startups Across Africa",
-   "source": "Tech In Africa",
-   "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNenJDUUEzOHlQMHZWZ2JDTTJRSUllbml2ODFwZnVCWVVGVmVOOWo4UkprZG5ISE9HZ0VESms0Vkc0cEJXQzBnSjNwZEktUzFxZkFnVnRvd3Z5eFFJYUtIbnR6M1JYcVlBMnp6RUNzQVI3SVFGczZoMUoyWkJHS1dwdEI2ZS15MUxDdXA3Rm9KRi02VFZHN29pSHI3X256YzZMTXBtQ0Y0UjU2LXJCSHc?oc=5",
-   "lang": "en",
+   "title": "Pourquoi les répercussions de l'AGOA en Afrique du Sud menacent ses startups",
+   "source": "TechCabal",
+   "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPZm5tX09zTmNpRnNJZTMxV3hsSTdIeG1VOHBIaHpfQnJEUmdCNXoxLVZ2Y2o5dE80cEx5NWw0Qi0zTVJJaUMwQksxT3NRUjZ2SmJqdUJGWS1rWkRmcnRSOW9KNWNZMnJBN2VnWUNxcGRyRU9vaFZzVzB3YVUxdHhFaVJaWWlKdzRia0Vmbk9vcTJUcFIwU1dadWpZZHhmQQ?oc=5",
+   "lang": "fr",
    "cat": "tech",
-   "date": "2026-11-03T19:51:22+00:00"
+   "date": "2026-11-03T13:29:15+00:00"
   },
   {
-   "title": "Lithium : derrière le Mali, le Ghana et la Côte d’Ivoire veulent renforcer l’offre ouest-africaine",
-   "source": "La Tribune",
-   "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQc2Exd1FRbEx5Y19QLThVUFB5dnVqcDZ1TG1ZbGVDVUxaOWFXUmdVLUxJMU5xZXp2c0h2SVpwYzlOR195amEwUUhlZVFobk5LSW5wWU9UcW0ybGk4RktzSk5jZWJKRTVsS2dFZW0zVUpzenlkOGxOMDBiaUlRZ2N4V182QkQ1RHp0TUU0c1o3OVBvenBnTWhxY0FmNEh0bGJraU1DQTFWR2Y5M1NTMU9jOFoxaXFYZTVYQ1UtMlVtWF9kMFl4VzhLcVJyVkk4Yy1ueWR2SXY3c2dzcWg1TlFhSHJGMjNWUQ?oc=5",
-   "lang": "fr",
-   "cat": "mines",
-   "date": "2026-11-03T12:20:01+00:00"
+   "title": "A Look at How AI Is Working Out in the Workplace",
+   "source": "Stanford Graduate School of Business",
+   "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5kaS1CSXZkTFlVTHZOc1BPNmd0elNnNEFjOFh3VXFIRmYzT3hUa3o5LTRrSHJlUVdiME1zMWhIUE1PdlFYZ1JIZTU2cHJSNWFkRTgzNDFkNjFLaDBWdHJLampBdnpMRVJJeWx6dTQ3aU95M21nYktaSzg3VQ?oc=5",
+   "lang": "en",
+   "cat": "ai",
+   "date": "2026-11-03T08:00:00+00:00"
   },
   {
    "title": "Souverainisme minier : après le Burkina Faso, la Guinée inaugure sa première raffinerie d’or",
@@ -154,14 +162,6 @@
    "lang": "en",
    "cat": "ai",
    "date": "2026-11-02T12:22:00+00:00"
-  },
-  {
-   "title": "Forum économique Businex 2026 : GK Globale offre aux jeunes entrepreneurs un cadre d’échanges et de construction d’un avenir entrepreneurial",
-   "source": "Le Sahel.org",
-   "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxPemtvSWg4ZVlJdE80bmgzR1FEUDBHdTYzTU1JZ2JCLWJRbGxQWFhfYTZBRktER3o3bkF6R1o4RXVsZXZMdFhXUm5Ud3dFSVc2MUUyUEZnQlltVGxKaE1hSkF5VG96UTdaNk5qZ1RjTjUxUVVBc01mTVNaN0pjMnBiRml4QzlvRzB0OEtORGtxUjVkMmFuSWYwT0FDdDFZVWVIYlJQbXYwWUtzc1UyTDhvbElmdFlhY2Fwa3Y2d0xkb0xwcG1EZHloblJwREVaa3F6amR2eTlpTkpRVENoR2ZGSUJjZ0ZCVHRPVThWdFZVOEs4SmlHX2NKdDNxelI?oc=5",
-   "lang": "fr",
-   "cat": "niger",
-   "date": "2026-11-02T08:52:17+00:00"
   }
  ]
 }
