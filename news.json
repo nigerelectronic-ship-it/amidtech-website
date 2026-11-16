@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T00:58+00:00",
+ "updated": "2026-11-16T11:07+00:00",
  "items": [
   {
    "title": "AmidTech LLC lance son nouveau site : logiciels de gestion, applications et matériel informatique",
@@ -18,6 +18,30 @@
    "lang": "all",
    "cat": "amidtech",
    "date": "2026-11-02T05:00:00+00:00"
+  },
+  {
+   "title": "Startups : pourquoi les milliards de la tech régionale contournent-ils le Maroc ?",
+   "source": "Aujourd'hui le Maroc",
+   "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOLWZNVDZPQ3NyWDRZTHZfdXVvQkthZWFhdHdRWm15dnVhRVhna29ET3JhYi1fbjV2ZTktM2pLcTZ4ZlJWakpMU1Z3SGdhUVpmbnFERWxLam03R1pfYW1FWnlFQVZqcjE0WUoyTFdMVU9FcmdHRi0tS2N0TEdjbzJDYTlHcWZFQnpMVGVUSlhMdDA4YU1SMXlhQjFlVThOZ2VOUy1ucGhFTlNlWHBa?oc=5",
+   "lang": "fr",
+   "cat": "tech",
+   "date": "2026-11-16T09:09:06+00:00"
+  },
+  {
+   "title": "Mali : le pari de l’investissement pour ouvrir un nouveau chapitre économique",
+   "source": "Africa News Agency",
+   "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNQ1cyVHVkb1BmNHZmendIcTdQV1VNUXdLUE9GMlhRb2k0T2dfZ3FxMmh4TXA5aDBoQ2pLYnAxbXpNQXZ0bEFzOWRuNlVIWXFhajNSSEpTbXhYR1ZmUUlCd0JoU0t0TmRnMFZSVUpGT185bWV4Slh0LXo2cHV6RXdKRHp6V2FCemhNOHdPNHRKOXprSWgwVDJyd1YxTjV6aFpwUU1CM0dvbWZ6QQ?oc=5",
+   "lang": "fr",
+   "cat": "niger",
+   "date": "2026-11-16T04:01:36+00:00"
+  },
+  {
+   "title": "Spotlight : 5 innovative African startups shaping local and global impact",
+   "source": "Africa News Agency",
+   "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE54aXRuQ0hBZTdmV2FjSHBsbFNMc0dWcnBlRExMM0pZcUR5bjZLWkV1ZzZ6X3RsVnRzNXQ3MEtnblhwNmJzQUlBOFQ5T0RiaW0ybmhN?oc=5",
+   "lang": "en",
+   "cat": "tech",
+   "date": "2026-11-16T01:18:22+00:00"
   },
   {
    "title": "When tech founders leave, what happens to their companies?",
@@ -138,30 +162,6 @@
    "lang": "fr",
    "cat": "niger",
    "date": "2026-11-11T20:42:00+00:00"
-  },
-  {
-   "title": "AFIA Equipment Manufacturers Conference Examines AI’s Role in Feed Industry",
-   "source": "Grain Journal",
-   "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQYmhaZVZva2xJX2hBSVRtMG1fVEYwaTFvTnZtVmNKMG42czBjYkQ3VUJnR0R0UGJOdWNlVFJBOFY0U0ppbHhkSFFYTFFvbnM4NlU4QlZjQmVJaXRuVHNOakphcVd1QXZXMVZfZVpMQllqelNEUzZmZlVSRjBKOUFNVDJMSXMyc3NvZnZrelAyaG5lQUUzMHhlYU1qR3JmQmU0bzlTWlpXR1c1Z3FXa21qQXVDVTR2U3R2aDNJ?oc=5",
-   "lang": "en",
-   "cat": "ai",
-   "date": "2026-11-11T18:28:00+00:00"
-  },
-  {
-   "title": "IVOIRE TECH 2026 : 32 millions de FCFA à la clé pour les 3 meilleures startups numériques",
-   "source": "Digital Business Africa",
-   "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxON21HakhqYW1aVU5EWTViaG9YSWNkVGl2VUc4Nk1SYTFTRXB5dVRQR0pfRXBDZmJfSnlLSmFhdktybzRJOE9YMVljN3dKMHVNYUFYdlQtbFdDSWZDSVJzUDljVDZ1Q1k2eXBCZXp2b2VZWk9YSndyT3dWSUc4NVo3eWdJVG9yOU5Ha3dxczFXUzctaGtmMFJFanhGaHk1X2w5UlBqZTN0RlktdkJZR0FiS2h1OTYyTDZUbmlQd29DSTQ?oc=5",
-   "lang": "fr",
-   "cat": "tech",
-   "date": "2026-11-11T10:49:22+00:00"
-  },
-  {
-   "title": "QXO Says AI Could Double Sales Productivity as It Integrates Building Products Acquisitions",
-   "source": "Distribution Strategy Group",
-   "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNY1JqYUE0Nllxam8ycFhlLWNPczBNYkgyZkZvQ25LSHJIcmFnTkw1RGJIVUNUdU5uZmwxNHBxZVQ0Ym9wbDAtcHR1RHhXMm1FNk9Xb0ZBa1ZjbFdaOEs1bDQ0VG91U20xZzliUGplRDBBOHVCMVVSR3YyTDBiVm83X2o1WElIMWROMEltdkM4Vm91UzktX3NhTXFQQ0JuRU1ZU09JVWd1c2JEaDEyVXdTcVEwXzhETVNxWXFQVnFIUkdMVElYMll1SUR5T2Q1UQ?oc=5",
-   "lang": "en",
-   "cat": "ai",
-   "date": "2026-11-10T15:11:33+00:00"
   }
  ]
 }
