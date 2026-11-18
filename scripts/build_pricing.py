@@ -1,4 +1,5 @@
-"""Generates the pricing block of index.html (between the PRICING markers). Run: python3 scripts/build_pricing.py"""
+"""Generates the pricing block of src/index.html (between the PRICING markers).
+Run: python3 scripts/build_pricing.py && python3 scripts/build_site.py"""
 import pathlib, re
 RATE = 575
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -110,7 +111,7 @@ def build():
               "Prix indicatifs « à partir de », en dollars US, hors taxes, frais bancaires et déplacements hors Niamey. Équivalents FCFA indicatifs (1 $ ≈ 575 FCFA). Le prix ferme est celui de votre devis signé.")))
 
 if __name__ == "__main__":
-    p = ROOT / "index.html"; s = p.read_text(encoding="utf-8")
+    p = ROOT / "src" / "index.html"; s = p.read_text(encoding="utf-8")
     block = build()
     if "<!-- PRICING:START -->" in s:
         s = re.sub(r"<!-- PRICING:START -->.*?<!-- PRICING:END -->", lambda m: block, s, flags=re.S)

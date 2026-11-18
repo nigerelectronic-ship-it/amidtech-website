@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://amidtechgroup.com/</loc><lastmod>2026-11-02</lastmod><priority>1.0</priority></url>
-  <url><loc>https://amidtechgroup.com/terms</loc><lastmod>2026-11-02</lastmod><priority>0.5</priority></url>
-  <url><loc>https://amidtechgroup.com/privacy</loc><lastmod>2026-11-02</lastmod><priority>0.5</priority></url>
-  <url><loc>https://amidtechgroup.com/refund</loc><lastmod>2026-11-02</lastmod><priority>0.5</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://www.amidtechgroup.com/</loc><lastmod>2026-11-18</lastmod><priority>1.0</priority><xhtml:link rel="alternate" hreflang="fr" href="https://www.amidtechgroup.com/"/><xhtml:link rel="alternate" hreflang="en" href="https://www.amidtechgroup.com/en"/></url>
+  <url><loc>https://www.amidtechgroup.com/en</loc><lastmod>2026-11-18</lastmod><priority>1.0</priority><xhtml:link rel="alternate" hreflang="fr" href="https://www.amidtechgroup.com/"/><xhtml:link rel="alternate" hreflang="en" href="https://www.amidtechgroup.com/en"/></url>
+  <url><loc>https://www.amidtechgroup.com/fr/terms</loc><lastmod>2026-11-18</lastmod><priority>0.5</priority><xhtml:link rel="alternate" hreflang="fr" href="https://www.amidtechgroup.com/fr/terms"/><xhtml:link rel="alternate" hreflang="en" href="https://www.amidtechgroup.com/terms"/></url>
+  <url><loc>https://www.amidtechgroup.com/terms</loc><lastmod>2026-11-18</lastmod><priority>0.5</priority><xhtml:link rel="alternate" hreflang="fr" href="https://www.amidtechgroup.com/fr/terms"/><xhtml:link rel="alternate" hreflang="en" href="https://www.amidtechgroup.com/terms"/></url>
+  <url><loc>https://www.amidtechgroup.com/fr/privacy</loc><lastmod>2026-11-18</lastmod><priority>0.5</priority><xhtml:link rel="alternate" hreflang="fr" href="https://www.amidtechgroup.com/fr/privacy"/><xhtml:link rel="alternate" hreflang="en" href="https://www.amidtechgroup.com/privacy"/></url>
+  <url><loc>https://www.amidtechgroup.com/privacy</loc><lastmod>2026-11-18</lastmod><priority>0.5</priority><xhtml:link rel="alternate" hreflang="fr" href="https://www.amidtechgroup.com/fr/privacy"/><xhtml:link rel="alternate" hreflang="en" href="https://www.amidtechgroup.com/privacy"/></url>
+  <url><loc>https://www.amidtechgroup.com/fr/refund</loc><lastmod>2026-11-18</lastmod><priority>0.5</priority><xhtml:link rel="alternate" hreflang="fr" href="https://www.amidtechgroup.com/fr/refund"/><xhtml:link rel="alternate" hreflang="en" href="https://www.amidtechgroup.com/refund"/></url>
+  <url><loc>https://www.amidtechgroup.com/refund</loc><lastmod>2026-11-18</lastmod><priority>0.5</priority><xhtml:link rel="alternate" hreflang="fr" href="https://www.amidtechgroup.com/fr/refund"/><xhtml:link rel="alternate" hreflang="en" href="https://www.amidtechgroup.com/refund"/></url>
 </urlset>
